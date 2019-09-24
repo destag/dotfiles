@@ -1,0 +1,4 @@
+draft/
+.mypy_cache/
+.vscode/
+*.orig

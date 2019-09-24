@@ -1,0 +1,40 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.fontFamily": "'Fira Code'",
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+    "editor.fontLigatures": true,
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "editor.fontSize": 13,
+    "editor.fontWeight": "500",
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "editor.acceptSuggestionOnEnter": "off",
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "explorer",
+    "gitlens.views.lineHistory.location": "explorer",
+    "gitlens.views.compare.location": "gitlens",
+    "gitlens.views.search.location": "gitlens",
+    "gitlens.codeLens.enabled": false,
+    "go.lintTool": "revive",
+    "python.linting.mypyPath": "/usr/bin/mypy",
+    "python.formatting.blackPath": "/usr/bin/black",
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.linting.enabled": true,
+    "python.autoComplete.addBrackets": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "-l 79"
+    ],
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "[python]": {
+        "editor.rulers": [
+            79
+        ]
+    }
+}

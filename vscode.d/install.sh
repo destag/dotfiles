@@ -18,8 +18,8 @@ code \
     --install-extension ms-azuretools.vscode-docker \
     --install-extension vncz.vscode-apielements \
     --install-extension timonwong.shellcheck \
-    --install-extension editorconfig.editorconfig \
-    | info
+    --install-extension editorconfig.editorconfig |
+    info
 
 if ! [ -L "$VSCODE_DIR/settings.json" ]; then
     rm "$VSCODE_DIR/settings.json"
@@ -35,4 +35,12 @@ if ! [ -L "$VSCODE_DIR/snippets" ]; then
     yellow "Created link: $VSCODE_DIR/snippets"
 else
     green "Link already exists: $VSCODE_DIR/snippets"
+fi
+
+if ! [ -L "$VSCODE_DIR/keybindings.json" ]; then
+    rm -r "$VSCODE_DIR/keybindings.json"
+    ln -s "$CONF_DIR/vscode.d/keybindings.json" "$VSCODE_DIR/keybindings.json"
+    yellow "Created link: $VSCODE_DIR/keybindings.json"
+else
+    green "Link already exists: $VSCODE_DIR/keybindings.json"
 fi

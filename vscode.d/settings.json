@@ -19,6 +19,7 @@
     "gitlens.views.search.location": "gitlens",
     "gitlens.codeLens.enabled": false,
     "go.lintTool": "revive",
+    "go.formatTool": "goimports",
     "python.linting.mypyPath": "/usr/bin/mypy",
     "python.formatting.blackPath": "/usr/bin/black",
     "python.linting.pylintEnabled": false,

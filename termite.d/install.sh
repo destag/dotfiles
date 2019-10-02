@@ -5,12 +5,14 @@ if ! [ "$(command -v termite)" ]; then
     return
 fi
 
-CONF_FILE="$HOME/.config/termite/config"
+TERMITE_DIR="$HOME/.config/termite"
 
-if ! [ -L "$CONF_FILE" ]; then
-    rm -r "$CONF_FILE"
-    ln -s "$CONF_DIR/termite.d/config" "$CONF_FILE"
-    yellow "Created link: $CONF_FILE"
+mkdir -p "$TERMITE_DIR"
+
+if ! [ -L "$TERMITE_DIR/config" ]; then
+    rm -r "$TERMITE_DIR/config"
+    ln -s "$CONF_DIR/termite.d/config" "$TERMITE_DIR/config"
+    yellow "Created link: $TERMITE_DIR/config"
 else
-    green "Link already exists: $CONF_FILE"
+    green "Link already exists: $TERMITE_DIR/config"
 fi

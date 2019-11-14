@@ -1,0 +1,26 @@
+{
+	"provider": {
+		"prefix": "prv",
+		"body": [
+			"provider \"$1\" {",
+			"  $0",
+			"}"
+		]
+	},
+	"resource": {
+		"prefix": "res",
+		"body": [
+			"resource \"$1\" \"$2\" {",
+			"  $0",
+			"}"
+		]
+	},
+	"datasource": {
+		"prefix": "dat",
+		"body": [
+			"data \"$1\" \"$2\" {",
+			"  $0",
+			"}"
+		]
+	}
+}

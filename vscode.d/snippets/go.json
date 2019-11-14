@@ -17,6 +17,12 @@
             "log.Error().Err(err)$1.Msg(\"$2\")"
         ]
     },
+    "zerolog fatal": {
+        "prefix": "zlog:fatal",
+        "body": [
+            "log.Fatal().Err(err).Msg(\"$1\")"
+        ]
+    },
     "chi handler": {
         "prefix": "chi:handler",
         "body": [

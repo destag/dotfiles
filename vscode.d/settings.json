@@ -22,20 +22,45 @@
     "go.formatTool": "goimports",
     "python.linting.mypyPath": "/usr/bin/mypy",
     "python.formatting.blackPath": "/usr/bin/black",
-    "python.linting.pylintEnabled": false,
     "python.linting.mypyEnabled": true,
-    "python.linting.enabled": true,
     "python.autoComplete.addBrackets": true,
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "-l 79"
     ],
+    "python.linting.mypyArgs": [
+        "--ignore-missing-imports",
+        "--follow-imports=silent",
+        "--show-column-numbers",
+        "--show-error-codes"
+    ],
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.groovy.template": "groovy",
+        "Jenkinsfile*": "groovy"
+    },
+    "search.exclude": {
+        "**/.mypy_cache": true
+    },
+    "editor.cursorSurroundingLines": 3,
+    "python.linting.pylintPath": "/usr/bin/pylint",
+    "terraform.indexing": {
+        "enabled": true,
+        "liveIndexing": false,
+        "delay": 500,
+        "exclude": [
+            ".terraform/**/*",
+            "**/.terraform/**/*"
+        ]
+    },
     "[python]": {
         "editor.rulers": [
             79
         ]
+    },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     }
 }

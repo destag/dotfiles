@@ -1,0 +1,30 @@
+#!/bin/bash
+
+DOTILES_PATH="$HOME/.dotfiles"
+
+# Source Prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    # shellcheck disable=SC1090
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Allow termite open new terminal in same dir
+if [[ "$TERM" == xterm-termite ]]; then
+    # shellcheck disable=SC1091
+    source /etc/profile.d/vte.sh
+    __vte_osc7
+fi
+
+unsetopt nomatch
+
+# shellcheck disable=SC1090
+source "${DOTILES_PATH}/zsh.d/alias.sh"
+
+# shellcheck disable=SC1090
+source "${DOTILES_PATH}/zsh.d/env.sh"
+
+# shellcheck disable=SC1090
+source "${DOTILES_PATH}/zsh.d/functions.sh"
+
+stty -ixon
+prompt pure

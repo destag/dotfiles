@@ -1,4 +1,6 @@
 draft/
+venv/
 .mypy_cache/
+.pytest_cache/
 .vscode/
 *.orig

@@ -1,0 +1,122 @@
+" Airline configration
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_powerline_fonts = 1
+
+" NERDTree configuration
+" Start nerdtree on vim startup
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Bind toggling nerdtree to Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
+" Auto close nerdtree when other tabs are closed
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Enable syntax highlighting
+syntax on
+
+" Highlight current line
+hi CursorLine cterm=NONE ctermbg=8 ctermfg=NONE
+set cursorline
+
+" Show relative line numbers
+set nu
+set relativenumber
+
+" Close buffers with 'q'
+nnoremap <leader>q :bp\|bd #<CR>
+
+" Show matched patterns
+set hlsearch
+
+" Turn off highlighting matched patterns with space
+:nnoremap <silent> ,<Space> :nohlsearch<Bar>:echo<CR>
+
+" Better split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
+
+" Lets begin ugly WTF section :)
+" Set colorscheme
+packloadall
+let g:onedark_termcolors=256
+set termguicolors
+syntax on
+colorscheme onedark
+let airline_theme='onedark'
+
+" Show unwanted whitespaces
+highlight ExtraWhitespace ctermbg=lightred guibg=lightred
+match ExtraWhitespace /\s\+$/
+
+" Case insensitive search
+set ignorecase
+set incsearch
+set smartcase
+
+
+set updatetime=100
+let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_auto_colors = 0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+
+" Ansible yaml syntax
+au BufRead,BufNewFile */ansible/*.yml set filetype=yaml.ansible
+
+" Intendation
+set autoindent
+set smartindent
+set expandtab
+set tabstop=2
+
+" Show whitespaces
+set listchars=tab:→\ ,eol:¬,trail:~,extends:>,precedes:<
+set list
+
+" FZF mapping
+nnoremap <leader>f :FZF<CR>
+
+" Show commands when typing
+set showcmd
+
+" Mergetool mappings
+if &diff
+    map <leader>1 :diffget LOCAL<CR>
+    map <leader>2 :diffget BASE<CR>
+    map <leader>3 :diffget REMOTE<CR>
+endif
+
+" Set jenkinsfiles as groovy
+" au BufRead,BufNewFile Jenkinsfile* setfiletype groovy
+
+" Set vim backp
+set backup
+
+" Set better folding
+" setlocal foldmethod=syntax
+autocmd BufRead,BufNewFile *.py setlocal foldmethod=indent filetype=python
+filetype plugin indent on
+" autocmd Filetype * AnyFoldActivate
+
+" Python indentation
+autocmd FileType python set expandtab tabstop=4 softtabstop=4 shiftwidth=4 syntax=python
+set shiftwidth=2
+
+set foldlevel=99
+let g:omni_sql_no_default_maps = 1

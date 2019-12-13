@@ -17,6 +17,7 @@ alias tf='terraform'
 alias R='ranger'
 alias act='source ./venv/bin/activate'
 alias dact='deactivate'
+alias venv='python -m venv venv && source ./venv/bin/activate'
 alias xc='xclip -selection clipboard'
 
 # git

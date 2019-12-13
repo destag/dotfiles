@@ -9,6 +9,8 @@ packages=(
     "zsh"
     "python"
     "python-pip"
+    "python-black"
+    "python-pylint"
     "wget"
     "tmux"
     "htop"
@@ -26,6 +28,19 @@ packages=(
     "httpie"
     "nodejs"
     "system-config-printer"
+    "otf-fira-code"
+    "firefox-developer-edition"
+    "terraform"
+    "vagrant"
+    "etcher"
+    "ncdu"
+    "virtualbox"
+    "vlc"
+    "aws-cli"
+    "bind-tools"
+    "xclip"
+    "nmap"
+    "mypy"
 )
 
 sudo pacman -Syu --noconfirm | info

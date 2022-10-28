@@ -1,0 +1,73 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.gitconfig: config/gitconfig
+    ~/.gitignore: config/gitignore
+    ~/.vimrc: config/vimrc
+    ~/.zshrc: config/zshrc
+    ~/.config/alacritty/alacritty.yml: config/alacritty.yml
+    ~/.config/starship.toml: config/starship.toml
+    ~/.config/Code - OSS/User/settings.json: vscode/settings.json
+    ~/.config/Code - OSS/User/keybindings.json: vscode/keybindings.json
+    ~/.config/Code - OSS/User/snippets: vscode/snippets
+
+- paru:
+    - git-delta
+    - zsh
+    - python
+    - python-pip
+    - python-black
+    - python-pylint
+    - python-pipenv
+    - python-pytest
+    - python-dotenv
+    - wget
+    - htop
+    - neofetch
+    - ansible
+    - code
+    - vim
+    - alacritty
+    - jq
+    - go
+    - docker
+    - fzf
+    - httpie
+    - nodejs
+    - system-config-printer
+    - ttf-fira-code
+    - firefox-developer-edition
+    - terraform
+    - vagrant
+    - etcher-bin
+    - ncdu
+    - virtualbox
+    - vlc
+    - aws-cli-v2-bin
+    - bind-tools
+    - xclip
+    - mypy
+
+- shell:
+  - command: >
+      code
+      --install-extension teabyii.ayu
+      --install-extension mhutchie.git-graph
+      --install-extension hashicorp.terraform
+      --install-extension ms-python.python
+      --install-extension golang.go
+      --install-extension editorconfig.editorconfig
+      --install-extension timonwong.shellcheck
+      --install-extension tabnine.tabnine-vscode
+      --install-extension ms-azuretools.vscode-docker
+      --install-extension svelte.svelte-vscode
+      --install-extension mikestead.dotenv
+      --install-extension tombonnike.vscode-status-bar-format-toggle
+      --install-extension shardulm94.trailing-spaces
+    stderr: true
+    quiet: true
+    description: install vscode extensions

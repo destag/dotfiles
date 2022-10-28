@@ -1,0 +1,34 @@
+{
+  "cobra command": {
+    "prefix": "cmd",
+    "body": [
+      "package cmd",
+      "import \"github.com/spf13/cobra\"",
+      "var $1Cmd = &cobra.Command{",
+      "\tUse:\"$2\",",
+      "\tShort:\"$3\",",
+      "\tRun: func(cmd *cobra.Command, args []string) {$0},",
+      "}"
+    ]
+  },
+  "json tag": {
+    "prefix": "js",
+    "body": ["`json:\"$1\"`"]
+  },
+  "zerolog debug": {
+    "prefix": "zlog:debug",
+    "body": ["log.Debug()$1.Msg(\"$2\")"]
+  },
+  "zerolog info": {
+    "prefix": "zlog:info",
+    "body": ["log.Info()$1.Msg(\"$2\")"]
+  },
+  "zerolog error": {
+    "prefix": "zlog:error",
+    "body": ["log.Error().Err(err)$1.Msg(\"$2\")"]
+  },
+  "zerolog fatal": {
+    "prefix": "zlog:fatal",
+    "body": ["log.Fatal().Err(err).Msg(\"$1\")"]
+  }
+}

@@ -1,10 +1,6 @@
-# dotfiles
+# Installation
 
-# Usage
+We are using dotbot to set things up. Steps:
 
-```bash
-git clone https://github.com/destag/dotfiles ~/.dotfiles
-cd ~/.dotfiles
-./bootstrap.sh pacman
-./bootstrap.sh
-```
+Clone this repo with: `git clone https://github.com/destag/dotfiles .dotfiles`
+Run: `.dotfiles/install`

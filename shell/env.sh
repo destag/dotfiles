@@ -9,3 +9,7 @@ export PIP_REQUIRE_VIRTUALENV=1
 
 # elixir iex
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+# fly.io
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"

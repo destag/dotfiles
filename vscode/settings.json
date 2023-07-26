@@ -3,7 +3,6 @@
   "editor.cursorBlinking": "solid",
   "editor.fontLigatures": true,
   "editor.wordWrap": "on",
-  "editor.fontSize": 13,
   "editor.fontWeight": "500",
   "editor.acceptSuggestionOnEnter": "off",
   "gitlens.codeLens.enabled": false,
@@ -21,7 +20,9 @@
     "*.groovy.template": "groovy",
     "Jenkinsfile*": "groovy",
     "*.Jenkinsfile": "groovy",
-    "*.hcl": "terraform"
+    "*.hcl": "terraform",
+    "*.heex": "phoenix-heex",
+    ".env": "dotenv"
   },
   "search.exclude": {
     "**/.mypy_cache": true
@@ -57,7 +58,6 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Ayu Dark",
   "editor.minimap.enabled": false,
   "editor.suggest.showStatusBar": true,
   "python.experiments.enabled": false,
@@ -72,7 +72,6 @@
   "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   "python.terminal.activateEnvironment": false,
-  "workbench.iconTheme": "ayu",
   "pythonTestExplorer.testFramework": "pytest",
   "editor.suggest.preview": true,
   "extensions.autoUpdate": false,
@@ -86,9 +85,7 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "thunder-client.codeSnippetLanguage": "python-requests",
   "editor.formatOnSave": true,
-  "diffEditor.ignoreTrimWhitespace": false,
   "python.linting.pylintArgs": [
     "--disable=missing-function-docstring",
     "--disable=missing-class-docstring",
@@ -99,20 +96,50 @@
   "diffEditor.renderSideBySide": false,
   "rest-client.enableTelemetry": false,
   "css.validate": false,
-  "deno.enable": true,
   "rest-client.previewOption": "exchange",
   "svelte.enable-ts-plugin": true,
   "telemetry.telemetryLevel": "off",
   "python.languageServer": "Pylance",
   "terraform.codelens.referenceCount": true,
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,
   "git.mergeEditor": true,
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "elixirLS.enableTestLenses": true,
   "elixirLS.suggestSpecs": false,
-  "window.zoomLevel": -1,
-  "window.menuBarVisibility": "toggle",
-  "window.titleBarStyle": "custom"
+  "workbench.colorTheme": "Tokyo Night",
+  "workbench.iconTheme": "eq-material-theme-icons-palenight",
+  "window.commandCenter": true,
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "compact",
+  "zenMode.hideLineNumbers": false,
+  "emmet.triggerExpansionOnTab": true,
+  "tailwindCSS.includeLanguages": {
+    "phoenix-heex": "html",
+    "elixir": "html"
+  },
+  "emmet.includeLanguages": {
+    "phoenix-heex": "html",
+    "elixir": "html"
+  },
+  "diffEditor.maxComputationTime": 0,
+  "python.analysis.extraPaths": [
+    "./.venv"
+  ],
+  "go.lintFlags": [
+    "-config .revive.toml"
+  ],
+  "[elixir]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.wordBasedSuggestions": false,
+    "editor.formatOnType": true,
+    "editor.trimAutoWhitespace": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.fontSize": 13
 }

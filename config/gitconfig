@@ -16,12 +16,12 @@
 [diff]
   tool = vimdiff
 [merge]
-  tool = vimdiff
-  guitool = vscode
+  tool = code
+  guitool = code
 [mergetool]
   keepBackup = false
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool]
   prompt = false
 [credential]

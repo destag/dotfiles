@@ -37,3 +37,6 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 autoload zcalc
+
+source $HOME/.asdf/asdf.sh
+eval "$(thefuck --alias)"

@@ -1,0 +1,11 @@
+.npm
+.ansible
+.cache
+.asdf
+.cargo
+.mozilla
+.local/share
+.config/BraveSoftware
+go
+.pyenv
+*.pyc

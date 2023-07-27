@@ -9,65 +9,74 @@
     ~/.gitignore: config/gitignore
     ~/.vimrc: config/vimrc
     ~/.zshrc: config/zshrc
+    ~/.rsync_skip: config/rsync_skip
     ~/.config/alacritty/alacritty.yml: config/alacritty.yml
     ~/.config/starship.toml: config/starship.toml
     ~/.config/Code - OSS/User/settings.json: vscode/settings.json
     ~/.config/Code - OSS/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code - OSS/User/snippets: vscode/snippets
 
-- paru:
+- apt:
     - git-delta
     - zsh
-    - python
-    - python-pip
-    - python-black
-    - python-pylint
-    - python-pipenv
-    - python-pytest
-    - python-dotenv
     - wget
     - htop
     - neofetch
     - ansible
     - code
-    - vim
+    - nvim
     - alacritty
     - jq
     - go
     - docker
     - fzf
     - httpie
-    - nodejs
-    - system-config-printer
     - ttf-fira-code
     - firefox-developer-edition
-    - terraform
     - vagrant
     - etcher-bin
     - ncdu
     - virtualbox
     - vlc
-    - aws-cli-v2-bin
-    - bind-tools
     - xclip
-    - mypy
 
 - shell:
   - command: >
       code
+      --install-extension ms-python.vscode-pylance
+      --install-extension wmaurer.change-case
       --install-extension teabyii.ayu
-      --install-extension mhutchie.git-graph
-      --install-extension hashicorp.terraform
-      --install-extension ms-python.python
-      --install-extension golang.go
-      --install-extension editorconfig.editorconfig
-      --install-extension timonwong.shellcheck
-      --install-extension tabnine.tabnine-vscode
       --install-extension ms-azuretools.vscode-docker
-      --install-extension svelte.svelte-vscode
       --install-extension mikestead.dotenv
+      --install-extension editorconfig.editorconfig
+      --install-extension florinpatrascu.vscode-elixir-snippets
+      --install-extension JakeBecker.elixir-ls
+      --install-extension tamasfe.even-better-toml
       --install-extension tombonnike.vscode-status-bar-format-toggle
+      --install-extension mhutchie.git-graph
+      --install-extension eamodio.gitlens
+      --install-extension golang.go
+      --install-extension hashicorp.terraform
+      --install-extension ms-python.isort
+      --install-extension ivory-lab.jenkinsfile-support
+      --install-extension wholroyd.jinja
+      --install-extension ms-vsliveshare.vsliveshare
+      --install-extension equinusocio.vsc-material-theme-icons
+      --install-extension phoenixframework.phoenix
+      --install-extension esbenp.prettier-vscode
+      --install-extension ms-python.python
+      --install-extension timonwong.shellcheck
+      --install-extension fivethree.vscode-svelte-snippets
+      --install-extension svelte.svelte-vscode
+      --install-extension tabnine.tabnine-vscode
+      --install-extension bradlc.vscode-tailwindcss
+      --install-extension ms-vscode.test-adapter-converter
+      --install-extension hbenl.vscode-test-explorer
+      --install-extension enkia.tokyo-night
       --install-extension shardulm94.trailing-spaces
+      --install-extension bbenoist.vagrant
+      --install-extension redhat.vscode-xml
+      --install-extension redhat.vscode-yaml
     stderr: true
     quiet: true
     description: install vscode extensions

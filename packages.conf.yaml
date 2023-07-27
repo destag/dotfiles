@@ -1,22 +1,27 @@
 - apt:
     - zsh
+    - dirmngr
+    - gpg
+    - curl
+    - gawk
     - wget
     - htop
     - neofetch
     - ansible
     - code
-    - nvim
+    - neovim
 #    - alacritty
     - jq
 #    - go
-#    - docker
-#    - fzf
-#    - httpie
+    - docker
+    - fzf
+    - httpie
 #    - ttf-fira-code
 #    - firefox-developer-edition
 #    - vagrant
 #    - etcher-bin
-#    - ncdu
+    - ncdu
+    - thefuck
 #    - virtualbox
 #    - vlc
     - xclip

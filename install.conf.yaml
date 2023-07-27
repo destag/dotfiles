@@ -68,3 +68,42 @@
     stderr: true
     quiet: true
     description: generate ssh key
+
+  - command: |
+      if [ ! -d $HOME/.asdf ]; then
+        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.12.0
+
+        $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+        $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+        $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git
+        $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+        $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+      fi
+    stderr: true
+    quiet: true
+    description: install asdf
+
+  - command: curl -sS https://starship.rs/install.sh | sh
+    stderr: true
+    stdout: true
+    # quiet: true
+    description: install starship
+
+  - command: chsh -s /bin/zsh
+    stdin: true
+    stderr: true
+    quiet: true
+    description: change default shell
+
+  - command: |
+      if [ ! -d $HOME/.zprezto ]; then
+        git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
+      fi
+
+      zsh -c 'setopt EXTENDED_GLOB
+      for rcfile in $HOME/.zprezto/runcoms/^README.md(.N); do
+        ln -s "$rcfile" "$HOME/.${rcfile:t}" || true
+      done'
+    stderr: true
+    quiet: true
+    description: setup prezto

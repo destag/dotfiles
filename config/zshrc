@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTILES_PATH="$HOME/.dotfiles"
+DOTFILES_PATH="$HOME/.dotfiles"
 
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -18,23 +18,19 @@ fi
 unsetopt nomatch
 
 # shellcheck disable=SC1090
-source "${DOTILES_PATH}/shell/alias.sh"
+source "${DOTFILES_PATH}/shell/alias.sh"
 
 # shellcheck disable=SC1090
-source "${DOTILES_PATH}/shell/env.sh"
+source "${DOTFILES_PATH}/shell/env.sh"
 
 # shellcheck disable=SC1090
-source "${DOTILES_PATH}/shell/functions.sh" || true
+source "${DOTFILES_PATH}/shell/functions.sh" || true
 
 stty -ixon
 prompt off
 eval "$(starship init zsh)"
 
-# pyenv support
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.mix/escripts:$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+export PATH="$HOME/.mix/escripts:$PATH"
 
 autoload zcalc
 

@@ -15,30 +15,6 @@
     ~/.config/Code - OSS/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code - OSS/User/snippets: vscode/snippets
 
-- apt:
-    - git-delta
-    - zsh
-    - wget
-    - htop
-    - neofetch
-    - ansible
-    - code
-    - nvim
-    - alacritty
-    - jq
-    - go
-    - docker
-    - fzf
-    - httpie
-    - ttf-fira-code
-    - firefox-developer-edition
-    - vagrant
-    - etcher-bin
-    - ncdu
-    - virtualbox
-    - vlc
-    - xclip
-
 - shell:
   - command: >
       code

@@ -7,7 +7,6 @@
 - link:
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore
-    ~/.vimrc: config/vimrc
     ~/.zshrc: config/zshrc
     ~/.rsync_skip: config/rsync_skip
     ~/.config/alacritty/alacritty.yml: config/alacritty.yml

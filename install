@@ -15,5 +15,5 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
   --base-directory "${BASEDIR}" \
   --config-file "${CONFIG}" \
-  --plugin-dir dotbot-paru \
+  --plugin-dir dotbot-apt \
   "${@}"

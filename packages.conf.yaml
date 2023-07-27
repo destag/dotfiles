@@ -1,5 +1,4 @@
 - apt:
-    - git-delta
     - zsh
     - wget
     - htop
@@ -7,17 +6,17 @@
     - ansible
     - code
     - nvim
-    - alacritty
+#    - alacritty
     - jq
-    - go
-    - docker
-    - fzf
-    - httpie
-    - ttf-fira-code
-    - firefox-developer-edition
-    - vagrant
-    - etcher-bin
-    - ncdu
-    - virtualbox
-    - vlc
+#    - go
+#    - docker
+#    - fzf
+#    - httpie
+#    - ttf-fira-code
+#    - firefox-developer-edition
+#    - vagrant
+#    - etcher-bin
+#    - ncdu
+#    - virtualbox
+#    - vlc
     - xclip

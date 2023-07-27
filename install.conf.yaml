@@ -6,6 +6,7 @@
 
 - flatpak:
     - org.telegram.desktop
+    - com.spotify.Client
 
 - link:
     ~/.gitconfig: config/gitconfig
@@ -14,9 +15,9 @@
     ~/.rsync_skip: config/rsync_skip
     ~/.config/alacritty/alacritty.yml: config/alacritty.yml
     ~/.config/starship.toml: config/starship.toml
-    ~/.config/Code - OSS/User/settings.json: vscode/settings.json
-    ~/.config/Code - OSS/User/keybindings.json: vscode/keybindings.json
-    ~/.config/Code - OSS/User/snippets: vscode/snippets
+    ~/.config/Code/User/settings.json: vscode/settings.json
+    ~/.config/Code/User/keybindings.json: vscode/keybindings.json
+    ~/.config/Code/User/snippets: vscode/snippets
 
 - shell:
   - command: >
@@ -58,3 +59,12 @@
     stderr: true
     quiet: true
     description: install vscode extensions
+
+- shell:
+  - command: |
+      if [ ! -f $HOME/.ssh/id_ed25519 ]; then
+        ssh-keygen -o -a 100 -t ed25519 -N '' -f $HOME/.ssh/id_ed25519
+      fi
+    stderr: true
+    quiet: true
+    description: generate ssh key

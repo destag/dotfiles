@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- flatpak:
+    - org.telegram.desktop
+
 - link:
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore

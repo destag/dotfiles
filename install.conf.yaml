@@ -13,6 +13,7 @@
     ~/.gitignore: config/gitignore
     ~/.zshrc: config/zshrc
     ~/.rsync_skip: config/rsync_skip
+    ~/.local/bin/git-setup: config/git-setup.sh
     ~/.config/alacritty/alacritty.yml: config/alacritty.yml
     ~/.config/starship.toml: config/starship.toml
     ~/.config/Code/User/settings.json: vscode/settings.json

@@ -14,6 +14,14 @@
     - io.beekeeperstudio.Studio
     - com.github.sdv43.whaler
 
+- create:
+    - ~/dev
+    - ~/dev/freelance
+    - ~/dev/personal
+    - ~/dev/work
+    - ~/dev/other
+    - ~/.local/bin
+
 - link:
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore
@@ -31,12 +39,6 @@
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/snippets: vscode/snippets
 
-- create:
-    - ~/dev
-    - ~/dev/freelance
-    - ~/dev/personal
-    - ~/dev/work
-    - ~/dev/other
 
 - shell:
   - command: >

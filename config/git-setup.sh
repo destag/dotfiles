@@ -30,13 +30,13 @@ case "$current_path" in
     git config user.email "przemyslaw.pietras@syncron.com"
     git config user.name "Przemyslaw Pietras"
     ;;
-  "$dev_path/free"*)
-    echo "Using [free] config"
+  "$dev_path/freelance"*)
+    echo "Using [freelance] config"
     git config user.email "przemyslawp94@gmail.com"
     git config user.name "Przemyslaw Pietras"
     ;;
-  "$dev_path/dsg"*)
-    echo "Using [dsg] config"
+  "$dev_path/personal"*)
+    echo "Using [personal] config"
     git config user.email "przemyslawp94@gmail.com"
     git config user.name "Przemyslaw Pietras"
     ;;

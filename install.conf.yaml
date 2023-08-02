@@ -7,18 +7,36 @@
 - flatpak:
     - org.telegram.desktop
     - com.spotify.Client
+    - rest.insomnia.Insomnia
+    - com.github.IsmaelMartinez.teams_for_linux
+    - us.zoom.Zoom
+    - com.notesnook.Notesnook
+    - io.beekeeperstudio.Studio
+    - com.github.sdv43.whaler
 
 - link:
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore
     ~/.zshrc: config/zshrc
+    ~/.zpreztorc: config/zpreztorc
     ~/.rsync_skip: config/rsync_skip
+    ~/.tool-versions: config/tool-versions
+    ~/.asdfrc: config/asdfrc
     ~/.local/bin/git-setup: config/git-setup.sh
-    ~/.config/alacritty/alacritty.yml: config/alacritty.yml
+    ~/.config/alacritty/alacritty.yml:
+      path: config/alacritty.yml
+      create: true
     ~/.config/starship.toml: config/starship.toml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/snippets: vscode/snippets
+
+- create:
+    - ~/dev
+    - ~/dev/freelance
+    - ~/dev/personal
+    - ~/dev/work
+    - ~/dev/other
 
 - shell:
   - command: >
@@ -77,6 +95,7 @@
         $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
         $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
         $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git
+        $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git
         $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
         $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
       fi
@@ -84,13 +103,18 @@
     quiet: true
     description: install asdf
 
-  - command: curl -sS https://starship.rs/install.sh | sh
+  - command: |
+      if ! command -v starship; then
+        curl -sS https://starship.rs/install.sh | sh
+      fi
     stderr: true
     stdout: true
-    # quiet: true
     description: install starship
 
-  - command: chsh -s /bin/zsh
+  - command: |
+      if [ ! $SHELL = '/bin/zsh' ]; then
+        chsh -s /bin/zsh
+      fi
     stdin: true
     stderr: true
     quiet: true
@@ -108,3 +132,12 @@
     stderr: true
     quiet: true
     description: setup prezto
+
+  - command: |
+      if [ ! -d $HOME/.local/share/fonts ]; then
+        mkdir -p ~/.local/share/fonts
+        cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
+      fi
+    stderr: true
+    quiet: true
+    description: add nerd fonts firacode

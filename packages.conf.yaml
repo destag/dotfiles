@@ -1,4 +1,5 @@
 - apt:
+    - btop
     - zsh
     - dirmngr
     - gpg
@@ -10,18 +11,19 @@
     - ansible
     - code
     - neovim
-#    - alacritty
+    - calibre
+    - alacritty
     - jq
-#    - go
-    - docker
+    - docker.io
     - fzf
     - httpie
-#    - ttf-fira-code
-#    - firefox-developer-edition
-#    - vagrant
-#    - etcher-bin
+    - fonts-firacode
+    - tldr
     - ncdu
     - thefuck
-#    - virtualbox
-#    - vlc
     - xclip
+    - libncurses5-dev
+    - libssl-dev
+    - automake
+    - autoconf
+    - coreutils

@@ -27,3 +27,6 @@
     - automake
     - autoconf
     - coreutils
+    - inotify-tools
+    - gnome-colors
+    - gnome-tweaks

@@ -30,3 +30,4 @@
     - inotify-tools
     - gnome-colors
     - gnome-tweaks
+    - btop

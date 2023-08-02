@@ -30,6 +30,7 @@
     ~/.rsync_skip: config/rsync_skip
     ~/.tool-versions: config/tool-versions
     ~/.asdfrc: config/asdfrc
+    ~/.terraformrc: config/terraformrc
     ~/.local/bin/git-setup: config/git-setup.sh
     ~/.config/alacritty/alacritty.yml:
       path: config/alacritty.yml

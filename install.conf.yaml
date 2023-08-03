@@ -97,6 +97,7 @@
 
         $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
         $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+        $HOME/.asdf/bin/asdf plugin-add terraform-ls https://github.com/asdf-community/asdf-hashicorp.git
         $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git
         $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git
         $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git

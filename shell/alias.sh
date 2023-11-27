@@ -9,6 +9,7 @@ alias :q='exit'
 alias rst='exec $SHELL -l'
 alias ssh='TERM=xterm-color ssh'
 alias vpn='sudo openvpn ~/.vpn/openvpn-config/SyncronVPN-other.ovpn'
+alias vpn-all='sudo openvpn ~/.vpn/openvpn-config/SyncronVPNAllTraffic-other.ovpn'
 alias rm!='rm -rfv'
 
 # tools
@@ -35,3 +36,6 @@ alias gT='git tag'
 alias ga='git add'
 alias gaa='git add .'
 alias gup='git pull'
+
+# kubernetes
+alias k='kubectl'

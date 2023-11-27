@@ -141,5 +141,11 @@
     "files.trimFinalNewlines": true
   },
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.fontSize": 13
+  "editor.fontSize": 13,
+  "editor.lineNumbers": "relative",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "cody.telemetry.level": "off",
+  "cody.experimental.commandLenses": true,
+  "cody.autocomplete.enabled": true,
+  "diffEditor.hideUnchangedRegions.enabled": true
 }

@@ -37,5 +37,10 @@
         "key": "ctrl+shift+alt+down",
         "command": "-editor.action.copyLinesDownAction",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "-cody.command.edit-code",
+        "when": "cody.activated && !editorReadonly"
     }
 ]

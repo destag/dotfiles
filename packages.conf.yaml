@@ -21,6 +21,7 @@
     - tldr
     - ncdu
     - thefuck
+    - ripgrep
     - xclip
     - libncurses5-dev
     - libssl-dev
@@ -32,3 +33,4 @@
     - gnome-tweaks
     - btop
     - ca-certificates
+    - zoxide

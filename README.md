@@ -8,3 +8,12 @@ Run: `.dotfiles/install`
 # Install tools with asdf
 
 Run: `asdf install`
+
+# Install FiraCode Nerd font
+
+```sh
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git    # warning: takes a while
+
+cd nerd-fonts/
+./install.sh FiraCode
+```

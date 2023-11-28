@@ -34,3 +34,4 @@ autoload zcalc
 
 source $HOME/.asdf/asdf.sh
 eval "$(thefuck --alias)"
+eval "$(zoxide init zsh)"

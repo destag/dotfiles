@@ -19,7 +19,6 @@ sudo "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
   --plugin-dir dotbot-apt \
   "${@}"
 
-
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
   --base-directory "${BASEDIR}" \
   --config-file "${CONFIG}" \

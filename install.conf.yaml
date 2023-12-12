@@ -103,6 +103,7 @@
         $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git
         $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
         $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+        $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git
       fi
     stderr: true
     quiet: true

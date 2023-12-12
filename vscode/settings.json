@@ -29,19 +29,13 @@
   },
   "editor.cursorSurroundingLines": 3,
   "[python]": {
-    "editor.rulers": [
-      88
-    ]
+    "editor.rulers": [88]
   },
   "[go]": {
-    "editor.rulers": [
-      100
-    ]
+    "editor.rulers": [100]
   },
   "[plaintext]": {
-    "editor.rulers": [
-      100
-    ]
+    "editor.rulers": [100]
   },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
@@ -61,15 +55,13 @@
   "editor.minimap.enabled": false,
   "editor.suggest.showStatusBar": true,
   "python.experiments.enabled": false,
-  "python.autoComplete.extraPaths": [
-    "./.venv"
-  ],
+  "python.autoComplete.extraPaths": ["./.venv"],
   "go.toolsManagement.autoUpdate": true,
   "files.trimTrailingWhitespace": true,
   "redhat.telemetry.enabled": false,
   "git.enableStatusBarSync": false,
   "terminal.integrated.tabs.enabled": true,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.formatOnType": true,
   "python.terminal.activateEnvironment": false,
   "pythonTestExplorer.testFramework": "pytest",
@@ -124,16 +116,12 @@
     "elixir": "html"
   },
   "diffEditor.maxComputationTime": 0,
-  "python.analysis.extraPaths": [
-    "./.venv"
-  ],
-  "go.lintFlags": [
-    "-config .revive.toml"
-  ],
+  "python.analysis.extraPaths": ["./.venv", "./venv"],
+  "go.lintFlags": ["-config .revive.toml"],
   "[elixir]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.wordBasedSuggestions": false,
+    "editor.wordBasedSuggestions": "off",
     "editor.formatOnType": true,
     "editor.trimAutoWhitespace": false,
     "files.trimTrailingWhitespace": true,

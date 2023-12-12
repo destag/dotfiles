@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mc () {
+mc() {
   # Create a new directory and enter it
   mkdir -p "$@" && cd "$@" || return
 }

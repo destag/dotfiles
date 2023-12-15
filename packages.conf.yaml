@@ -34,3 +34,4 @@
     - btop
     - ca-certificates
     - zoxide
+    - fd-find

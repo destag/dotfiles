@@ -3,7 +3,8 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-export PATH="$PATH:$HOME/go/bin:$HOME/.local/bin:$HOME/.cargo/bin"
+export GOPATH="$HOME/.local/go"
+export PATH="$PATH:$HOME/.local/go/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/lib/cargo/bin"
 
 export PIP_REQUIRE_VIRTUALENV=1
 

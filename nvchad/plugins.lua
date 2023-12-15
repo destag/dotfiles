@@ -145,6 +145,21 @@ local plugins = {
     end,
   },
 
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    keys = {
+      {
+        "-",
+        '<cmd>lua require("oil").open_float()<CR>',
+        desc = "Open parent directory",
+      },
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("oil").setup({})
+    end,
+  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

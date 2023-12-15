@@ -134,6 +134,12 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
     cmd = "Neogit",
+    keys = {
+      -- stylua: ignore start
+      { '<leader>gg', function() return require('neogit').open() end, desc = 'Open neogit' },
+      { '<leader>gC', function() return require('neogit').open({ 'commit' }) end, desc = 'Open neogit commit popup' },
+      -- stylua: ignore end
+    },
     config = function()
       require("neogit").setup({})
     end,

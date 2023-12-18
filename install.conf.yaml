@@ -11,8 +11,13 @@
     - com.github.IsmaelMartinez.teams_for_linux
     - us.zoom.Zoom
     - com.notesnook.Notesnook
+    - com.logseq.Logseq
+    - md.obsidian.Obsidian
     - io.beekeeperstudio.Studio
     - com.github.sdv43.whaler
+    - com.brave.Browser
+    - org.videolan.VLC
+    - com.todoist.Todoist
 
 - create:
     - ~/dev
@@ -21,6 +26,7 @@
     - ~/dev/work
     - ~/dev/other
     - ~/.local/bin
+    - ~/.local/go
 
 - link:
     ~/.gitconfig: config/gitconfig
@@ -79,9 +85,17 @@
       --install-extension bbenoist.vagrant
       --install-extension redhat.vscode-xml
       --install-extension redhat.vscode-yaml
+      --install-extension ms-python.mypy-type-checker
+      --install-extension ms-python.black-formatter
     stderr: true
     quiet: true
     description: install vscode extensions
+
+- shell:
+  - command: |
+      sudo groupadd docker
+      sudo usermod -aG docker $USER
+    description: add user to docker group
 
 - shell:
   - command: |
@@ -93,18 +107,18 @@
     description: generate ssh key
 
   - command: |
-      if [ ! -d $HOME/.asdf ]; then
-        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.12.0
+      git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
 
-        $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-        $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
-        $HOME/.asdf/bin/asdf plugin-add terraform-ls https://github.com/asdf-community/asdf-hashicorp.git
-        $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git
-        $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git
-        $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
-        $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-        $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git
-      fi
+      $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
+      $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
+      $HOME/.asdf/bin/asdf plugin-add terraform-ls https://github.com/asdf-community/asdf-hashicorp.git || true
+      $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git || true
+      $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git || true
+      $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
+      $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git || true
+      $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git || true
+      ASDF_PYAPP_INCLUDE_DEPS=1 $HOME/.asdf/bin/asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
+      $HOME/.asdf/bin/asdf plugin add awscli https://github.com/MetricMike/asdf-awscli.git || true
     stderr: true
     quiet: true
     description: install asdf
@@ -155,3 +169,16 @@
     stderr: true
     quiet: true
     description: setup nvchad
+
+  - command: |
+      export GOPATH="$HOME/.local/go"
+      go install mvdan.cc/gofumpt@latest
+      go install github.com/fatih/gomodifytags@latest
+      go install github.com/josharian/impl@latest
+      go install github.com/cweill/gotests/gotests@latest
+      go install github.com/koron/iferr@latest
+      go install github.com/incu6us/goimports-reviser/v3@latest
+      go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
+      go install mvdan.cc/sh/v3/cmd/shfmt@latest
+      go install github.com/a-h/templ/cmd/templ@latest
+    description: install go binaries

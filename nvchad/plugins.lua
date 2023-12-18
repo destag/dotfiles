@@ -160,6 +160,24 @@ local plugins = {
       require("oil").setup({})
     end,
   },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    config = function()
+      require("tokyonight").setup({
+        style = "night",
+      })
+    end,
+  },
+
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    config = function()
+      require("bqf").setup()
+    end,
+  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

@@ -13,6 +13,7 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
     "go",
+    "templ",
     "terraform",
   },
   indent = {
@@ -42,6 +43,7 @@ M.mason = {
 
     -- go stuff
     "gopls",
+    "templ",
 
     -- python stuff
     "black",

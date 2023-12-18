@@ -35,3 +35,4 @@
     - ca-certificates
     - zoxide
     - fd-find
+    - shellcheck

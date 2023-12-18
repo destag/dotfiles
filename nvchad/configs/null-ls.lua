@@ -27,6 +27,10 @@ local sources = {
   -- terraform
   b.formatting.terraform_fmt,
   b.diagnostics.terraform_validate,
+
+  -- bash
+  b.formatting.shfmt.with({ extra_args = { "-i", "2", "-sr", "-s", "-ci" } }),
+  b.diagnostics.shellcheck.with({ diagnostics_format = "[#{c}] #{m} (#{s})" }),
 }
 
 local on_attach = function(client, bufnr)

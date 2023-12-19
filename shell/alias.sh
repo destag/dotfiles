@@ -11,6 +11,7 @@ alias ssh='TERM=xterm-color ssh'
 alias vpn='sudo openvpn ~/.vpn/openvpn-config/SyncronVPN-other.ovpn'
 alias vpn-all='sudo openvpn ~/.vpn/openvpn-config/SyncronVPNAllTraffic-other.ovpn'
 alias rm!='rm -rfv'
+alias cdtmp='cd `mktemp -d`'
 
 # tools
 alias a='ansible'

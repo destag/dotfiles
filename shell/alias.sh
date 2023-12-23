@@ -12,6 +12,8 @@ alias vpn='sudo openvpn ~/.vpn/openvpn-config/SyncronVPN-other.ovpn'
 alias vpn-all='sudo openvpn ~/.vpn/openvpn-config/SyncronVPNAllTraffic-other.ovpn'
 alias rm!='rm -rfv'
 alias cdtmp='cd `mktemp -d`'
+alias cat='batcat -pp'
+alias bat='batcat'
 
 # tools
 alias a='ansible'

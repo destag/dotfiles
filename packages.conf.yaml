@@ -11,6 +11,7 @@
     - ansible
     - code
     - neovim
+    - tmux
     - calibre
     - alacritty
     - jq
@@ -36,3 +37,5 @@
     - zoxide
     - fd-find
     - shellcheck
+    - bat
+    - neofetch

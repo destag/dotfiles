@@ -36,6 +36,7 @@
     ~/.rsync_skip: config/rsync_skip
     ~/.tool-versions: config/tool-versions
     ~/.asdfrc: config/asdfrc
+    ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.local/bin/git-setup: config/git-setup.sh
     ~/.config/alacritty/alacritty.yml:
@@ -124,6 +125,14 @@
     description: install asdf
 
   - command: |
+      if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+      fi
+    stderr: true
+    stdout: true
+    description: install tpm
+
+  - command: |
       if ! command -v starship; then
         curl -sS https://starship.rs/install.sh | sh
       fi
@@ -181,4 +190,5 @@
       go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
       go install mvdan.cc/sh/v3/cmd/shfmt@latest
       go install github.com/a-h/templ/cmd/templ@latest
+      go install github.com/mgechev/revive@latest
     description: install go binaries

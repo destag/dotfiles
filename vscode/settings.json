@@ -103,8 +103,6 @@
   "workbench.colorTheme": "Tokyo Night",
   "workbench.iconTheme": "eq-material-theme-icons-palenight",
   "window.commandCenter": true,
-  "window.titleBarStyle": "custom",
-  "window.menuBarVisibility": "compact",
   "zenMode.hideLineNumbers": false,
   "emmet.triggerExpansionOnTab": true,
   "tailwindCSS.includeLanguages": {

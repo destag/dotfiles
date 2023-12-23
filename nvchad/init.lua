@@ -2,6 +2,7 @@
 local opt = vim.opt
 
 opt.relativenumber = true
+opt.termguicolors = true
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {

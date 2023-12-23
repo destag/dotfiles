@@ -18,6 +18,8 @@ local sources = {
   -- golang
   b.formatting.gofumpt,
   b.formatting.goimports_reviser,
+  -- b.diagnostics.revive,
+  b.diagnostics.golangci_lint,
 
   -- python
   b.formatting.black,

@@ -141,7 +141,7 @@ local plugins = {
       -- stylua: ignore end
     },
     config = function()
-      require("neogit").setup({})
+      require("neogit").setup()
     end,
   },
 
@@ -157,7 +157,7 @@ local plugins = {
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("oil").setup({})
+      require("oil").setup()
     end,
   },
 

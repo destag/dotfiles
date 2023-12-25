@@ -44,6 +44,10 @@ M.mason = {
 
     -- go stuff
     "gopls",
+    "gofumpt",
+    "goimports-reviser",
+    "golangci-lint",
+    "gomodifytags",
     "templ",
 
     -- python stuff

@@ -48,6 +48,9 @@ M.mason = {
     "goimports-reviser",
     "golangci-lint",
     "gomodifytags",
+    "gotests",
+    "iferr",
+    "impl",
     "templ",
 
     -- python stuff
@@ -59,6 +62,13 @@ M.mason = {
     -- terraform stuff
     "terraform-ls",
     "tflint",
+
+    -- shell stuff
+    "shfmt",
+    "shellcheck",
+
+    -- markdown stuff
+    "marksman",
   },
 }
 

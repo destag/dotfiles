@@ -52,6 +52,7 @@ M.mason = {
     "iferr",
     "impl",
     "templ",
+    "staticcheck",
 
     -- python stuff
     "black",

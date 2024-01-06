@@ -20,6 +20,7 @@ local sources = {
   b.formatting.goimports_reviser,
   -- b.diagnostics.revive,
   b.diagnostics.golangci_lint,
+  -- b.diagnostics.staticcheck,
 
   -- python
   b.formatting.black,

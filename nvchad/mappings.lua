@@ -12,6 +12,10 @@ M.general = {
     ["<C-l>"] = { "<cmd>TmuxNavigateRight<CR>", "Window right" },
     ["<C-j>"] = { "<cmd>TmuxNavigateDown<CR>", "Window down" },
     ["<C-k>"] = { "<cmd>TmuxNavigateUp<CR>", "Window up" },
+
+    -- golang
+    ["<leader>gie"] = { "<cmd>GoIfErr<CR>", "Add if err != nil" },
+    ["<leader>gis"] = { "<cmd>GoFillStruct<CR>", "Fill go struct" },
   },
   v = {
     [">"] = { ">gv", "indent" },

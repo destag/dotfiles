@@ -8,13 +8,6 @@ if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
   source "$HOME/.zprezto/init.zsh"
 fi
 
-# Allow termite open new terminal in same dir
-if [[ "$TERM" == xterm-termite ]]; then
-  # shellcheck disable=SC1091
-  source /etc/profile.d/vte.sh
-  __vte_osc7
-fi
-
 unsetopt nomatch
 
 # shellcheck disable=SC1090

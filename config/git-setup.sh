@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -o errexit
+set -e
+
 set -o pipefail
 
 current_path="$PWD"
@@ -13,8 +14,11 @@ work_setup() {
 }
 
 dsg_setup() {
+  signing_key=$(gpg --list-secret-keys --with-colons | awk -F: '/^fpr:/ { print $10 }' | head -1)
   git config user.email "przemyslawp94@gmail.com"
   git config user.name "Przemyslaw Pietras"
+  git config commit.gpgsign true
+  git config user.signingkey "$signing_key"
 }
 
 case $1 in

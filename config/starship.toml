@@ -1,5 +1,30 @@
 add_newline = false
 
 [directory]
+read_only = " 󰌾"
 truncate_to_repo = false
 fish_style_pwd_dir_length = 1
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[python]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[java]
+symbol = " "
+
+[lua]
+symbol = " "

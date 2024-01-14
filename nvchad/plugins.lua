@@ -10,7 +10,7 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
           require("custom.configs.null-ls")
         end,
@@ -51,7 +51,7 @@ local plugins = {
   {
     "olexsmir/gopher.nvim",
     ft = "go",
-    requires = { -- dependencies
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
@@ -99,20 +99,11 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "beauwilliams/focus.nvim",
-  --   lazy = false,
-  --   config = function()
-  --     require("focus").setup()
-  --   end,
-  -- },
-
   {
     "ggandor/leap.nvim",
-    enabled = true,
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function(_, opts)
@@ -123,25 +114,6 @@ local plugins = {
       leap.add_default_mappings(true)
       vim.keymap.del({ "x", "o" }, "x")
       vim.keymap.del({ "x", "o" }, "X")
-    end,
-  },
-
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-      "nvim-telescope/telescope.nvim",
-    },
-    cmd = "Neogit",
-    keys = {
-      -- stylua: ignore start
-      { '<leader>gg', function() return require('neogit').open() end, desc = 'Open neogit' },
-      { '<leader>gC', function() return require('neogit').open({ 'commit' }) end, desc = 'Open neogit commit popup' },
-      -- stylua: ignore end
-    },
-    config = function()
-      require("neogit").setup()
     end,
   },
 
@@ -160,6 +132,9 @@ local plugins = {
       require("oil").setup({
         view_options = {
           show_hidden = true,
+          is_always_hidden = function(name, bufnr) -- luacheck: ignore
+            return name == ".."
+          end,
         },
       })
     end,
@@ -178,45 +153,27 @@ local plugins = {
     lazy = false,
   },
 
+  -- nvcommunity
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,
-      })
-    end,
-  },
-
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = function()
-      require("symbols-outline").setup()
-    end,
-  },
-
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
-    event = "BufReadPost",
-    opts = {
-      provider_selector = function()
-        return { "treesitter", "indent" }
+    "NvChad/nvcommunity",
+    { import = "nvcommunity.git.diffview" },
+    { import = "nvcommunity.git.neogit" },
+    { import = "nvcommunity.diagnostics.trouble" },
+    { import = "nvcommunity.editor.symbols-outline" },
+    { import = "nvcommunity.editor.treesittercontext" },
+    { import = "nvcommunity.editor.hlargs" },
+    { import = "nvcommunity.folds.ufo" },
+    {
+      "nvim-ufo",
+      init = function()
+        vim.o.foldcolumn = "0" -- '0' is not bad
+        vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+        vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
       end,
     },
-
-    init = function()
-      vim.keymap.set("n", "zR", function()
-        require("ufo").openAllFolds()
-      end)
-      vim.keymap.set("n", "zM", function()
-        require("ufo").closeAllFolds()
-      end)
-    end,
   },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

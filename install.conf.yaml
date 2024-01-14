@@ -10,7 +10,6 @@
     - rest.insomnia.Insomnia
     - com.github.IsmaelMartinez.teams_for_linux
     - us.zoom.Zoom
-    - com.notesnook.Notesnook
     - com.logseq.Logseq
     - md.obsidian.Obsidian
     - io.beekeeperstudio.Studio
@@ -18,6 +17,7 @@
     - com.brave.Browser
     - org.videolan.VLC
     - com.todoist.Todoist
+    - com.discordapp.Discord
 
 - create:
     - ~/dev
@@ -39,9 +39,14 @@
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.local/bin/git-setup: config/git-setup.sh
+    ~/.local/bin/check-vpn: config/check-vpn.sh
     ~/.config/alacritty/alacritty.toml:
       path: config/alacritty.toml
       create: true
+    ~/.config/alacritty/alacritty.yml:
+      path: config/alacritty.yml
+      create: true
+    ~/.config/alacritty/catppuccin-mocha.toml: config/catppuccin-mocha.toml
     ~/.config/starship.toml: config/starship.toml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
@@ -112,7 +117,6 @@
 
       $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
       $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
-      $HOME/.asdf/bin/asdf plugin-add terraform-ls https://github.com/asdf-community/asdf-hashicorp.git || true
       $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git || true
       $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git || true
       $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
@@ -186,4 +190,6 @@
       go install github.com/xo/usql@latest
       go install github.com/mikefarah/yq/v4@latest
       go install github.com/cosmtrek/air@latest
+      go install github.com/rakyll/hey@latest
+      go install github.com/maaslalani/slides@latest
     description: install go binaries

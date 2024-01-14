@@ -10,14 +10,12 @@ opt.termguicolors = true
 --   command = "tabdo wincmd =",
 -- })
 
+vim.cmd([[hi def NeogitDiffDelete guibg=#932b48 guifg=#f38ba8]])
+vim.cmd([[hi def NeogitDiffDeleteHighlight guibg=#932b48 guifg=#f2cdcd]])
+
 vim.filetype.add({
   extension = {
     templ = "templ",
+    hcl = "tf",
   },
 })
-
-vim.o.foldcolumn = "0" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]

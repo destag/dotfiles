@@ -38,4 +38,5 @@
     - fd-find
     - shellcheck
     - bat
-    - neofetch
+    - cloc
+    - libgraph-easy-perl

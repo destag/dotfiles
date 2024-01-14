@@ -16,9 +16,18 @@ M.general = {
     -- golang
     ["<leader>gie"] = { "<cmd>GoIfErr<CR>", "Add if err != nil" },
     ["<leader>gis"] = { "<cmd>GoFillStruct<CR>", "Fill go struct" },
+
+    -- neogit
+    ["<leader>gg"] = { "<cmd>Neogit<CR>", "Open neogit" },
+
+    -- symbols-outline
+    ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", "Open symbols outline" },
   },
   v = {
     [">"] = { ">gv", "indent" },
+  },
+  x = {
+    ["Q"] = { ":norm @q<CR>", "multiline macro" },
   },
 }
 

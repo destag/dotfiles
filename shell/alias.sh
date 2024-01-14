@@ -15,6 +15,7 @@ alias rm!='rm -rfv'
 alias cdtmp='cd `mktemp -d`'
 alias cat='batcat -pp'
 alias bat='batcat'
+alias dotinstall="~/.dotfiles/install"
 
 # tools
 alias a='ansible'

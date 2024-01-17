@@ -153,6 +153,14 @@ local plugins = {
     lazy = false,
   },
 
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+    -- cond = function()
+    --   return false
+    -- end
+  },
+
   -- nvcommunity
   {
     "NvChad/nvcommunity",
@@ -162,6 +170,7 @@ local plugins = {
     { import = "nvcommunity.editor.symbols-outline" },
     { import = "nvcommunity.editor.treesittercontext" },
     { import = "nvcommunity.editor.hlargs" },
+    { import = "nvcommunity.editor.illuminate" },
     { import = "nvcommunity.folds.ufo" },
     {
       "nvim-ufo",

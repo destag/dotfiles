@@ -40,10 +40,10 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'history-substring-search' \
   'prompt' \
-  'autosuggestions' \
   'git' \
   'docker' \
   'syntax-highlighting' \
+  'autosuggestions' \
 
 #
 # Autosuggestions

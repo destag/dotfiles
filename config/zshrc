@@ -2,6 +2,8 @@
 
 DOTFILES_PATH="$HOME/.dotfiles"
 
+fpath=(~/.zsh/completions $fpath)
+
 # Source Prezto
 if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
   # shellcheck disable=SC1090
@@ -24,6 +26,7 @@ prompt off
 eval "$(starship init zsh)"
 
 autoload zcalc
+autoload -U +X compinit && compinit
 
 source $HOME/.asdf/asdf.sh
 eval "$(thefuck --alias)"

@@ -65,6 +65,7 @@ local plugins = {
 
   {
     "hrsh7th/nvim-cmp",
+    commit = "6c84bc75c64f778e9f1dcb798ed41c7fcb93b639", -- lock update (break codeium)
     opts = {
       sources = {
         { name = "nvim_lsp" },
@@ -72,7 +73,8 @@ local plugins = {
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
-        { name = "cmp_tabnine" },
+        { name = "cmp_tabnine", max_item_count = 3 },
+        { name = "codeium" },
       },
     },
 
@@ -154,11 +156,15 @@ local plugins = {
   },
 
   {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
-    -- cond = function()
-    --   return false
-    -- end
+    "Exafunction/codeium.nvim",
+    event = "BufEnter",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({})
+    end,
   },
 
   -- nvcommunity
@@ -169,7 +175,7 @@ local plugins = {
     { import = "nvcommunity.diagnostics.trouble" },
     { import = "nvcommunity.editor.symbols-outline" },
     { import = "nvcommunity.editor.treesittercontext" },
-    { import = "nvcommunity.editor.hlargs" },
+    -- { import = "nvcommunity.editor.hlargs" },
     { import = "nvcommunity.editor.illuminate" },
     { import = "nvcommunity.folds.ufo" },
     {

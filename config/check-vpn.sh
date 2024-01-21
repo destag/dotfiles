@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $(pgrep -c openvpn) -gt 0 ]; then
-  echo "#179299"
+  echo "#94e2d5"
 else
-  echo "#fe640b"
+  echo "#fab387"
 fi

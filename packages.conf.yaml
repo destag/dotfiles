@@ -16,6 +16,9 @@
     - alacritty
     - jq
     - docker.io
+    - docker-compose-v2
+    - postgresql-client
+    - mysql-client
     - fzf
     - httpie
     - fonts-firacode

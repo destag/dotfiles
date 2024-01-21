@@ -16,19 +16,18 @@ alias cdtmp='cd `mktemp -d`'
 alias cat='batcat -pp'
 alias bat='batcat'
 alias dotinstall="~/.dotfiles/install"
+alias flatpak-update="flatpak remote-ls --updates && flatpak update"
 
 # tools
 alias a='ansible'
 alias ap='ansible-playbook'
 alias tf='terraform'
 alias py='python'
-alias act='source ./venv/bin/activate'
-alias dact='deactivate'
-alias venv='python -m venv venv && source ./venv/bin/activate'
+alias py-act='source .venv/bin/activate'
+alias py-dact='deactivate'
+alias py-venv='python -m venv .venv && source .venv/bin/activate'
 alias xc='xclip -selection clipboard'
 alias vimf='vim `fzf`'
-alias fxf='fx `fzf`'
-alias j2t='jira2trello'
 alias v='vagrant'
 alias vup='vagrant up'
 
@@ -44,3 +43,4 @@ alias gup='git pull'
 
 # kubernetes
 alias k='kubectl'
+alias h='helm'

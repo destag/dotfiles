@@ -51,7 +51,7 @@
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/snippets: vscode/snippets
-    ~/.config/nvim/lua/custom: nvchad
+    ~/.config/nvim: nvim
 
 
 - shell:
@@ -174,14 +174,6 @@
     stderr: true
     quiet: true
     description: add nerd fonts firacode
-
-  - command: |
-      if [ ! -d $HOME/.config/nvim ]; then
-        git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-      fi
-    stderr: true
-    quiet: true
-    description: setup nvchad
 
   - command: |
       export GOPATH="$HOME/.local/go"

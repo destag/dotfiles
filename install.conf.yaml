@@ -43,10 +43,7 @@
     ~/.config/alacritty/alacritty.toml:
       path: config/alacritty.toml
       create: true
-    ~/.config/alacritty/alacritty.yml:
-      path: config/alacritty.yml
-      create: true
-    ~/.config/alacritty/catppuccin-mocha.toml: config/catppuccin-mocha.toml
+    ~/.config/alacritty/tokyo-night.toml: config/tokyo-night.toml
     ~/.config/starship.toml: config/starship.toml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json

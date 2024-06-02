@@ -4,6 +4,54 @@
 
 - clean: ['~']
 
+- sudo:
+    - apt:
+      - btop
+      - zsh
+      - dirmngr
+      - gpg
+      - curl
+      - gawk
+      - wget
+      - htop
+      - neofetch
+      - ansible
+      - code
+      - neovim
+      - tmux
+      - calibre
+      # - alacritty
+      - jq
+      - docker.io
+      - docker-compose-v2
+      - postgresql-client
+      - mysql-client
+      - fzf
+      - httpie
+      - fonts-firacode
+      - tldr
+      - ncdu
+      - thefuck
+      - ripgrep
+      - xclip
+      - xsel
+      - libncurses5-dev
+      - libssl-dev
+      - automake
+      - autoconf
+      - coreutils
+      - inotify-tools
+      - gnome-colors
+      - gnome-tweaks
+      - btop
+      - ca-certificates
+      # - zoxide
+      - fd-find
+      - shellcheck
+      - bat
+      - cloc
+      - libgraph-easy-perl
+
 - flatpak:
     - org.telegram.desktop
     - com.spotify.Client

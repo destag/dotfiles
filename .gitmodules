@@ -8,3 +8,6 @@
 [submodule "dotbot-flatpak"]
 	path = dotbot-flatpak
 	url = https://github.com/DrDynamic/dotbot-flatpak.git
+[submodule "dotbot-sudo"]
+	path = dotbot-sudo
+	url = https://github.com/DrDynamic/dotbot-sudo.git

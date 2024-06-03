@@ -19,6 +19,8 @@
       - code
       - neovim
       - tmux
+      - pass
+      - pass-extension-otp
       - calibre
       # - alacritty
       - jq

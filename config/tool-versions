@@ -1,9 +1,9 @@
-nodejs 20.10.0
+nodejs 22.2.0
 elixir 1.15.0-otp-26
 erlang 26.0.1
-python 3.11.5
-terraform 1.5.4
-golang 1.21.5
-ansible 6.7.0
-zig 0.11.0
-awscli latest
+python 3.12.3
+terraform 1.8.4
+golang 1.22.3
+ansible 9.6.0
+zig 0.12.0
+awscli 2.16.0

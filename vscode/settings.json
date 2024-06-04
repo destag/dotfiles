@@ -7,12 +7,6 @@
   "editor.acceptSuggestionOnEnter": "off",
   "gitlens.codeLens.enabled": false,
   "go.lintTool": "revive",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.mypyPath": "/usr/bin/mypy",
-  "python.formatting.blackPath": "/usr/bin/black",
-  "python.linting.mypyEnabled": true,
-  "python.formatting.provider": "black",
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -48,7 +42,6 @@
   "go.useLanguageServer": true,
   "terminal.integrated.fontFamily": "'Fira Code'",
   "explorer.confirmDragAndDrop": false,
-  "tabnine.experimentalAutoImports": true,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -64,7 +57,6 @@
   "editor.formatOnPaste": false,
   "editor.formatOnType": true,
   "python.terminal.activateEnvironment": false,
-  "pythonTestExplorer.testFramework": "pytest",
   "editor.suggest.preview": true,
   "extensions.autoUpdate": false,
   "files.exclude": {
@@ -78,17 +70,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
-  "python.linting.pylintArgs": [
-    "--disable=missing-function-docstring",
-    "--disable=missing-class-docstring",
-    "--disable=missing-module-docstring"
-  ],
   "git-graph.commitDetailsView.location": "Docked to Bottom",
   "editor.guides.bracketPairs": true,
   "diffEditor.renderSideBySide": false,
-  "rest-client.enableTelemetry": false,
   "css.validate": false,
-  "rest-client.previewOption": "exchange",
   "svelte.enable-ts-plugin": true,
   "telemetry.telemetryLevel": "off",
   "python.languageServer": "Pylance",
@@ -130,8 +115,5 @@
   "editor.fontSize": 13,
   "editor.lineNumbers": "relative",
   "editor.inlineSuggest.suppressSuggestions": true,
-  "cody.telemetry.level": "off",
-  "cody.experimental.commandLenses": true,
-  "cody.autocomplete.enabled": true,
   "diffEditor.hideUnchangedRegions.enabled": true
 }

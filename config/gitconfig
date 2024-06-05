@@ -1,5 +1,9 @@
 [user]
   useConfigOnly = true
+[includeIf "gitdir:~/Projects/**/"]
+  path = ~/.gitconfig.personal
+[includeIf "gitdir:~/Projects/work/"]
+  path = ~/.gitconfig.work
 [alias]
   tree = log --date=human --date-order --graph --all --pretty=format:'%C(auto)%h -%C(auto)%d %C(blue)(%cr)%Creset - %C(dim white)%an%n''          %C(auto)%s'
   d = difftool
@@ -33,5 +37,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[commit]
-	gpgsign = true
+[init]
+	defaultBranch = main

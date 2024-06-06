@@ -19,7 +19,6 @@ return {
     -- null_ls.builtins.diagnostics.ruff,
 
     -- elixir
-    null_ls.builtins.formatting.mix,
     null_ls.builtins.diagnostics.credo,
 
     -- terraform

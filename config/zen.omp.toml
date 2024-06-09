@@ -32,6 +32,13 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       tag_icon = ' '
       fetch_status = true
 
+  [[blocks.segments]]
+    type = "aws"
+    style = "plain"
+    foreground = "p:orange"
+    background = "transparent"
+    template = "  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
@@ -80,3 +87,6 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   foreground = 'magenta'
   background = 'transparent'
   template = '❯❯ '
+
+[palette]
+  orange = "#ff9e64"

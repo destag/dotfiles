@@ -32,3 +32,4 @@ autoload -U +X compinit && compinit
 source $HOME/.asdf/asdf.sh
 eval "$(thefuck --alias)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(direnv hook zsh)"

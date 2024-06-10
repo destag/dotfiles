@@ -33,11 +33,11 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       fetch_status = true
 
   [[blocks.segments]]
-    type = "aws"
-    style = "plain"
-    foreground = "p:orange"
-    background = "transparent"
-    template = "  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+    type = 'aws'
+    style = 'plain'
+    foreground = 'p:orange'
+    background = 'transparent'
+    template = '  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}'
 
 [[blocks]]
   type = 'rprompt'
@@ -52,6 +52,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 
     [blocks.segments.properties]
       threshold = 5000
+      style = 'round'
 
 [[blocks]]
   type = 'prompt'
@@ -69,16 +70,16 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'text'
     style = 'plain'
     foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
+      '{{if gt .Code 0}}red{{end}}',
+      '{{if eq .Code 0}}magenta{{end}}',
     ]
     background = 'transparent'
     template = '❯'
 
 [transient_prompt]
   foreground_templates = [
-    "{{if gt .Code 0}}red{{end}}",
-    "{{if eq .Code 0}}magenta{{end}}",
+    '{{if gt .Code 0}}red{{end}}',
+    '{{if eq .Code 0}}magenta{{end}}',
   ]
   background = 'transparent'
   template = '❯ '
@@ -89,4 +90,5 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   template = '❯❯ '
 
 [palette]
-  orange = "#ff9e64"
+  orange = '#ff9e64'
+  grey = '#6c6c6c'

@@ -202,19 +202,6 @@
     description: change default shell
 
   - command: |
-      if [ ! -d $HOME/.zprezto ]; then
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
-      fi
-
-      zsh -c 'setopt EXTENDED_GLOB
-      for rcfile in $HOME/.zprezto/runcoms/^README.md(.N); do
-        ln -s "$rcfile" "$HOME/.${rcfile:t}" || true
-      done'
-    stderr: true
-    quiet: true
-    description: setup prezto
-
-  - command: |
       if [ ! -d $HOME/.local/share/fonts ]; then
         mkdir -p ~/.local/share/fonts
         cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf

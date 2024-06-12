@@ -83,7 +83,6 @@
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore
     ~/.zshrc: config/zshrc
-    ~/.zpreztorc: config/zpreztorc
     ~/.rsync_skip: config/rsync_skip
     ~/.tool-versions: config/tool-versions
     ~/.asdfrc: config/asdfrc
@@ -100,6 +99,7 @@
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/snippets: vscode/snippets
     ~/.config/nvim: nvim
+    ~/.config/zen.omp.toml: config/zen.omp.toml
 
 
 - shell:

@@ -28,6 +28,7 @@ local servers = {
     cmd = { "elixir-ls" },
   },
   bashls = {},
+  templ = {},
   -- lexical = {
   --   cmd = { "lexical" },
   -- },

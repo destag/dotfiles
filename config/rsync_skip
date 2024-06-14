@@ -4,6 +4,7 @@
 .asdf
 .cargo
 .mozilla
+.vscode
 .local/share
 .config/BraveSoftware
 go

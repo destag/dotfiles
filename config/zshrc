@@ -30,11 +30,14 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light hlissner/zsh-autopair
+zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::common-aliases
+zinit snippet OMZP::ubuntu
 zinit snippet OMZP::asdf
 zinit snippet OMZP::aws
 zinit snippet OMZP::docker
@@ -43,17 +46,36 @@ zinit snippet OMZP::kubectx
 zinit snippet OMZP::helm
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::direnv
+zinit snippet OMZP::python
+zinit snippet OMZP::poetry
 zinit snippet OMZP::terraform
 zinit ice as"completion"
 zinit snippet OMZP::terraform/_terraform
 
 zinit cdreplay -q
 
-# shellcheck disable=SC1090
-source "${DOTFILES_PATH}/shell/alias.sh"
-
 # Aliases
 alias gt='git tree'
+alias gtt='git --no-pager tree -n5'
+alias _='sudo'
+alias :q='exit'
+alias q='exit'
+alias rst='exec $SHELL -l'
+alias ssh='TERM=xterm-color ssh'
+alias vpn='sudo openvpn ~/.vpn/openvpn-config/SyncronVPN-other.ovpn'
+alias vpn-all='sudo openvpn ~/.vpn/openvpn-config/SyncronVPNAllTraffic-other.ovpn'
+alias rm!='rm -rfv'
+alias cdtmp='cd `mktemp -d`'
+alias cat='batcat -pp'
+alias bat='batcat'
+alias dotinstall="~/.dotfiles/install"
+alias flatpak-update="flatpak remote-ls --updates && flatpak update"
+alias ls='ls --color=auto'
+alias fd='fdfind'
+alias xc='xclip -selection clipboard'
+alias xp='xsel -ob'
+alias aws-profile='export AWS_PROFILE="$(aws configure list-profiles | fzf --height=10)";echo "${AWS_PROFILE:-no profile}"'
+alias aws-region="export AWS_DEFAULT_REGION=\"\$(aws account list-regions | jq -r '.Regions[] | select(.RegionOptStatus == \"ENABLED_BY_DEFAULT\") | .RegionName' | fzf)\";echo \"\${AWS_DEFAULT_REGION:-no region}\""
 
 # Keybindings
 bindkey -e
@@ -89,7 +111,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-eval "$(oh-my-posh init zsh --config ~/.config/zen.omp.toml)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 eval "$(zoxide init --cmd cd zsh)"
+autopair-init

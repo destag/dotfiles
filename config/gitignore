@@ -1,7 +1,6 @@
-draft/
-venv/
 .mypy_cache/
 .pytest_cache/
 .vscode/
 *.orig
-_info.md
+_notes.md
+_tmp/

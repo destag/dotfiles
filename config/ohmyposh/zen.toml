@@ -54,17 +54,17 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       threshold = 5000
       style = 'round'
 
-[[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
-
   [[blocks.segments]]
     type = 'python'
     style = 'plain'
     foreground = 'yellow'
     background = 'transparent'
-    template = '{{ if .Venv }} {{ end }}'
+    template = '{{ if .Venv }}  {{ end }}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
 
   [[blocks.segments]]
     type = 'text'

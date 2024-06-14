@@ -69,6 +69,9 @@ vim.keymap.set("n", "<S-TAB>", "<cmd>bp<CR>", { silent = true, desc = "Previous 
 vim.keymap.set("n", "<leader>X", "<cmd>bdelete<CR>", { silent = true, desc = "Delete buffer" })
 vim.keymap.set("n", ";", ":", { desc = "CMD enter command mode" })
 
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
+
 vim.keymap.set("n", "<leader>xx", function()
   require("trouble").toggle()
 end)
@@ -90,6 +93,9 @@ end)
 vim.keymap.set("n", "[C", function()
   require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true })
+
+vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>")
+vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>")
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"

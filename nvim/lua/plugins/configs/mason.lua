@@ -6,6 +6,7 @@ return {
     "golines",
     "gopls",
     "staticcheck",
+    "templ",
     -- lua
     "lua-language-server",
     "stylua",

@@ -18,20 +18,21 @@
   editor = vim
   excludesfile = ~/.gitignore
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
 [merge]
-  tool = code
+  tool = nvimdiff
   guitool = code
 [mergetool]
   keepBackup = false
+[mergetool "nvimdiff"]
+    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+    trustExitCode = false
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool]
   prompt = false
 [credential]
   helper = store
-[interactive]
-    diffFilter = delta --color-only --features=interactive
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -54,30 +54,33 @@
       - bat
       - cloc
       - libgraph-easy-perl
+      - pipx
 
 - flatpak:
     - org.telegram.desktop
+    - org.signal.Signal
     - com.spotify.Client
-    - rest.insomnia.Insomnia
     - com.github.IsmaelMartinez.teams_for_linux
     - us.zoom.Zoom
-    - com.logseq.Logseq
     - md.obsidian.Obsidian
     - io.beekeeperstudio.Studio
-    - com.github.sdv43.whaler
     - com.brave.Browser
     - org.videolan.VLC
     - com.todoist.Todoist
     - com.discordapp.Discord
+    - com.usebruno.Bruno
+    - org.remmina.Remmina
+    - io.bassi.Amberol
+    - org.gnome.World.PikaBackup
 
 - create:
-    - ~/dev
-    - ~/dev/freelance
-    - ~/dev/personal
-    - ~/dev/work
-    - ~/dev/other
+    - ~/Projects
+    - ~/Projects/freelance
+    - ~/Projects/personal
+    - ~/Projects/work
+    - ~/Projects/other
     - ~/.local/bin
-    - ~/.local/go
+    - ~/.go
 
 - link:
     ~/.gitconfig: config/gitconfig
@@ -88,26 +91,17 @@
     ~/.asdfrc: config/asdfrc
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
-    ~/.local/bin/git-setup: config/git-setup.sh
-    ~/.local/bin/check-vpn: config/check-vpn.sh
-    ~/.config/alacritty/alacritty.toml:
-      path: config/alacritty.toml
-      create: true
-    ~/.config/alacritty/tokyo-night.toml: config/tokyo-night.toml
-    ~/.config/starship.toml: config/starship.toml
+    ~/.config/alacritty: config/alacritty
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/snippets: vscode/snippets
     ~/.config/nvim: nvim
-    ~/.config/zen.omp.toml: config/zen.omp.toml
-
+    ~/.config/ohmyposh: config/ohmyposh
 
 - shell:
   - command: >
       code
       --install-extension ms-python.vscode-pylance
-      --install-extension wmaurer.change-case
-      --install-extension teabyii.ayu
       --install-extension ms-azuretools.vscode-docker
       --install-extension mikestead.dotenv
       --install-extension editorconfig.editorconfig
@@ -122,21 +116,17 @@
       --install-extension ms-python.isort
       --install-extension ivory-lab.jenkinsfile-support
       --install-extension wholroyd.jinja
-      --install-extension ms-vsliveshare.vsliveshare
       --install-extension equinusocio.vsc-material-theme-icons
       --install-extension phoenixframework.phoenix
       --install-extension esbenp.prettier-vscode
       --install-extension ms-python.python
       --install-extension timonwong.shellcheck
       --install-extension fivethree.vscode-svelte-snippets
-      --install-extension svelte.svelte-vscode
-      --install-extension tabnine.tabnine-vscode
       --install-extension bradlc.vscode-tailwindcss
       --install-extension ms-vscode.test-adapter-converter
       --install-extension hbenl.vscode-test-explorer
       --install-extension enkia.tokyo-night
       --install-extension shardulm94.trailing-spaces
-      --install-extension bbenoist.vagrant
       --install-extension redhat.vscode-xml
       --install-extension redhat.vscode-yaml
       --install-extension ms-python.mypy-type-checker
@@ -147,8 +137,12 @@
 
 - shell:
   - command: |
-      sudo groupadd docker
-      sudo usermod -aG docker $USER
+      if ! getent group docker > /dev/null 2>&1; then
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+      fi
+    stderr: true
+    quiet: true
     description: add user to docker group
 
 - shell:
@@ -161,7 +155,11 @@
     description: generate ssh key
 
   - command: |
-      git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
+      if [ -d $HOME/.asdf ]; then
+        exit 0
+      fi
+
+      git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0
 
       $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
       $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
@@ -182,15 +180,8 @@
       fi
     stderr: true
     stdout: true
+    quiet: true
     description: install tpm
-
-  - command: |
-      if ! command -v starship; then
-        curl -sS https://starship.rs/install.sh | sh
-      fi
-    stderr: true
-    stdout: true
-    description: install starship
 
   - command: |
       if [ ! $SHELL = '/bin/zsh' ]; then
@@ -211,12 +202,22 @@
     description: add nerd fonts firacode
 
   - command: |
-      export GOPATH="$HOME/.local/go"
+      export GOPATH="$HOME/.go"
       go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
       go install github.com/a-h/templ/cmd/templ@latest
       go install github.com/xo/usql@latest
       go install github.com/mikefarah/yq/v4@latest
-      go install github.com/cosmtrek/air@latest
+      go install github.com/air-verse/air@latest
       go install github.com/rakyll/hey@latest
       go install github.com/maaslalani/slides@latest
+    stderr: true
+    quiet: true
     description: install go binaries
+
+  - command: |
+      if ! command -v oh-my-posh; then
+        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
+      fi
+    stderr: true
+    quiet: true
+    description: install oh-my-posh

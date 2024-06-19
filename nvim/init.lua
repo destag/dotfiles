@@ -64,6 +64,8 @@ vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.cursorlineopt = "both"
 
+vim.o.scrolloff = 5
+
 vim.keymap.set("n", "<TAB>", "<cmd>bn<CR>", { silent = true, desc = "Next buffer" })
 vim.keymap.set("n", "<S-TAB>", "<cmd>bp<CR>", { silent = true, desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>X", "<cmd>bdelete<CR>", { silent = true, desc = "Delete buffer" })

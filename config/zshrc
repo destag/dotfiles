@@ -2,7 +2,9 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 export PIP_REQUIRE_VIRTUALENV=true
+export POETRY_VIRTUALENVS_IN_PROJECT=true
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 DOTFILES_PATH="$HOME/.dotfiles"
 
@@ -26,11 +28,10 @@ fpath=(~/.cache/zinit/completions $fpath)
 
 autoload -Uz compinit && compinit
 
+zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit light hlissner/zsh-autopair
 zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
@@ -83,8 +84,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[w' kill-region
 WORDCHARS='~!#$%^&*(){}[]<>?.+;-_\|=@`'
 
 # History
@@ -106,6 +106,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':completion:*:*:ssh:*:*' known-hosts-files ~/.ssh/known_hosts
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color $realpath'
@@ -115,4 +116,3 @@ eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 eval "$(zoxide init --cmd cd zsh)"
-autopair-init

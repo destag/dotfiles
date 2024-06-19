@@ -7,6 +7,8 @@
 [alias]
   tree = log --date=human --date-order --graph --all --pretty=format:'%C(auto)%h -%C(auto)%d %C(blue)(%cr)%Creset - %C(dim white)%an%n''          %C(auto)%s'
   d = difftool
+	sync = "!f() { git fetch --tags && git pull && git push; };f"
+	undo = reset HEAD~1 --mixed
 [pull]
   ff = only
 [rebase]

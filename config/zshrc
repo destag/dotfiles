@@ -13,6 +13,7 @@ PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.krew/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -24,7 +25,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Load completions
-fpath=(~/.cache/zinit/completions $fpath)
+fpath=(~/.zsh/completions ~/.cache/zinit/completions $fpath)
 
 autoload -Uz compinit && compinit
 
@@ -74,7 +75,7 @@ alias flatpak-update="flatpak remote-ls --updates && flatpak update"
 alias ls='ls --color=auto'
 alias fd='fdfind'
 alias xc='xclip -selection clipboard'
-alias xp='xsel -ob'
+alias xp='xclip -o'
 alias aws-profile='export AWS_PROFILE="$(aws configure list-profiles | fzf --height=10)";echo "${AWS_PROFILE:-no profile}"'
 alias aws-region="export AWS_DEFAULT_REGION=\"\$(aws account list-regions | jq -r '.Regions[] | select(.RegionOptStatus == \"ENABLED_BY_DEFAULT\") | .RegionName' | fzf)\";echo \"\${AWS_DEFAULT_REGION:-no region}\""
 

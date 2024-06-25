@@ -6,6 +6,8 @@
 
 - sudo:
     - apt:
+      - git
+      - git-lfs
       - btop
       - zsh
       - dirmngr
@@ -32,6 +34,7 @@
       - fzf
       - httpie
       - fonts-firacode
+      - fonts-jetbrains-mono
       - tldr
       - ncdu
       - thefuck

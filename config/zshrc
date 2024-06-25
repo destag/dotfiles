@@ -59,6 +59,7 @@ zinit cdreplay -q
 # Aliases
 alias gt='git tree'
 alias gtt='git --no-pager tree -n5'
+alias gC='git conventional-commit'
 alias _='sudo'
 alias :q='exit'
 alias q='exit'
@@ -75,7 +76,7 @@ alias flatpak-update="flatpak remote-ls --updates && flatpak update"
 alias ls='ls --color=auto'
 alias fd='fdfind'
 alias xc='xclip -selection clipboard'
-alias xp='xclip -o'
+alias xp='xsel -ob'
 alias aws-profile='export AWS_PROFILE="$(aws configure list-profiles | fzf --height=10)";echo "${AWS_PROFILE:-no profile}"'
 alias aws-region="export AWS_DEFAULT_REGION=\"\$(aws account list-regions | jq -r '.Regions[] | select(.RegionOptStatus == \"ENABLED_BY_DEFAULT\") | .RegionName' | fzf)\";echo \"\${AWS_DEFAULT_REGION:-no region}\""
 

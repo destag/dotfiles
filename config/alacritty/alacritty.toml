@@ -10,6 +10,14 @@ size = 11
 
 [font.normal]
 family = "JetBrains Mono NerdFont"
+style = "Regular"
+
+[font.bold]
+family = "JetBrains Mono NerdFont"
+style = "Bold"
+
+[mouse]
+hide_when_typing = true
 
 [window]
 dynamic_title = true

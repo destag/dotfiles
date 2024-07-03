@@ -17,7 +17,6 @@
       - wget
       - htop
       - neofetch
-      - ansible
       - code
       - neovim
       - tmux
@@ -29,8 +28,10 @@
       - direnv
       - docker.io
       - docker-compose-v2
+      - docker-buildx
       - postgresql-client
       - mysql-client
+      - sqlite3
       - fzf
       - httpie
       - fonts-firacode
@@ -100,6 +101,7 @@
     ~/.config/Code/User/snippets: vscode/snippets
     ~/.config/nvim: nvim
     ~/.config/ohmyposh: config/ohmyposh
+    ~/.config/gh/config.yml: config/gh/config.yml
 
 - shell:
   - command: >
@@ -213,6 +215,7 @@
       go install github.com/air-verse/air@latest
       go install github.com/rakyll/hey@latest
       go install github.com/maaslalani/slides@latest
+      go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
     stderr: true
     quiet: true
     description: install go binaries

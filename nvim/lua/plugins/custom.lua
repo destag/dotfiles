@@ -2,6 +2,10 @@ local plugins = {
   {
     "monkoose/neocodeium",
     event = "VeryLazy",
+    cond = function()
+      local current_file = vim.fn.expand("%")
+      return current_file ~= ".env" and current_file ~= ".envrc"
+    end,
     config = function()
       local neocodeium = require("neocodeium")
       neocodeium.setup()

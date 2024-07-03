@@ -7,6 +7,7 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 DOTFILES_PATH="$HOME/.dotfiles"
+SCRIPTS_PATH="$HOME/Projects/personal/scripts"
 
 GOPATH="$HOME/.go"
 PATH="$GOPATH/bin:$PATH"
@@ -14,6 +15,7 @@ PATH="$HOME/.krew/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
+PATH="$SCRIPTS_PATH/bin:$PATH"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -71,6 +73,7 @@ alias rm!='rm -rfv'
 alias cdtmp='cd `mktemp -d`'
 alias cat='batcat -pp'
 alias bat='batcat'
+alias dco='docker compose'
 alias dotinstall="~/.dotfiles/install"
 alias flatpak-update="flatpak remote-ls --updates && flatpak update"
 alias ls='ls --color=auto'

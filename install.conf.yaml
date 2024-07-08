@@ -8,6 +8,7 @@
     - apt:
       - git
       - git-lfs
+      - git-crypt
       - btop
       - zsh
       - dirmngr
@@ -102,6 +103,7 @@
     ~/.config/nvim: nvim
     ~/.config/ohmyposh: config/ohmyposh
     ~/.config/gh/config.yml: config/gh/config.yml
+    ~/.pystartup: config/pystartup
 
 - shell:
   - command: >

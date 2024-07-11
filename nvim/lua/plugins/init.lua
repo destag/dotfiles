@@ -29,10 +29,13 @@ return {
       },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- config = function(_, opts)
-    --   require("oil").setup(opts)
-    --   vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-    -- end,
+    config = function()
+      require("oil").setup({
+        keymaps = {
+          ["<Esc>"] = { callback = "actions.close", mode = "n" },
+        },
+      })
+    end,
   },
   {
     "kylechui/nvim-surround",

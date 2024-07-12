@@ -24,5 +24,7 @@ return {
     "shfmt",
     "shellcheck",
     "bash-language-server",
+    -- sql
+    "sqlfluff",
   },
 }

@@ -1,0 +1,3 @@
+.mode table
+.separator ROW "\n"
+.nullvalue NULL

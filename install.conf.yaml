@@ -104,6 +104,8 @@
     ~/.config/ohmyposh: config/ohmyposh
     ~/.config/gh/config.yml: config/gh/config.yml
     ~/.pystartup: config/pystartup
+    ~/.psqlrc: config/psqlrc
+    ~/.sqliterc: config/sqliterc
 
 - shell:
   - command: >

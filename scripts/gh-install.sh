@@ -8,4 +8,8 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 
 gh auth login
 
-gh extension install https://github.com/nektos/gh-act
+gh extension install nektos/gh-act
+gh extension install dlvhdr/gh-dash
+gh extension install mintarchit/gh-contribs
+gh extension install meiji163/gh-notify
+gh extension install seachicken/gh-poi

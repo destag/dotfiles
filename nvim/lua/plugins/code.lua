@@ -38,24 +38,17 @@ return {
     },
     init = function()
       local wk = require("which-key")
-      wk.register({
-        ["/"] = {
-          function()
-            require("Comment.api").toggle.linewise.current()
-          end,
-          "Toggle comment",
-        },
-      }, {
-        prefix = "<leader>",
-        mode = "n",
+      wk.add({
+        "<leader>/",
+        function()
+          require("Comment.api").toggle.linewise.current()
+        end,
+        desc = "Toggle comment",
       })
-      wk.register({
-        ["/"] = {
-          "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-          "Toggle comment",
-        },
-      }, {
-        prefix = "<leader>",
+      wk.add({
+        "<leader>/",
+        "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+        desc = "Toggle comment",
         mode = "v",
       })
     end,
@@ -145,6 +138,21 @@ return {
           lsp_fallback = true,
         },
       })
+    end,
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+      require("telescope").load_extension("refactoring")
+
+      vim.keymap.set({ "n", "x" }, "<leader>rr", function()
+        require("telescope").extensions.refactoring.refactors()
+      end)
     end,
   },
 }

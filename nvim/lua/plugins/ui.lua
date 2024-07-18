@@ -82,7 +82,9 @@ return {
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
-    -- keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+    opts = {
+      preset = "modern",
+    },
     keys = {
       {
         "<leader>?",

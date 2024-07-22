@@ -26,5 +26,8 @@ return {
     "bash-language-server",
     -- sql
     "sqlfluff",
+    -- ansible
+    "ansible-language-server",
+    "ansible-lint",
   },
 }

@@ -94,10 +94,10 @@ vim.keymap.set("n", "gR", function()
 end)
 vim.keymap.set("n", "[C", function()
   require("treesitter-context").go_to_context(vim.v.count1)
-end, { silent = true })
+end, { silent = true, desc = "Go to context" })
 
-vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>")
-vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>")
+vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>", { desc = "Get from local" })
+vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>", { desc = "Get from remote" })
 
 vim.keymap.set("n", "<leader>d", function()
   -- If we find a floating window, close it.

@@ -8,6 +8,7 @@ return {
     "hcl",
     "elixir",
     "eex",
+    "heex",
     "templ",
   },
   highlight = {

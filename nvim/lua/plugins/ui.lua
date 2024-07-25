@@ -73,6 +73,9 @@ return {
         component_separators = "|",
         section_separators = { left = "", right = "" },
       },
+      sections = {
+        lualine_c = { "harpoon2" },
+      },
       -- tabline = {
       --   lualine_a = { "buffers" },
       --   lualine_z = { "tabs" },

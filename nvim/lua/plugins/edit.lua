@@ -124,6 +124,15 @@ return {
     },
   },
   {
+    "letieu/harpoon-lualine",
+    dependencies = {
+      {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+      },
+    },
+  },
+  {
     "RRethy/vim-illuminate",
     event = { "CursorHold", "CursorHoldI" },
     dependencies = "nvim-treesitter",

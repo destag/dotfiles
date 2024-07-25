@@ -29,5 +29,7 @@ return {
     -- ansible
     "ansible-language-server",
     "ansible-lint",
+    -- javascript
+    "prettier",
   },
 }

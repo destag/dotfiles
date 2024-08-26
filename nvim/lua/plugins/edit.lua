@@ -33,7 +33,7 @@ return {
     event = "BufReadPost",
     opts = {
       throttle = true,
-      max_lines = 0,
+      max_lines = 5,
       patterns = {
         default = {
           "class",

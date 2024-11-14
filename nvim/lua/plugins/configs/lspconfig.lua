@@ -33,6 +33,7 @@ local servers = {
     filetypes = { "yaml", "yml", "ansible" },
     root_dir = lspconfig.util.root_pattern("roles", "playbooks", "ansible.cfg"),
   },
+  intelephense = {},
   -- lexical = {
   --   cmd = { "lexical" },
   -- },

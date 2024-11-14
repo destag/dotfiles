@@ -31,5 +31,7 @@ return {
     "ansible-lint",
     -- javascript
     "prettier",
+    -- php
+    "intelephense",
   },
 }

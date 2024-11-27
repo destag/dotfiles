@@ -38,6 +38,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
+zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::common-aliases

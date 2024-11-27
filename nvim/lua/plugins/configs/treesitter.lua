@@ -10,6 +10,7 @@ return {
     "eex",
     "heex",
     "templ",
+    "php",
   },
   highlight = {
     enable = true,

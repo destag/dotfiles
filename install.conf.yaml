@@ -6,60 +6,61 @@
 
 - sudo:
     - apt:
-      - git
-      - git-lfs
-      - git-crypt
-      - btop
-      - zsh
-      - dirmngr
-      - gpg
-      - curl
-      - gawk
-      - wget
-      - htop
-      - neofetch
-      - code
-      - neovim
-      - tmux
-      - pass
-      - pass-extension-otp
-      - calibre
-      # - alacritty
-      - jq
-      - direnv
-      - docker.io
-      - docker-compose-v2
-      - docker-buildx
-      - postgresql-client
-      - mysql-client
-      - sqlite3
-      - fzf
-      - httpie
-      - fonts-firacode
-      - fonts-jetbrains-mono
-      - tldr
-      - ncdu
-      - thefuck
-      - ripgrep
-      - xclip
-      - xsel
-      - libncurses5-dev
-      - libssl-dev
-      - automake
-      - autoconf
-      - coreutils
-      - inotify-tools
-      - gnome-colors
-      - gnome-tweaks
-      - btop
-      - ca-certificates
-      # - zoxide
-      - fd-find
-      - shellcheck
-      - bat
-      - cloc
-      - libgraph-easy-perl
-      - pipx
+        - git
+        - git-lfs
+        - git-crypt
+        - btop
+        - zsh
+        - dirmngr
+        - gpg
+        - curl
+        - gawk
+        - wget
+        - htop
+        - neofetch
+        - code
+        - neovim
+        - tmux
+        - pass
+        - pass-extension-otp
+        - calibre
+        # - alacritty
+        - jq
+        - direnv
+        - docker.io
+        - docker-compose-v2
+        - docker-buildx
+        - postgresql-client
+        - mysql-client
+        - sqlite3
+        - fzf
+        - httpie
+        - fonts-firacode
+        - fonts-jetbrains-mono
+        - tldr
+        - ncdu
+        - thefuck
+        - ripgrep
+        - xclip
+        - xsel
+        - libncurses5-dev
+        - libssl-dev
+        - automake
+        - autoconf
+        - coreutils
+        - inotify-tools
+        - gnome-colors
+        - gnome-tweaks
+        - btop
+        - ca-certificates
+        # - zoxide
+        - fd-find
+        - shellcheck
+        - bat
+        - cloc
+        - libgraph-easy-perl
+        - pipx
+        - flameshot
 
 - flatpak:
     - org.telegram.desktop
@@ -69,7 +70,7 @@
     - us.zoom.Zoom
     - md.obsidian.Obsidian
     - io.beekeeperstudio.Studio
-    - com.brave.Browser
+    - io.github.zen_browser.zen
     - org.videolan.VLC
     - com.todoist.Todoist
     - com.discordapp.Discord
@@ -77,7 +78,7 @@
     - org.remmina.Remmina
     - io.bassi.Amberol
     - org.gnome.World.PikaBackup
-    - org.flameshot.Flameshot
+    - dev.zed.Zed
 
 - create:
     - ~/Projects
@@ -109,126 +110,126 @@
     ~/.sqliterc: config/sqliterc
 
 - shell:
-  - command: >
-      code
-      --install-extension ms-python.vscode-pylance
-      --install-extension ms-azuretools.vscode-docker
-      --install-extension mikestead.dotenv
-      --install-extension editorconfig.editorconfig
-      --install-extension florinpatrascu.vscode-elixir-snippets
-      --install-extension JakeBecker.elixir-ls
-      --install-extension tamasfe.even-better-toml
-      --install-extension tombonnike.vscode-status-bar-format-toggle
-      --install-extension mhutchie.git-graph
-      --install-extension eamodio.gitlens
-      --install-extension golang.go
-      --install-extension hashicorp.terraform
-      --install-extension ms-python.isort
-      --install-extension ivory-lab.jenkinsfile-support
-      --install-extension wholroyd.jinja
-      --install-extension equinusocio.vsc-material-theme-icons
-      --install-extension phoenixframework.phoenix
-      --install-extension esbenp.prettier-vscode
-      --install-extension ms-python.python
-      --install-extension timonwong.shellcheck
-      --install-extension fivethree.vscode-svelte-snippets
-      --install-extension bradlc.vscode-tailwindcss
-      --install-extension ms-vscode.test-adapter-converter
-      --install-extension hbenl.vscode-test-explorer
-      --install-extension enkia.tokyo-night
-      --install-extension shardulm94.trailing-spaces
-      --install-extension redhat.vscode-xml
-      --install-extension redhat.vscode-yaml
-      --install-extension ms-python.mypy-type-checker
-      --install-extension ms-python.black-formatter
-    stderr: true
-    quiet: true
-    description: install vscode extensions
+    - command: >
+        code
+        --install-extension ms-python.vscode-pylance
+        --install-extension ms-azuretools.vscode-docker
+        --install-extension mikestead.dotenv
+        --install-extension editorconfig.editorconfig
+        --install-extension florinpatrascu.vscode-elixir-snippets
+        --install-extension JakeBecker.elixir-ls
+        --install-extension tamasfe.even-better-toml
+        --install-extension tombonnike.vscode-status-bar-format-toggle
+        --install-extension mhutchie.git-graph
+        --install-extension eamodio.gitlens
+        --install-extension golang.go
+        --install-extension hashicorp.terraform
+        --install-extension ms-python.isort
+        --install-extension ivory-lab.jenkinsfile-support
+        --install-extension wholroyd.jinja
+        --install-extension equinusocio.vsc-material-theme-icons
+        --install-extension phoenixframework.phoenix
+        --install-extension esbenp.prettier-vscode
+        --install-extension ms-python.python
+        --install-extension timonwong.shellcheck
+        --install-extension fivethree.vscode-svelte-snippets
+        --install-extension bradlc.vscode-tailwindcss
+        --install-extension ms-vscode.test-adapter-converter
+        --install-extension hbenl.vscode-test-explorer
+        --install-extension enkia.tokyo-night
+        --install-extension shardulm94.trailing-spaces
+        --install-extension redhat.vscode-xml
+        --install-extension redhat.vscode-yaml
+        --install-extension ms-python.mypy-type-checker
+        --install-extension ms-python.black-formatter
+      stderr: true
+      quiet: true
+      description: install vscode extensions
 
 - shell:
-  - command: |
-      if ! getent group docker > /dev/null 2>&1; then
-        sudo groupadd docker
-        sudo usermod -aG docker $USER
-      fi
-    stderr: true
-    quiet: true
-    description: add user to docker group
+    - command: |
+        if ! getent group docker > /dev/null 2>&1; then
+          sudo groupadd docker
+          sudo usermod -aG docker $USER
+        fi
+      stderr: true
+      quiet: true
+      description: add user to docker group
 
 - shell:
-  - command: |
-      if [ ! -f $HOME/.ssh/id_ed25519 ]; then
-        ssh-keygen -o -a 100 -t ed25519 -N '' -f $HOME/.ssh/id_ed25519
-      fi
-    stderr: true
-    quiet: true
-    description: generate ssh key
+    - command: |
+        if [ ! -f $HOME/.ssh/id_ed25519 ]; then
+          ssh-keygen -o -a 100 -t ed25519 -N '' -f $HOME/.ssh/id_ed25519
+        fi
+      stderr: true
+      quiet: true
+      description: generate ssh key
 
-  - command: |
-      if [ -d $HOME/.asdf ]; then
-        exit 0
-      fi
+    - command: |
+        if [ -d $HOME/.asdf ]; then
+          exit 0
+        fi
 
-      git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0
+        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0
 
-      $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
-      $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
-      $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git || true
-      $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git || true
-      $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
-      $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git || true
-      $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git || true
-      ASDF_PYAPP_INCLUDE_DEPS=1 $HOME/.asdf/bin/asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
-      $HOME/.asdf/bin/asdf plugin add awscli https://github.com/MetricMike/asdf-awscli.git || true
-    stderr: true
-    quiet: true
-    description: install asdf
+        $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
+        $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
+        $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git || true
+        $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git || true
+        $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
+        $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git || true
+        $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git || true
+        ASDF_PYAPP_INCLUDE_DEPS=1 $HOME/.asdf/bin/asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
+        $HOME/.asdf/bin/asdf plugin add awscli https://github.com/MetricMike/asdf-awscli.git || true
+      stderr: true
+      quiet: true
+      description: install asdf
 
-  - command: |
-      if [ ! -d $HOME/.tmux/plugins/tpm ]; then
-        git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-      fi
-    stderr: true
-    stdout: true
-    quiet: true
-    description: install tpm
+    - command: |
+        if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+          git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+        fi
+      stderr: true
+      stdout: true
+      quiet: true
+      description: install tpm
 
-  - command: |
-      if [ ! $SHELL = '/bin/zsh' ]; then
-        chsh -s /bin/zsh
-      fi
-    stdin: true
-    stderr: true
-    quiet: true
-    description: change default shell
+    - command: |
+        if [ ! $SHELL = '/bin/zsh' ]; then
+          chsh -s /bin/zsh
+        fi
+      stdin: true
+      stderr: true
+      quiet: true
+      description: change default shell
 
-  - command: |
-      if [ ! -d $HOME/.local/share/fonts ]; then
-        mkdir -p ~/.local/share/fonts
-        cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
-      fi
-    stderr: true
-    quiet: true
-    description: add nerd fonts firacode
+    - command: |
+        if [ ! -d $HOME/.local/share/fonts ]; then
+          mkdir -p ~/.local/share/fonts
+          cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
+        fi
+      stderr: true
+      quiet: true
+      description: add nerd fonts firacode
 
-  - command: |
-      export GOPATH="$HOME/.go"
-      go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
-      go install github.com/a-h/templ/cmd/templ@latest
-      go install github.com/xo/usql@latest
-      go install github.com/mikefarah/yq/v4@latest
-      go install github.com/air-verse/air@latest
-      go install github.com/rakyll/hey@latest
-      go install github.com/maaslalani/slides@latest
-      go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-    stderr: true
-    quiet: true
-    description: install go binaries
+    - command: |
+        export GOPATH="$HOME/.go"
+        go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
+        go install github.com/a-h/templ/cmd/templ@latest
+        go install github.com/xo/usql@latest
+        go install github.com/mikefarah/yq/v4@latest
+        go install github.com/air-verse/air@latest
+        go install github.com/rakyll/hey@latest
+        go install github.com/maaslalani/slides@latest
+        go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+      stderr: true
+      quiet: true
+      description: install go binaries
 
-  - command: |
-      if ! command -v oh-my-posh; then
-        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
-      fi
-    stderr: true
-    quiet: true
-    description: install oh-my-posh
+    - command: |
+        if ! command -v oh-my-posh; then
+          curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
+        fi
+      stderr: true
+      quiet: true
+      description: install oh-my-posh

@@ -37,8 +37,8 @@ local servers = {
     settings = {
       intelephense = {
         format = {
-          enabled = false,
-          braces = "k&r",
+          enable = false,
+          -- braces = "k&r",
         },
       },
     },

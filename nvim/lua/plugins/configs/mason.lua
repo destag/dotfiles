@@ -13,12 +13,14 @@ return {
     -- rust
     "rust-analyzer",
     "rustfmt",
+    -- python
     "ruff",
     -- terraform
     "terraform-ls",
     "tflint",
     -- elixir
     "elixir-ls",
+    "nextls",
     "lexical",
     -- bash
     "shfmt",

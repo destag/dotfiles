@@ -115,6 +115,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    enabled = false,
     opts = function()
       return require("plugins.configs.null-ls")
     end,
@@ -131,16 +132,8 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    config = function()
-      require("conform").setup({
-        formatters_by_ft = {
-          scss = { "prettier" },
-        },
-        format_on_save = {
-          timeout_ms = 10000,
-          lsp_fallback = true,
-        },
-      })
+    opts = function()
+      return require("plugins.configs.conform")
     end,
   },
   {

@@ -3,8 +3,8 @@ return {
   config = function()
     require("dooing").setup({
       keymaps = {
-        toggle_window = "<leader>TD"
-      }
+        toggle_window = "<leader>T",
+      },
     })
   end,
 }

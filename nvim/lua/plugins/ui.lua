@@ -9,12 +9,12 @@ return {
       local builtin = require("telescope.builtin")
       local wk = require("which-key")
       wk.add({
-        { "<leader>ff", builtin.find_files,                                            desc = "Find File" },
-        { "<leader>fb", builtin.buffers,                                               desc = "Find Buffer" },
-        { "<leader>fg", builtin.live_grep,                                             desc = "Find with Grep" },
-        { "<leader>fh", builtin.help_tags,                                             desc = "Find Help" },
-        { '<leader>fm', '<cmd>MarksListAll<CR><cmd>lcl<CR><cmd>Telescope loclist<CR>', desc = "Find Mark" },
-        { "<leader>fn", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",   desc = "File Browser" },
+        { "<leader>ff", builtin.find_files, desc = "Find File" },
+        { "<leader>fb", builtin.buffers, desc = "Find Buffer" },
+        { "<leader>fg", builtin.live_grep, desc = "Find with Grep" },
+        { "<leader>fh", builtin.help_tags, desc = "Find Help" },
+        { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostics" },
+        { "<leader>fm", "<cmd>MarksListAll<CR><cmd>lcl<CR><cmd>Telescope loclist<CR>", desc = "Find Mark" },
       })
     end,
     opts = function()
@@ -77,10 +77,6 @@ return {
       sections = {
         lualine_c = { "harpoon2" },
       },
-      -- tabline = {
-      --   lualine_a = { "buffers" },
-      --   lualine_z = { "tabs" },
-      -- },
     },
   },
   -- Only load whichkey after all the gui
@@ -133,7 +129,7 @@ return {
             else
               gitsigns.nav_hunk("next")
             end
-          end)
+          end, { desc = "Next Hunk" })
 
           map("n", "[c", function()
             if vim.wo.diff then
@@ -141,30 +137,30 @@ return {
             else
               gitsigns.nav_hunk("prev")
             end
-          end)
+          end, { desc = "Previous Hunk" })
 
           -- Actions
           map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
           map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
           map("v", "<leader>hs", function()
             gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
+          end, { desc = "Stage Hunk" })
           map("v", "<leader>hr", function()
             gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
+          end, { desc = "Reset Hunk" })
           map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
-          map("n", "<leader>hu", gitsigns.undo_stage_hunk)
+          map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Unstage Hunk" })
           map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
-          map("n", "<leader>hp", gitsigns.preview_hunk)
+          map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
           map("n", "<leader>hb", function()
             gitsigns.blame_line({ full = true })
           end)
-          map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-          map("n", "<leader>hd", gitsigns.diffthis)
+          map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
+          map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff hunk" })
           map("n", "<leader>hD", function()
             gitsigns.diffthis("~")
-          end)
-          map("n", "<leader>td", gitsigns.toggle_deleted)
+          end, { desc = "Diff buffer" })
+          map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
 
           -- Text object
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")

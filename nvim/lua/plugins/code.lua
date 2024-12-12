@@ -29,12 +29,12 @@ return {
   {
     "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n",          desc = "Comment toggle current line" },
-      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n",          desc = "Comment toggle current block" },
-      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n", desc = "Comment toggle current line" },
+      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n", desc = "Comment toggle current block" },
+      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
       local wk = require("which-key")
@@ -134,6 +134,32 @@ return {
     event = "BufWritePre",
     opts = function()
       return require("plugins.configs.conform")
+    end,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    config = function()
+      local lint = require("lint")
+
+      lint.linters.sqlfluff.args = {
+        "lint",
+        "--format=json",
+        "--dialect=postgres",
+      }
+
+      lint.linters_by_ft = {
+        elixir = { "credo" },
+        python = { "ruff", "mypy" },
+        terraform = { "tflint" },
+        sql = { "sqlfluff" },
+        sh = { "shellcheck" },
+      }
+
+      vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "InsertLeave" }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
     end,
   },
   {

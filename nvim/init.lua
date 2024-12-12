@@ -24,10 +24,10 @@ vim.o.hlsearch = false
 vim.wo.relativenumber = true
 vim.wo.number = true
 
-vim.o.tabstop = 2      -- A TAB character looks like 2 spaces
+vim.o.tabstop = 2 -- A TAB character looks like 2 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.o.softtabstop = 2  -- Number of spaces inserted instead of a TAB character
-vim.o.shiftwidth = 2   -- Number of spaces inserted when indenting
+vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -98,6 +98,8 @@ end, { silent = true, desc = "Go to context" })
 
 vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>", { desc = "Get from local" })
 vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>", { desc = "Get from remote" })
+
+vim.keymap.set("n", "<leader>G", function() require("neogit").open() end, { desc = "Neogit" })
 
 vim.keymap.set("n", "<leader>d", function()
   -- If we find a floating window, close it.

@@ -1,7 +1,8 @@
 return {
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "black", "isort" },
+    go = { "gofumpt", "goimports-reviser", "golines" },
+    python = { "isort", "black" },
     scss = { "prettier" },
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },

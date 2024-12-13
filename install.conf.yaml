@@ -18,7 +18,6 @@
         - wget
         - htop
         - neofetch
-        - code
         - neovim
         - tmux
         - pass
@@ -99,52 +98,12 @@
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.config/alacritty: config/alacritty
-    ~/.config/Code/User/settings.json: vscode/settings.json
-    ~/.config/Code/User/keybindings.json: vscode/keybindings.json
-    ~/.config/Code/User/snippets: vscode/snippets
     ~/.config/nvim: nvim
     ~/.config/ohmyposh: config/ohmyposh
     ~/.config/gh/config.yml: config/gh/config.yml
     ~/.pystartup: config/pystartup
     ~/.psqlrc: config/psqlrc
     ~/.sqliterc: config/sqliterc
-
-- shell:
-    - command: >
-        code
-        --install-extension ms-python.vscode-pylance
-        --install-extension ms-azuretools.vscode-docker
-        --install-extension mikestead.dotenv
-        --install-extension editorconfig.editorconfig
-        --install-extension florinpatrascu.vscode-elixir-snippets
-        --install-extension JakeBecker.elixir-ls
-        --install-extension tamasfe.even-better-toml
-        --install-extension tombonnike.vscode-status-bar-format-toggle
-        --install-extension mhutchie.git-graph
-        --install-extension eamodio.gitlens
-        --install-extension golang.go
-        --install-extension hashicorp.terraform
-        --install-extension ms-python.isort
-        --install-extension ivory-lab.jenkinsfile-support
-        --install-extension wholroyd.jinja
-        --install-extension equinusocio.vsc-material-theme-icons
-        --install-extension phoenixframework.phoenix
-        --install-extension esbenp.prettier-vscode
-        --install-extension ms-python.python
-        --install-extension timonwong.shellcheck
-        --install-extension fivethree.vscode-svelte-snippets
-        --install-extension bradlc.vscode-tailwindcss
-        --install-extension ms-vscode.test-adapter-converter
-        --install-extension hbenl.vscode-test-explorer
-        --install-extension enkia.tokyo-night
-        --install-extension shardulm94.trailing-spaces
-        --install-extension redhat.vscode-xml
-        --install-extension redhat.vscode-yaml
-        --install-extension ms-python.mypy-type-checker
-        --install-extension ms-python.black-formatter
-      stderr: true
-      quiet: true
-      description: install vscode extensions
 
 - shell:
     - command: |

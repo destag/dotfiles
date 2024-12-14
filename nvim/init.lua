@@ -99,7 +99,9 @@ end, { silent = true, desc = "Go to context" })
 vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>", { desc = "Get from local" })
 vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>", { desc = "Get from remote" })
 
-vim.keymap.set("n", "<leader>G", function() require("neogit").open() end, { desc = "Neogit" })
+vim.keymap.set("n", "<leader>G", function()
+  require("neogit").open({ kind = "floating" })
+end, { desc = "Neogit" })
 
 vim.keymap.set("n", "<leader>d", function()
   -- If we find a floating window, close it.

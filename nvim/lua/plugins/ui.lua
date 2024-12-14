@@ -209,4 +209,12 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
     event = "VeryLazy",
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
 }

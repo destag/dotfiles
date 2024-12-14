@@ -34,6 +34,7 @@ return {
     -- javascript
     "prettier",
     -- php
-    "intelephense",
+    "phpactor",
+    "phpstan",
   },
 }

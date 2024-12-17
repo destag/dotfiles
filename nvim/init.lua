@@ -74,27 +74,9 @@ vim.keymap.set("n", ";", ":", { desc = "CMD enter command mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 
-vim.keymap.set("n", "<leader>xx", function()
-  require("trouble").toggle()
-end)
-vim.keymap.set("n", "<leader>xw", function()
-  require("trouble").toggle("workspace_diagnostics")
-end)
-vim.keymap.set("n", "<leader>xd", function()
-  require("trouble").toggle("document_diagnostics")
-end)
-vim.keymap.set("n", "<leader>xq", function()
-  require("trouble").toggle("quickfix")
-end)
-vim.keymap.set("n", "<leader>xl", function()
-  require("trouble").toggle("loclist")
-end)
-vim.keymap.set("n", "gR", function()
-  require("trouble").toggle("lsp_references")
-end)
-vim.keymap.set("n", "[C", function()
-  require("treesitter-context").go_to_context(vim.v.count1)
-end, { silent = true, desc = "Go to context" })
+-- vim.keymap.set("n", "gR", function()
+--   require("trouble").toggle("lsp_references")
+-- end)
 
 vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>", { desc = "Get from local" })
 vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>", { desc = "Get from remote" })
@@ -129,8 +111,8 @@ vim.diagnostic.config({
     text = {
       [vim.diagnostic.severity.ERROR] = " ",
       [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "󰌵",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = "󰌵 ",
     },
   },
 })

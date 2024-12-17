@@ -10,11 +10,12 @@ return {
     -- lua
     "lua-language-server",
     "stylua",
-    -- rust
-    "rust-analyzer",
-    "rustfmt",
     -- python
+    "black",
+    "isort",
+    "mypy",
     "ruff",
+    "basedpyright",
     -- terraform
     "terraform-ls",
     "tflint",

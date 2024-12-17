@@ -98,7 +98,10 @@ return {
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      wk.add({ "<leader>f", group = "Find" })
+      wk.add({
+        { "<leader>f", group = "Find" },
+        { "<leader>r", group = "Refactor" },
+      })
     end,
   },
   {
@@ -154,7 +157,7 @@ return {
           map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
           map("n", "<leader>hb", function()
             gitsigns.blame_line({ full = true })
-          end)
+          end, { desc = "Blame Line" })
           map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
           map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff hunk" })
           map("n", "<leader>hD", function()
@@ -170,7 +173,7 @@ return {
   },
   {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {},
     cmd = "Trouble",
     keys = {
       {
@@ -194,14 +197,14 @@ return {
         desc = "LSP Definitions / references / ... (Trouble)",
       },
       {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
+        "<leader>xq",
         "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
+      },
+      {
+        "gr",
+        "<cmd>Trouble lsp_references toggle<cr>",
+        desc = "LSP References (Trouble)",
       },
     },
   },
@@ -216,5 +219,25 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require("lsp_signature").setup({
+        bind = true,
+        -- doc_lines = 0,
+        handler_opts = {
+          border = "rounded",
+        },
+        floating_window = false,
+        hint_enable = false,
+        hint_prefix = {
+          above = "↙ ", -- when the hint is on the line above the current line
+          current = "← ", -- when the hint is on the same line
+          below = "↖ ", -- when the hint is on the line below the current line
+        },
+        toggle_key = "<C-s>",
+      })
+    end,
   },
 }

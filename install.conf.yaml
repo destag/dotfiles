@@ -100,6 +100,7 @@
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: nvim
     ~/.config/ohmyposh: config/ohmyposh
+    ~/.config/ulauncher: config/ulauncher
     ~/.config/gh/config.yml: config/gh/config.yml
     ~/.pystartup: config/pystartup
     ~/.psqlrc: config/psqlrc

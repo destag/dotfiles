@@ -38,5 +38,15 @@
     "keyword": "g",
     "name": "Google Search",
     "run_without_argument": false
+  },
+  "ycybo57f2sflpyu74x7b": {
+    "added": 1734451814,
+    "cmd": "https://claude.ai/new?q=%s",
+    "icon": "~/claude.svg",
+    "id": "ycybo57f2sflpyu74x7b",
+    "is_default_search": false,
+    "keyword": "cl",
+    "name": "Claude AI",
+    "run_without_argument": false
   }
 }

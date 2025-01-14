@@ -45,9 +45,7 @@ return {
     keys = {
       {
         "[C",
-        function()
-          require("treesitter-context").go_to_context(vim.v.count1)
-        end,
+        function() require("treesitter-context").go_to_context(vim.v.count1) end,
         desc = "Previous context",
       },
     },
@@ -60,65 +58,47 @@ return {
     keys = {
       {
         "<leader>a",
-        function()
-          require("harpoon"):list():add()
-        end,
+        function() require("harpoon"):list():add() end,
         desc = "Add Location",
       },
       {
         "<C-n>",
-        function()
-          require("harpoon"):list():next({ ui_nav_wrap = true })
-        end,
+        function() require("harpoon"):list():next({ ui_nav_wrap = true }) end,
         desc = "Next Location",
       },
       {
         "<C-p>",
-        function()
-          require("harpoon"):list():prev({ ui_nav_wrap = true })
-        end,
+        function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end,
         desc = "Previous Location",
       },
       {
         "<Leader>mr",
-        function()
-          require("harpoon"):list():remove()
-        end,
+        function() require("harpoon"):list():remove() end,
         desc = "Remove Location",
       },
       {
         "<LocalLeader>1",
-        function()
-          require("harpoon"):list():select(1)
-        end,
+        function() require("harpoon"):list():select(1) end,
         desc = "Harpoon to File 1",
       },
       {
         "<LocalLeader>2",
-        function()
-          require("harpoon"):list():select(2)
-        end,
+        function() require("harpoon"):list():select(2) end,
         desc = "Harpoon to File 2",
       },
       {
         "<LocalLeader>3",
-        function()
-          require("harpoon"):list():select(3)
-        end,
+        function() require("harpoon"):list():select(3) end,
         desc = "Harpoon to File 3",
       },
       {
         "<LocalLeader>4",
-        function()
-          require("harpoon"):list():select(4)
-        end,
+        function() require("harpoon"):list():select(4) end,
         desc = "Harpoon to File 4",
       },
       {
         "<LocalLeader>5",
-        function()
-          require("harpoon"):list():select(5)
-        end,
+        function() require("harpoon"):list():select(5) end,
         desc = "Harpoon to File 5",
       },
 
@@ -133,12 +113,16 @@ return {
     },
   },
   {
-    "letieu/harpoon-lualine",
-    dependencies = {
-      {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-      },
+    "Wansmer/treesj",
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    keys = {
+      { "<leader>j", "<cmd>TSJToggle<cr>", desc = "Toggle Split/Join" },
     },
+    config = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+    end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }

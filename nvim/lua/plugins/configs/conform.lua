@@ -4,6 +4,7 @@ return {
     go = { "gofumpt", "goimports-reviser", "golines" },
     python = { "isort", "black" },
     scss = { "prettier" },
+    html = { "prettier" },
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },
     hcl = { "terragrunt_hclfmt" },

@@ -52,6 +52,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},

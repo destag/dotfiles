@@ -37,5 +37,7 @@ return {
     -- php
     "phpactor",
     "phpstan",
+    -- html
+    "tailwindcss-language-server",
   },
 }

@@ -15,6 +15,8 @@ if firstload then
   })
 end
 
+vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/snippets/"
+
 vim.opt.rtp:prepend(lazypath)
 
 -- Set highlight on search
@@ -81,12 +83,10 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("n", "gh", "<cmd>diffget LOCAL<CR>", { desc = "Get from local" })
 vim.keymap.set("n", "gl", "<cmd>diffget REMOTE<CR>", { desc = "Get from remote" })
 
-vim.keymap.set("n", "<leader>G", function()
-  require("neogit").open({ kind = "floating" })
-end, { desc = "Neogit" })
+vim.keymap.set("n", "<leader>hg", function() require("neogit").open({ kind = "floating" }) end, { desc = "Neogit" })
 
-vim.keymap.set("n", "<leader>d", function()
-  -- If we find a floating window, close it.
+-- Close floathing windows with escape
+vim.keymap.set("n", "<esc>", function()
   local found_float = false
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_config(win).relative ~= "" then
@@ -95,9 +95,7 @@ vim.keymap.set("n", "<leader>d", function()
     end
   end
 
-  if found_float then
-    return
-  end
+  if found_float then return end
 
   vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
 end, { desc = "Toggle Diagnostics" })
@@ -114,6 +112,23 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = " ",
       [vim.diagnostic.severity.HINT] = "󰌵 ",
     },
+  },
+})
+
+vim.g["surround_no_mappings"] = 1
+-- Just the defaults copied here.
+vim.keymap.set("n", "ds", "<Plug>Dsurround")
+vim.keymap.set("n", "cs", "<Plug>Csurround")
+vim.keymap.set("n", "cS", "<Plug>CSurround")
+vim.keymap.set("n", "ys", "<Plug>Ysurround")
+vim.keymap.set("n", "yS", "<Plug>YSurround")
+vim.keymap.set("n", "yss", "<Plug>Yssurround")
+vim.keymap.set("n", "ySs", "<Plug>YSsurround")
+vim.keymap.set("n", "ySS", "<Plug>YSsurround")
+
+vim.filetype.add({
+  extension = {
+    html = "html",
   },
 })
 

@@ -2,6 +2,7 @@ local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 local servers = {
   lua_ls = {
@@ -30,6 +31,17 @@ local servers = {
   elixirls = {
     cmd = { "elixir-ls" },
   },
+  -- nextls = {
+  --   cmd = { "nextls", "--stdio" },
+  --   init_options = {
+  --     extensions = {
+  --       credo = { enable = true },
+  --     },
+  --     experimental = {
+  --       completions = { enable = true },
+  --     },
+  --   },
+  -- },
   bashls = {},
   templ = {},
   ansiblels = {
@@ -37,9 +49,7 @@ local servers = {
     root_dir = lspconfig.util.root_pattern("roles", "playbooks", "ansible.cfg"),
   },
   phpactor = {},
-  -- lexical = {
-  --   cmd = { "lexical" },
-  -- },
+  tailwindcss = {},
 }
 
 for lsp, opts in pairs(servers) do
@@ -63,14 +73,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts("Code action"))
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts("Rename"))
     vim.keymap.set("n", "L", vim.lsp.buf.hover, bufopts("Show hover"))
-    vim.keymap.set("n", "<leader>fr", function()
-      require("telescope.builtin").lsp_references()
-    end, bufopts("Find references"))
-    vim.keymap.set("n", "<leader>fs", function()
-      require("telescope.builtin").lsp_document_symbols()
-    end, bufopts("Find document symbols"))
-    vim.keymap.set("n", "<leader>fS", function()
-      require("telescope.builtin").lsp_workspace_symbols()
-    end, bufopts("Find workspace symbols"))
+    vim.keymap.set(
+      "n",
+      "<leader>fr",
+      function() require("telescope.builtin").lsp_references() end,
+      bufopts("Find references")
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>fs",
+      function() require("telescope.builtin").lsp_document_symbols() end,
+      bufopts("Find document symbols")
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>fS",
+      function() require("telescope.builtin").lsp_workspace_symbols() end,
+      bufopts("Find workspace symbols")
+    )
   end,
 })

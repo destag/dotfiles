@@ -12,6 +12,11 @@ return {
         { "<leader>ff", builtin.find_files, desc = "Find File" },
         { "<leader>fb", builtin.buffers, desc = "Find Buffer" },
         { "<leader>fg", builtin.live_grep, desc = "Find with Grep" },
+        {
+          "<leader>fo",
+          function() builtin.oldfiles({ cwd_only = true }) end,
+          desc = "Find Old Files",
+        },
         { "<leader>fh", builtin.help_tags, desc = "Find Help" },
         { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostics" },
         { "<leader>fm", "<cmd>MarksListAll<CR><cmd>lcl<CR><cmd>Telescope loclist<CR>", desc = "Find Mark" },
@@ -74,9 +79,6 @@ return {
         component_separators = "|",
         section_separators = { left = "", right = "" },
       },
-      sections = {
-        lualine_c = { "harpoon2" },
-      },
     },
   },
   -- Only load whichkey after all the gui
@@ -88,9 +90,7 @@ return {
     keys = {
       {
         "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
+        function() require("which-key").show({ global = false }) end,
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
@@ -101,6 +101,7 @@ return {
       wk.add({
         { "<leader>f", group = "Find" },
         { "<leader>r", group = "Refactor" },
+        { "<leader>h", group = "Git" },
       })
     end,
   },
@@ -110,11 +111,19 @@ return {
     config = function()
       require("gitsigns").setup({
         signs = {
-          add = { text = "│" },
-          change = { text = "│" },
-          delete = { text = "󰍵" },
-          topdelete = { text = "‾" },
-          changedelete = { text = "~" },
+          add = { text = "▎" },
+          change = { text = "▎" },
+          delete = { text = "" },
+          topdelete = { text = "" },
+          changedelete = { text = "▎" },
+          untracked = { text = "▎" },
+        },
+        signs_staged = {
+          add = { text = "▎" },
+          change = { text = "▎" },
+          delete = { text = "" },
+          topdelete = { text = "" },
+          changedelete = { text = "▎" },
         },
         on_attach = function(bufnr)
           local gitsigns = require("gitsigns")
@@ -145,24 +154,27 @@ return {
           -- Actions
           map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
           map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
-          map("v", "<leader>hs", function()
-            gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end, { desc = "Stage Hunk" })
-          map("v", "<leader>hr", function()
-            gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end, { desc = "Reset Hunk" })
+          map(
+            "v",
+            "<leader>hs",
+            function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+            { desc = "Stage Hunk" }
+          )
+          map(
+            "v",
+            "<leader>hr",
+            function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+            { desc = "Reset Hunk" }
+          )
           map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
           map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Unstage Hunk" })
           map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
           map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
-          map("n", "<leader>hb", function()
-            gitsigns.blame_line({ full = true })
-          end, { desc = "Blame Line" })
+          map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end, { desc = "Blame Line" })
+          map("n", "<leader>hB", function() gitsigns.blame() end, { desc = "Blame Buffer" })
           map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
           map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff hunk" })
-          map("n", "<leader>hD", function()
-            gitsigns.diffthis("~")
-          end, { desc = "Diff buffer" })
+          map("n", "<leader>hD", function() gitsigns.diffthis("~") end, { desc = "Diff buffer" })
           map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
 
           -- Text object
@@ -213,6 +225,22 @@ return {
     event = "VeryLazy",
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = {
+        char = " ",
+      },
+      scope = {
+        enabled = true,
+        char = "▎",
+        show_exact_scope = true,
+        show_start = false,
+        show_end = false,
+      },
+    },
+  },
+  {
     "OXY2DEV/markview.nvim",
     lazy = false,
     dependencies = {
@@ -239,5 +267,12 @@ return {
         toggle_key = "<C-s>",
       })
     end,
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      render = "virtual",
+      enable_tailwind = true,
+    },
   },
 }

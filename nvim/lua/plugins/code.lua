@@ -4,23 +4,17 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
-    config = function()
-      require("plugins.configs.lspconfig")
-    end,
+    config = function() require("plugins.configs.lspconfig") end,
   },
   {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-    opts = function()
-      return require("plugins.configs.mason")
-    end,
+    opts = function() return require("plugins.configs.mason") end,
     config = function(_, opts)
       require("mason").setup(opts)
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed then
-          vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-        end
+        if opts.ensure_installed then vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " ")) end
       end, {})
 
       vim.g.mason_binaries_list = opts.ensure_installed
@@ -28,21 +22,11 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
-    },
     init = function()
       local wk = require("which-key")
       wk.add({
         "<leader>/",
-        function()
-          require("Comment.api").toggle.linewise.current()
-        end,
+        function() require("Comment.api").toggle.linewise.current() end,
         desc = "Toggle comment",
       })
       wk.add({
@@ -52,9 +36,7 @@ return {
         mode = "v",
       })
     end,
-    config = function(_, opts)
-      require("Comment").setup(opts)
-    end,
+    config = function(_, opts) require("Comment").setup(opts) end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -63,16 +45,14 @@ return {
     build = ":TSUpdate",
     dependencies = {
       "apple/pkl-neovim",
+      "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    opts = function()
-      return require("plugins.configs.treesitter")
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    opts = function() return require("plugins.configs.treesitter") end,
+    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
   {
     "hrsh7th/nvim-cmp",
+    enabled = true,
     event = "InsertEnter",
     dependencies = {
       {
@@ -80,9 +60,7 @@ return {
         "L3MON4D3/LuaSnip",
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
-        end,
+        config = function(_, opts) require("plugins.configs.others").luasnip(opts) end,
       },
 
       -- autopairing of (){}[] etc
@@ -106,19 +84,55 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
     },
-    opts = function()
-      return require("plugins.configs.cmp")
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
+    opts = function() return require("plugins.configs.cmp") end,
+    config = function(_, opts) require("cmp").setup(opts) end,
+  },
+  {
+    "saghen/blink.cmp",
+    enabled = false,
+    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
+    opts = {
+      keymap = {
+        preset = "default",
+        ["<Tab>"] = {
+          "select_next",
+          "fallback",
+        },
+        ["<S-Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.snippet_backward()
+            else
+              return cmp.select_prev()
+            end
+          end,
+          "select_prev",
+          "fallback",
+        },
+        ["<CR>"] = { "accept", "fallback" },
+        ["<Esc>"] = { "hide", "fallback" },
+        ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
+        ["<PageDn>"] = { "scroll_documentation_down", "fallback" },
+      },
+      accept = { auto_brackets = { enabled = true } },
+      signature = { enabled = true },
+      snippets = {
+        expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
+        active = function(filter)
+          if filter and filter.direction then return require("luasnip").jumpable(filter.direction) end
+          return require("luasnip").in_snippet()
+        end,
+        jump = function(direction) require("luasnip").jump(direction) end,
+      },
+      sources = {
+        default = { "lsp", "path", "luasnip", "buffer" },
+      },
+    },
   },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    opts = function()
-      return require("plugins.configs.conform")
-    end,
+    opts = function() return require("plugins.configs.conform") end,
   },
   {
     "mfussenegger/nvim-lint",
@@ -141,9 +155,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "InsertLeave" }, {
-        callback = function()
-          lint.try_lint()
-        end,
+        callback = function() lint.try_lint() end,
       })
     end,
   },
@@ -157,9 +169,7 @@ return {
       require("refactoring").setup()
       require("telescope").load_extension("refactoring")
 
-      vim.keymap.set({ "n", "x" }, "<leader>rr", function()
-        require("telescope").extensions.refactoring.refactors()
-      end)
+      vim.keymap.set({ "n", "x" }, "<leader>rr", function() require("telescope").extensions.refactoring.refactors() end)
     end,
   },
 }

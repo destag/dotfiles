@@ -69,7 +69,7 @@
     - us.zoom.Zoom
     - md.obsidian.Obsidian
     - io.beekeeperstudio.Studio
-    - io.github.zen_browser.zen
+    - app.zen_browser.zen
     - org.videolan.VLC
     - com.todoist.Todoist
     - com.discordapp.Discord

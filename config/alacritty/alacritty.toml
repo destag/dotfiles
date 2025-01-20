@@ -25,3 +25,11 @@ dynamic_title = true
 [window.padding]
 x = 5
 y = 5
+
+[keyboard]
+bindings = [
+  { key = "H", mods = "Alt", chars = "\u001b[D" }, # Left Arrow
+  { key = "J", mods = "Alt", chars = "\u001b[B" }, # Down Arrow
+  { key = "K", mods = "Alt", chars = "\u001b[A" }, # Up Arrow
+  { key = "L", mods = "Alt", chars = "\u001b[C" }, # Right Arrow
+]

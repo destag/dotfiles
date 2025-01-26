@@ -5,11 +5,12 @@ export PIP_REQUIRE_VIRTUALENV=true
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export ERL_AFLAGS="-kernel shell_history enabled"
+export GOPATH="$HOME/.go"
+export AWS_SSO_SESSION_NAME="syncron-sso"
 
 DOTFILES_PATH="$HOME/.dotfiles"
 SCRIPTS_PATH="$HOME/Projects/personal/scripts"
 
-GOPATH="$HOME/.go"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.krew/bin:$PATH"
 PATH="$DOTFILES_PATH/bin:$PATH"
@@ -41,7 +42,6 @@ zinit light MichaelAquilina/zsh-you-should-use
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::common-aliases
 zinit snippet OMZP::ubuntu
 zinit snippet OMZP::asdf
 zinit snippet OMZP::aws
@@ -58,31 +58,6 @@ zinit ice as"completion"
 zinit snippet OMZP::terraform/_terraform
 
 zinit cdreplay -q
-
-# Aliases
-alias gt='git tree'
-alias gtt='git --no-pager tree -n5'
-alias gC='git conventional-commit'
-alias _='sudo'
-alias :q='exit'
-alias q='exit'
-alias rst='exec $SHELL -l'
-alias ssh='TERM=xterm-color ssh'
-alias vpn='sudo openvpn ~/.vpn/openvpn-config/SyncronVPN-other.ovpn'
-alias vpn-all='sudo openvpn ~/.vpn/openvpn-config/SyncronVPNAllTraffic-other.ovpn'
-alias rm!='rm -rfv'
-alias cdtmp='cd `mktemp -d`'
-alias cat='batcat -pp'
-alias bat='batcat'
-alias dco='docker compose'
-alias dotinstall="~/.dotfiles/install"
-alias flatpak-update="flatpak remote-ls --updates && flatpak update"
-alias ls='ls --color=auto'
-alias fd='fdfind'
-alias xc='xclip -selection clipboard'
-alias xp='xsel -ob'
-alias aws-profile='export AWS_PROFILE="$(aws configure list-profiles | fzf --height=10)";echo "${AWS_PROFILE:-no profile}"'
-alias aws-region="export AWS_DEFAULT_REGION=\"\$(aws account list-regions | jq -r '.Regions[] | select(.RegionOptStatus == \"ENABLED_BY_DEFAULT\") | .RegionName' | fzf)\";echo \"\${AWS_DEFAULT_REGION:-no region}\""
 
 # Keybindings
 bindkey -e
@@ -105,6 +80,9 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+
+source $DOTFILES_PATH/scripts/funcs.zsh
+source $DOTFILES_PATH/scripts/aliases.zsh
 
 # Completion styling
 eval "$(dircolors)"

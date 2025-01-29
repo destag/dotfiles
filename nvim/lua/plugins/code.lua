@@ -51,24 +51,29 @@ return {
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    lazy = true,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
+    },
+    opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+    config = function(_, opts) require("plugins.configs.others").luasnip(opts) end,
+  },
+  {
     "hrsh7th/nvim-cmp",
-    enabled = true,
+    enabled = false,
     event = "InsertEnter",
     dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts) require("plugins.configs.others").luasnip(opts) end,
-      },
+      "L3MON4D3/LuaSnip",
 
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
         opts = {
           fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
+          disable_filetype = { "snacks_picker_input", "vim" },
         },
         config = function(_, opts)
           require("nvim-autopairs").setup(opts)
@@ -89,45 +94,9 @@ return {
   },
   {
     "saghen/blink.cmp",
-    enabled = false,
-    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
-    opts = {
-      keymap = {
-        preset = "default",
-        ["<Tab>"] = {
-          "select_next",
-          "fallback",
-        },
-        ["<S-Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.snippet_backward()
-            else
-              return cmp.select_prev()
-            end
-          end,
-          "select_prev",
-          "fallback",
-        },
-        ["<CR>"] = { "accept", "fallback" },
-        ["<Esc>"] = { "hide", "fallback" },
-        ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
-        ["<PageDn>"] = { "scroll_documentation_down", "fallback" },
-      },
-      accept = { auto_brackets = { enabled = true } },
-      signature = { enabled = true },
-      snippets = {
-        expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
-        active = function(filter)
-          if filter and filter.direction then return require("luasnip").jumpable(filter.direction) end
-          return require("luasnip").in_snippet()
-        end,
-        jump = function(direction) require("luasnip").jump(direction) end,
-      },
-      sources = {
-        default = { "lsp", "path", "luasnip", "buffer" },
-      },
-    },
+    enabled = true,
+    version = "*",
+    opts = function() return require("plugins.configs.blink") end,
   },
   {
     "stevearc/conform.nvim",

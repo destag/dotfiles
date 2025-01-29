@@ -1,8 +1,15 @@
 local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
--- capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+
+local cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp") and require("cmp_nvim_lsp")
+local blink_cmp = not cmp_nvim_lsp and pcall(require, "blink.cmp") and require("blink.cmp")
+
+if cmp_nvim_lsp then
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+elseif blink_cmp then
+  capabilities = blink_cmp.get_lsp_capabilities(capabilities)
+end
 
 local servers = {
   lua_ls = {

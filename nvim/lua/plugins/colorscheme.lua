@@ -1,11 +1,14 @@
--- Use this file for any colorschemes that you wish to install.
--- Comes with catppuccin by default.
 return {
   {
     "folke/tokyonight.nvim",
     name = "tokyonight",
     priority = 1000,
-    config = function()
+    opts = {
+      style = "night",
+      on_highlights = function(hl, c) hl["FlashLabel"] = { fg = c.magenta2, bold = true } end,
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
       vim.cmd([[colorscheme tokyonight-night]])
     end,
   },

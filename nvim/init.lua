@@ -89,7 +89,8 @@ vim.keymap.set("n", "<leader>hg", function() require("neogit").open({ kind = "fl
 vim.keymap.set("n", "<esc>", function()
   local found_float = false
   for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative ~= "" then
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" and config.zindex ~= 20 then
       vim.api.nvim_win_close(win, true)
       found_float = true
     end

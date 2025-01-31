@@ -1,89 +1,47 @@
 -- Use this file for any UI based plugins
--- Contains telescope, icons, lualine & whichkey
+-- Contains icons, lualine & whichkey
 return {
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    cmd = "Telescope",
-    init = function()
-      local builtin = require("telescope.builtin")
-      local wk = require("which-key")
-      wk.add({
-        { "<leader>ff", builtin.find_files, desc = "Find File" },
-        { "<leader>fb", builtin.buffers, desc = "Find Buffer" },
-        { "<leader>fg", builtin.live_grep, desc = "Find with Grep" },
-        {
-          "<leader>fo",
-          function() builtin.oldfiles({ cwd_only = true }) end,
-          desc = "Find Old Files",
-        },
-        { "<leader>fh", builtin.help_tags, desc = "Find Help" },
-        { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostics" },
-        { "<leader>fm", "<cmd>MarksListAll<CR><cmd>lcl<CR><cmd>Telescope loclist<CR>", desc = "Find Mark" },
-      })
-    end,
-    opts = function()
-      return {
-        defaults = {
-          vimgrep_arguments = {
-            "rg",
-            "-L",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-          },
-          previewer = true,
-          file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-          grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-          qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-        },
-        extensions = {
-          file_browser = {
-            theme = "ivy",
-            hijack_netrw = true,
-          },
-        },
-        extensions_list = {
-          "file_browser",
-        },
-      }
-    end,
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-
-      -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
-    end,
-  },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-  },
+  "nvim-tree/nvim-web-devicons",
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = "auto",
-        component_separators = "|",
-        section_separators = { left = "", right = "" },
-      },
-    },
+    opts = function()
+      local trouble = require("trouble")
+      local symbols = trouble.statusline({
+        mode = "symbols",
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = "{kind_icon}{symbol.name}",
+        hl_group = "lualine_c_normal",
+      })
+
+      local opts = {
+        options = {
+          icons_enabled = true,
+          theme = "auto",
+          component_separators = "|",
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = { statusline = { "snacks_dashboard" } },
+        },
+        sections = {
+          lualine_c = {
+            "filename",
+            {
+              symbols and symbols.get,
+              cond = function() return symbols.has() end,
+            },
+          },
+        },
+      }
+
+      return opts
+    end,
   },
-  -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
+    event = "VeryLazy",
     opts = {
       preset = "modern",
     },
@@ -94,7 +52,6 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-    cmd = "WhichKey",
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
@@ -102,6 +59,7 @@ return {
         { "<leader>f", group = "Find" },
         { "<leader>r", group = "Refactor" },
         { "<leader>h", group = "Git" },
+        { "<leader>s", group = "Search" },
       })
     end,
   },
@@ -135,7 +93,7 @@ return {
           end
 
           -- Navigation
-          map("n", "]c", function()
+          map("n", "]h", function()
             if vim.wo.diff then
               vim.cmd.normal({ "]c", bang = true })
             else
@@ -143,11 +101,27 @@ return {
             end
           end, { desc = "Next Hunk" })
 
-          map("n", "[c", function()
+          map("n", "]H", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "]c", bang = true })
+            else
+              gitsigns.nav_hunk("next", { target = "all" })
+            end
+          end, { desc = "Next Hunk" })
+
+          map("n", "[h", function()
             if vim.wo.diff then
               vim.cmd.normal({ "[c", bang = true })
             else
               gitsigns.nav_hunk("prev")
+            end
+          end, { desc = "Previous Hunk" })
+
+          map("n", "[H", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "[c", bang = true })
+            else
+              gitsigns.nav_hunk("prev", { target = "all" })
             end
           end, { desc = "Previous Hunk" })
 
@@ -169,7 +143,7 @@ return {
           map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
           map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Unstage Hunk" })
           map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
-          map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
+          map("n", "<leader>hp", gitsigns.preview_hunk_inline, { desc = "Preview Hunk" })
           map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end, { desc = "Blame Line" })
           map("n", "<leader>hB", function() gitsigns.blame() end, { desc = "Blame Buffer" })
           map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
@@ -208,16 +182,6 @@ return {
         "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
         desc = "LSP Definitions / references / ... (Trouble)",
       },
-      {
-        "<leader>xq",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
-      },
-      {
-        "gr",
-        "<cmd>Trouble lsp_references toggle<cr>",
-        desc = "LSP References (Trouble)",
-      },
     },
   },
   {
@@ -225,51 +189,8 @@ return {
     event = "VeryLazy",
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      indent = {
-        char = " ",
-      },
-      scope = {
-        enabled = true,
-        char = "▎",
-        show_exact_scope = true,
-        show_start = false,
-        show_end = false,
-      },
-    },
-  },
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").setup({
-        bind = true,
-        -- doc_lines = 0,
-        handler_opts = {
-          border = "rounded",
-        },
-        floating_window = false,
-        hint_enable = false,
-        hint_prefix = {
-          above = "↙ ", -- when the hint is on the line above the current line
-          current = "← ", -- when the hint is on the same line
-          below = "↖ ", -- when the hint is on the line below the current line
-        },
-        toggle_key = "<C-s>",
-      })
-    end,
-  },
-  {
     "brenoprata10/nvim-highlight-colors",
+    ft = { "html", "css" },
     opts = {
       render = "virtual",
       enable_tailwind = true,

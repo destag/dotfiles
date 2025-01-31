@@ -1,5 +1,6 @@
 import = [
-  "~/.config/alacritty/tokyo-night.toml"
+  "~/.config/alacritty/tokyo-night.toml",
+  "~/.config/alacritty/jetbrains.toml",
 ]
 
 [env]
@@ -7,14 +8,6 @@ TERM = "xterm-256color"
 
 [font]
 size = 11
-
-[font.normal]
-family = "JetBrains Mono NerdFont"
-style = "Regular"
-
-[font.bold]
-family = "JetBrains Mono NerdFont"
-style = "Bold"
 
 [mouse]
 hide_when_typing = true
@@ -26,10 +19,6 @@ dynamic_title = true
 x = 5
 y = 5
 
-[keyboard]
-bindings = [
-  { key = "H", mods = "Alt", chars = "\u001b[D" }, # Left Arrow
-  { key = "J", mods = "Alt", chars = "\u001b[B" }, # Down Arrow
-  { key = "K", mods = "Alt", chars = "\u001b[A" }, # Up Arrow
-  { key = "L", mods = "Alt", chars = "\u001b[C" }, # Right Arrow
-]
+[shell]
+program = "tmux"
+args = ["new", "-A", "-s", "dsg"]

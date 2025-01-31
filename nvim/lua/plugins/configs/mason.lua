@@ -31,7 +31,6 @@ return {
     "sqlfluff",
     -- ansible
     "ansible-language-server",
-    "ansible-lint",
     -- javascript
     "prettier",
     -- php

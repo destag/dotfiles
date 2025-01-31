@@ -29,6 +29,15 @@
     "name": "ChatGPT",
     "run_without_argument": false
   },
+  "aabwhd2kvitb32k3xjk4": {
+    "added": 1734640298,
+    "cmd": "#!/bin/bash\nheadphones-connect",
+    "id": "aabwhd2kvitb32k3xjk4",
+    "is_default_search": false,
+    "keyword": "hdph",
+    "name": "headphones",
+    "run_without_argument": true
+  },
   "ae217f9c-acd9-4805-89fe-592850644eed": {
     "added": 1719308783,
     "cmd": "https://google.com/search?q=%s",

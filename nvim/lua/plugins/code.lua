@@ -21,24 +21,6 @@ return {
     end,
   },
   {
-    "numToStr/Comment.nvim",
-    init = function()
-      local wk = require("which-key")
-      wk.add({
-        "<leader>/",
-        function() require("Comment.api").toggle.linewise.current() end,
-        desc = "Toggle comment",
-      })
-      wk.add({
-        "<leader>/",
-        "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-        desc = "Toggle comment",
-        mode = "v",
-      })
-    end,
-    config = function(_, opts) require("Comment").setup(opts) end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -59,42 +41,17 @@ return {
       config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
     opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-    config = function(_, opts) require("plugins.configs.others").luasnip(opts) end,
+    config = function(_, opts) require("plugins.configs.luasnip")(opts) end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    enabled = false,
-    event = "InsertEnter",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-
-      -- autopairing of (){}[] etc
-      {
-        "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "snacks_picker_input", "vim" },
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
-
-          -- setup cmp for autopairs
-          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
-      },
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
+    "windwp/nvim-autopairs",
+    opts = {
+      fast_wrap = {},
+      disable_filetype = { "snacks_picker_input", "vim" },
     },
-    opts = function() return require("plugins.configs.cmp") end,
-    config = function(_, opts) require("cmp").setup(opts) end,
   },
   {
     "saghen/blink.cmp",
-    enabled = true,
     version = "*",
     opts = function() return require("plugins.configs.blink") end,
   },
@@ -102,31 +59,11 @@ return {
     "stevearc/conform.nvim",
     event = "BufWritePre",
     opts = function() return require("plugins.configs.conform") end,
+    init = function() vim.g.autoformat = true end,
   },
   {
     "mfussenegger/nvim-lint",
-    config = function()
-      local lint = require("lint")
-
-      lint.linters.sqlfluff.args = {
-        "lint",
-        "--format=json",
-        "--dialect=postgres",
-      }
-
-      lint.linters_by_ft = {
-        elixir = { "credo" },
-        python = { "ruff", "mypy" },
-        terraform = { "tflint" },
-        sql = { "sqlfluff" },
-        sh = { "shellcheck" },
-        php = { "phpstan" },
-      }
-
-      vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "InsertLeave" }, {
-        callback = function() lint.try_lint() end,
-      })
-    end,
+    config = require("plugins.configs.lint"),
   },
   {
     "ThePrimeagen/refactoring.nvim",
@@ -134,11 +71,16 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("refactoring").setup()
-      require("telescope").load_extension("refactoring")
-
-      vim.keymap.set({ "n", "x" }, "<leader>rr", function() require("telescope").extensions.refactoring.refactors() end)
-    end,
+    keys = {
+      { "<leader>rr", function() require("refactoring").select_refactor() end, desc = "Select refactoring" },
+    },
+  },
+  {
+    "synic/refactorex.nvim",
+    ft = "elixir",
+    opts = {
+      auto_update = true,
+      pin_version = nil,
+    },
   },
 }

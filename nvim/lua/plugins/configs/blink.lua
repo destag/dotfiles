@@ -4,7 +4,6 @@ local options = {
     ["<C-f>"] = { "scroll_documentation_down", "fallback" },
     ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     ["<C-e>"] = { "hide" },
-    ["<Space>"] = { "accept", "fallback" },
     ["<CR>"] = { "accept", "fallback" },
     ["<Tab>"] = {
       "select_next",
@@ -20,8 +19,7 @@ local options = {
   signature = { enabled = true },
   snippets = { preset = "luasnip" },
   completion = {
-    documentation = { auto_show = true, auto_show_delay_ms = 500 },
-    ghost_text = { enabled = true },
+    documentation = { auto_show = true, auto_show_delay_ms = 50 },
   },
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },

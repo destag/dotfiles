@@ -1,6 +1,8 @@
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+export MANPAGER='nvim +Man!'
+
 export PIP_REQUIRE_VIRTUALENV=true
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
@@ -53,6 +55,7 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZP::direnv
 zinit snippet OMZP::python
 zinit snippet OMZP::poetry
+zinit snippet OMZP::tldr
 zinit snippet OMZP::terraform
 zinit ice as"completion"
 zinit snippet OMZP::terraform/_terraform
@@ -66,6 +69,7 @@ bindkey "^[[1;5D" backward-word
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+bindkey "\et" tldr-command-line
 WORDCHARS='~!#$%^&*(){}[]<>?.+;-_\|=@`'
 
 # History

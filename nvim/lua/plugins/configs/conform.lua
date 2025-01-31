@@ -3,6 +3,7 @@ return {
     lua = { "stylua" },
     go = { "gofumpt", "goimports-reviser", "golines" },
     python = { "isort", "black" },
+    css = { "prettier" },
     scss = { "prettier" },
     html = { "prettier" },
     sh = { "shfmt" },
@@ -27,8 +28,8 @@ return {
       require_cwd = false,
     },
   },
-  format_on_save = {
-    timeout_ms = 10000,
-    lsp_fallback = true,
-  },
+  format_on_save = function()
+    if not vim.g.autoformat then return end
+    return { timeout_ms = 10000, lsp_fallback = true }
+  end,
 }

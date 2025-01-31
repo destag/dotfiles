@@ -20,15 +20,15 @@
   editor = vim
   excludesfile = ~/.gitignore
 [diff]
-  tool = nvimdiff
+  external = difft
 [merge]
   tool = nvimdiff
   guitool = code
 [mergetool]
   keepBackup = false
 [mergetool "nvimdiff"]
-    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
-    trustExitCode = false
+  cmd = "nvim -c \"DiffviewOpen\""
+  trustExitCode = false
 [mergetool "code"]
   cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool]
@@ -43,8 +43,8 @@
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential

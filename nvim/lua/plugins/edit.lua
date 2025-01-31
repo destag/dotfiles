@@ -28,13 +28,6 @@ return {
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-    config = function(_, opts)
-      local leap = require("leap")
-      for k, v in pairs(opts) do
-        leap.opts[k] = v
-      end
-      leap.add_default_mappings(true)
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -52,7 +45,7 @@ return {
     },
     keys = {
       {
-        "[C",
+        "gC",
         function() require("treesitter-context").go_to_context(vim.v.count1) end,
         desc = "Previous context",
       },
@@ -63,55 +56,23 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Harpoon",
+    opts = {
+      settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+      },
+    },
     keys = {
+      { "<leader>hh", function() require("harpoon"):list():add() end, desc = "Harpoon File" },
+      { "<C-n>", function() require("harpoon"):list():next({ ui_nav_wrap = true }) end, desc = "Next Location" },
+      { "<C-p>", function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end, desc = "Previous Location" },
+      { "<Leader>rh", function() require("harpoon"):list():remove() end, desc = "Remove Location" },
+      { "<A-h>", function() require("harpoon"):list():select(1) end, desc = "Harpoon to File 1" },
+      { "<A-j>", function() require("harpoon"):list():select(2) end, desc = "Harpoon to File 2" },
+      { "<A-k>", function() require("harpoon"):list():select(3) end, desc = "Harpoon to File 3" },
+      { "<A-l>", function() require("harpoon"):list():select(4) end, desc = "Harpoon to File 4" },
       {
-        "<leader>a",
-        function() require("harpoon"):list():add() end,
-        desc = "Add Location",
-      },
-      {
-        "<C-n>",
-        function() require("harpoon"):list():next({ ui_nav_wrap = true }) end,
-        desc = "Next Location",
-      },
-      {
-        "<C-p>",
-        function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end,
-        desc = "Previous Location",
-      },
-      {
-        "<Leader>mr",
-        function() require("harpoon"):list():remove() end,
-        desc = "Remove Location",
-      },
-      {
-        "<LocalLeader>1",
-        function() require("harpoon"):list():select(1) end,
-        desc = "Harpoon to File 1",
-      },
-      {
-        "<LocalLeader>2",
-        function() require("harpoon"):list():select(2) end,
-        desc = "Harpoon to File 2",
-      },
-      {
-        "<LocalLeader>3",
-        function() require("harpoon"):list():select(3) end,
-        desc = "Harpoon to File 3",
-      },
-      {
-        "<LocalLeader>4",
-        function() require("harpoon"):list():select(4) end,
-        desc = "Harpoon to File 4",
-      },
-      {
-        "<LocalLeader>5",
-        function() require("harpoon"):list():select(5) end,
-        desc = "Harpoon to File 5",
-      },
-
-      {
-        "<LocalLeader>l",
+        "<leader>H",
         function()
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())

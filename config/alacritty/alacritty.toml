@@ -1,3 +1,4 @@
+[general]
 import = [
   "~/.config/alacritty/tokyo-night.toml",
   "~/.config/alacritty/jetbrains.toml",
@@ -19,6 +20,6 @@ dynamic_title = true
 x = 5
 y = 5
 
-[shell]
+[terminal.shell]
 program = "tmux"
 args = ["new", "-A", "-s", "dsg"]

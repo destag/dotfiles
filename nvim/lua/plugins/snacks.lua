@@ -34,6 +34,12 @@ return {
     { "<leader>sd", function() require("snacks").picker.diagnostics() end },
     { "<leader>sk", function() require("snacks").picker.keymaps() end, desc = "Keymaps" },
     { "<leader>su", function() require("snacks").picker.undo() end, desc = "Undo Tree" },
+    { "<leader>sf", function() require("snacks").picker.explorer() end, desc = "File Explorer" },
+    {
+      "<leader>sq",
+      function() require("snacks").picker.qflist() end,
+      desc = "Quickfix List",
+    },
     {
       "<leader>sm",
       function()

@@ -17,6 +17,42 @@ return {
         hl_group = "lualine_c_normal",
       })
 
+      local clients_lsp = function()
+        local bufnr = vim.api.nvim_get_current_buf()
+
+        local clients = vim.lsp.buf_get_clients(bufnr)
+        if next(clients) == nil then return "" end
+
+        local c = {}
+        for _, client in pairs(clients) do
+          table.insert(c, client.name)
+        end
+        return "\u{f085} " .. table.concat(c, ":")
+      end
+
+      local neocodeium_status = function()
+        local status, _ = require("neocodeium").get_status()
+        if status == 0 then
+          return "󰘦 "
+        else
+          return ""
+        end
+      end
+
+      local neocodeium_color = function()
+        local _, server_status = require("neocodeium").get_status()
+
+        local hl_name = "Normal"
+        if server_status == 1 then
+          hl_name = "WarningMsg"
+        elseif server_status == 2 then
+          hl_name = "ErrorMsg"
+        end
+
+        local hl = vim.api.nvim_get_hl(0, { name = hl_name })
+        return hl and hl.fg and { fg = string.format("#%06x", hl.fg) } or {}
+      end
+
       local opts = {
         options = {
           icons_enabled = true,
@@ -30,8 +66,18 @@ return {
             "filename",
             {
               symbols and symbols.get,
-              cond = function() return symbols.has() end,
+              cond = function() return symbols.has() and false end,
             },
+          },
+          lualine_x = {
+            {
+              neocodeium_status,
+              color = neocodeium_color,
+            },
+            clients_lsp,
+            "encoding",
+            "fileformat",
+            "filetype",
           },
         },
       }
@@ -159,7 +205,26 @@ return {
   },
   {
     "folke/trouble.nvim",
-    opts = {},
+    specs = {
+      "folke/snacks.nvim",
+      opts = function(_, opts)
+        return vim.tbl_deep_extend("force", opts or {}, {
+          picker = {
+            actions = require("trouble.sources.snacks").actions,
+            win = {
+              input = {
+                keys = {
+                  ["<c-t>"] = {
+                    "trouble_open",
+                    mode = { "n", "i" },
+                  },
+                },
+              },
+            },
+          },
+        })
+      end,
+    },
     cmd = "Trouble",
     keys = {
       {

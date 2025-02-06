@@ -33,17 +33,6 @@ return {
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
   {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    lazy = true,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
-    },
-    opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-    config = function(_, opts) require("plugins.configs.luasnip")(opts) end,
-  },
-  {
     "windwp/nvim-autopairs",
     opts = {
       fast_wrap = {},
@@ -52,7 +41,19 @@ return {
   },
   {
     "saghen/blink.cmp",
+    lazy = false,
     version = "*",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      -- lazy = true,
+      dependencies = { "rafamadriz/friendly-snippets" },
+      config = function(_, opts)
+        require("luasnip").setup(opts)
+        require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+      end,
+    },
     opts = function() return require("plugins.configs.blink") end,
   },
   {

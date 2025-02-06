@@ -3,7 +3,7 @@ vim.filetype.add({
     html = "html",
   },
   pattern = {
-    [".*/host_vars/.*%.ya?ml"] = "yaml.ansible",
+    [".*/host_vars/.*"] = "yaml.ansible",
     [".*/group_vars/.*%.ya?ml"] = "yaml.ansible",
     [".*/group_vars/.*/.*%.ya?ml"] = "yaml.ansible",
     [".*/playbook.*%.ya?ml"] = "yaml.ansible",

@@ -1,4 +1,9 @@
 local options = {
+  enabled = function()
+    return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
+      and vim.bo.buftype ~= "prompt"
+      and vim.b.completion ~= false
+  end,
   keymap = {
     ["<C-b>"] = { "scroll_documentation_up", "fallback" },
     ["<C-f>"] = { "scroll_documentation_down", "fallback" },

@@ -7,8 +7,8 @@
 [alias]
   tree = log --date=human --date-order --graph --all --pretty=format:'%C(auto)%h -%C(auto)%d %C(blue)(%cr)%Creset - %C(dim white)%an%n''          %C(auto)%s'
   d = difftool
-	sync = "!f() { git fetch --tags && git pull && git push; };f"
-	undo = reset HEAD~1 --mixed
+  sync = "!f() { git fetch --tags && git pull && git push; };f"
+  undo = reset HEAD~1 --mixed
 [pull]
   ff = only
 [rebase]
@@ -19,8 +19,6 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore
-[diff]
-  external = difft
 [merge]
   tool = nvimdiff
   guitool = code
@@ -36,15 +34,15 @@
 [credential]
   helper = store
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+  helper =
+  helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+  helper =
+  helper = !/usr/bin/gh auth git-credential

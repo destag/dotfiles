@@ -12,10 +12,12 @@ return {
     "monkoose/neocodeium",
     event = "VeryLazy",
     opts = {
+      silent = true,
       filter = function(bufnr)
-        local path = vim.fn.bufname(bufnr)
+        local path = vim.api.nvim_buf_get_name(bufnr)
+        local filetype = vim.bo[bufnr].filetype
         local name = vim.fs.basename(path)
-        return name ~= ".env" and name ~= ".envrc"
+        return name ~= ".env" and name ~= ".envrc" and filetype ~= "snacks_picker_input"
       end,
     },
     keys = {
@@ -47,10 +49,22 @@ return {
         desc = "CodeCompanion",
         mode = { "n", "v" },
       },
+      {
+        "<leader>cp",
+        "<cmd>CodeCompanionActions<cr>",
+        desc = "CodeCompanion Actions",
+        mode = { "n", "v" },
+      },
     },
     opts = {
       strategies = {
-        chat = { adapter = vim.g.ai_model or "gemini" },
+        chat = {
+          adapter = vim.g.ai_model or "gemini",
+          roles = {
+            llm = function(adapter) return "  CodeCompanion (" .. adapter.formatted_name .. ")" end,
+            user = "  Me",
+          },
+        },
         inline = { adapter = vim.g.ai_model or "gemini" },
       },
       adapters = {

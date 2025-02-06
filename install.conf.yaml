@@ -18,7 +18,7 @@
         - wget
         - htop
         - neofetch
-        - neovim
+        # - neovim
         - tmux
         - pass
         - pass-extension-otp
@@ -54,7 +54,7 @@
         # - zoxide
         - fd-find
         - shellcheck
-        - bat
+        # - bat
         - cloc
         - libgraph-easy-perl
         - pipx
@@ -129,7 +129,7 @@
           exit 0
         fi
 
-        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.14.0
+        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.15.0
 
         $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
         $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
@@ -139,7 +139,6 @@
         $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git || true
         $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git || true
         ASDF_PYAPP_INCLUDE_DEPS=1 $HOME/.asdf/bin/asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
-        $HOME/.asdf/bin/asdf plugin add awscli https://github.com/MetricMike/asdf-awscli.git || true
       stderr: true
       quiet: true
       description: install asdf

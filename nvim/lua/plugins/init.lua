@@ -70,4 +70,13 @@ return {
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
     },
   },
+  {
+    "dlvhdr/gh-addressed.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "folke/trouble.nvim",
+    },
+    cmd = "GhReviewComments",
+  },
 }

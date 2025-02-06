@@ -10,6 +10,8 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export GOPATH="$HOME/.go"
 export AWS_SSO_SESSION_NAME="syncron-sso"
 
+export ZSH_CACHE_DIR="$HOME/.cache/zinit"
+
 DOTFILES_PATH="$HOME/.dotfiles"
 SCRIPTS_PATH="$HOME/Projects/personal/scripts"
 

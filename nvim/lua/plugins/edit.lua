@@ -52,33 +52,20 @@ return {
     },
   },
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    cmd = "Harpoon",
-    opts = {
-      settings = {
-        save_on_toggle = true,
-        sync_on_ui_close = true,
-      },
-    },
+    "cbochs/grapple.nvim",
+    dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
+    opts = { scope = "git_branch" },
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = "Grapple",
     keys = {
-      { "<leader>hh", function() require("harpoon"):list():add() end, desc = "Harpoon File" },
-      { "<C-n>", function() require("harpoon"):list():next({ ui_nav_wrap = true }) end, desc = "Next Location" },
-      { "<C-p>", function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end, desc = "Previous Location" },
-      { "<Leader>rh", function() require("harpoon"):list():remove() end, desc = "Remove Location" },
-      { "<A-h>", function() require("harpoon"):list():select(1) end, desc = "Harpoon to File 1" },
-      { "<A-j>", function() require("harpoon"):list():select(2) end, desc = "Harpoon to File 2" },
-      { "<A-k>", function() require("harpoon"):list():select(3) end, desc = "Harpoon to File 3" },
-      { "<A-l>", function() require("harpoon"):list():select(4) end, desc = "Harpoon to File 4" },
-      {
-        "<leader>H",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "List locations",
-      },
+      { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
+      { "<leader>M", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple open tags window" },
+      { "<C-n>", "<cmd>Grapple cycle_tags next<cr>", desc = "Grapple cycle next tag" },
+      { "<C-p>", "<cmd>Grapple cycle_tags prev<cr>", desc = "Grapple cycle previous tag" },
+      { "<A-h>", "<cmd>Grapple select index=1<cr>", desc = "Grapple to tag 1" },
+      { "<A-j>", "<cmd>Grapple select index=2<cr>", desc = "Grapple to tag 2" },
+      { "<A-k>", "<cmd>Grapple select index=3<cr>", desc = "Grapple to tag 3" },
+      { "<A-l>", "<cmd>Grapple select index=4<cr>", desc = "Grapple to tag 4" },
     },
   },
   {

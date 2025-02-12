@@ -14,10 +14,8 @@ return {
     opts = {
       silent = true,
       filter = function(bufnr)
-        local path = vim.api.nvim_buf_get_name(bufnr)
         local filetype = vim.bo[bufnr].filetype
-        local name = vim.fs.basename(path)
-        return name ~= ".env" and name ~= ".envrc" and filetype ~= "snacks_picker_input"
+        return not vim.tbl_contains({ "snacks_picker_input", "env" }, filetype)
       end,
     },
     keys = {

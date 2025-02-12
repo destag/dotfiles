@@ -1,6 +1,9 @@
 vim.filetype.add({
   extension = {
     html = "html",
+    MD = "markdown",
+    env = "env",
+    envrc = "env",
   },
   pattern = {
     [".*/host_vars/.*"] = "yaml.ansible",

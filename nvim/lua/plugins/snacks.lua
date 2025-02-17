@@ -1,3 +1,12 @@
+-- local days = function()
+--   local start_date = os.time({ year = 2023, month = 11, day = 28 })
+--   local current_date = os.time()
+--   local diff = os.difftime(current_date, start_date)
+--   return math.floor(diff / (24 * 60 * 60))
+-- end
+--
+-- local days_since = days() .. " \n\n"
+
 local header = [[
  ╭───┬───┬───┬───┬───┬───┬───┬───┬───┬───╮
   │ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │
@@ -23,7 +32,16 @@ return {
     { "<leader>;", function() require("snacks").picker.lines() end, desc = "Find Line" },
     { "<leader>,", function() require("snacks").picker.buffers() end, desc = "Find Buffer" },
     { "<leader>/", function() require("snacks").picker.grep() end, desc = "Find with Grep" },
-    { "<leader><space>", function() require("snacks").picker.files() end, desc = "Find File" },
+    {
+      "<leader>sg",
+      function() require("snacks").picker.grep({ dirs = { vim.fn.expand("%:p:h") } }) end,
+      desc = "Find with Grep in Current Directory",
+    },
+    {
+      "<leader><space>",
+      function() require("snacks").picker.files({ formatters = { file = { truncate = 80 } } }) end,
+      desc = "Find File",
+    },
     {
       "<leader>.",
       function() require("snacks").picker.recent({ filter = { cwd = true } }) end,
@@ -31,10 +49,11 @@ return {
     },
     { "<leader>sc", function() require("snacks").picker.command_history() end, desc = "Command History" },
     { "<leader>sC", function() require("snacks").picker.commands() end, desc = "Commands" },
-    { "<leader>sd", function() require("snacks").picker.diagnostics() end },
+    { "<leader>sd", function() require("snacks").picker.diagnostics() end, desc = "Diagnostics" },
     { "<leader>sk", function() require("snacks").picker.keymaps() end, desc = "Keymaps" },
     { "<leader>su", function() require("snacks").picker.undo() end, desc = "Undo Tree" },
     { "<leader>sf", function() require("snacks").picker.explorer() end, desc = "File Explorer" },
+    { "<leader>sb", function() require("snacks").picker.grep_buffers() end, desc = "Grep Buffers" },
     {
       "<leader>sq",
       function() require("snacks").picker.qflist() end,
@@ -65,8 +84,10 @@ return {
     { "gd", function() require("snacks").picker.lsp_definitions() end, desc = "Go to Definition" },
     { "gr", function() require("snacks").picker.lsp_references() end, nowait = true, desc = "Find References" },
     -- git
-    { "<leader>gc", function() require("snacks").picker.git_log_file() end, desc = "Git Log File" },
-    { "<leader>gC", function() require("snacks").picker.git_log() end, desc = "Git Log" },
+    { "<leader>gg", function() require("snacks").lazygit() end, desc = "LazyGit" },
+    { "<leader>gf", function() require("snacks").picker.git_log_file() end, desc = "Git Log File" },
+    { "<leader>gl", function() require("snacks").picker.git_log() end, desc = "Git Log" },
+    { "<leader>gL", function() require("snacks").picker.git_log_line() end, desc = "Git Log Line" },
     { "<leader>gs", function() require("snacks").picker.git_status() end, desc = "Git Status" },
     { "<leader>gb", function() require("snacks").picker.git_branches() end, desc = "Git Branches" },
     {
@@ -78,6 +99,7 @@ return {
             vim.notify("Yanked url to clipboard")
           end,
           notify = false,
+          what = "permalink",
         })
       end,
       desc = "Copy line(s) link",
@@ -89,6 +111,8 @@ return {
     -- scratch
     { "<leader>z", function() require("snacks").scratch({ ft = "markdown" }) end, desc = "Toggle Scratch Buffer" },
     { "<leader>Z", function() require("snacks").scratch.select() end, desc = "Select Scratch Buffer" },
+    -- terminal
+    { "<c-t>", function() require("snacks").terminal.toggle() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
   },
   opts = {
     bigfile = { enabled = true },
@@ -118,5 +142,6 @@ return {
     picker = { enabled = true },
     scope = { enabled = true },
     explorer = { replace_netrw = true },
+    zen = { win = { backdrop = { transparent = false } } },
   },
 }

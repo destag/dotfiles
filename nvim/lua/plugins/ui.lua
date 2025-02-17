@@ -4,7 +4,10 @@ return {
   "nvim-tree/nvim-web-devicons",
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "bwpge/lualine-pretty-path",
+    },
     event = "VeryLazy",
     opts = function()
       local trouble = require("trouble")
@@ -63,7 +66,11 @@ return {
         },
         sections = {
           lualine_c = {
-            "filename",
+            {
+              function() return "󰛢 " .. require("grapple").name_or_index() end,
+              cond = function() return package.loaded["grapple"] and require("grapple").exists() end,
+            },
+            { "pretty_path", icon_show = false },
             {
               symbols and symbols.get,
               cond = function() return symbols.has() and false end,
@@ -75,8 +82,8 @@ return {
               color = neocodeium_color,
             },
             clients_lsp,
-            "encoding",
-            "fileformat",
+            { "encoding", cond = function() return (vim.bo.fenc or vim.go.enc) ~= "utf-8" end },
+            { "fileformat", cond = function() return vim.bo.fileformat ~= "unix" end },
             "filetype",
           },
         },
@@ -89,7 +96,7 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      preset = "modern",
+      preset = "helix",
     },
     keys = {
       {
@@ -260,5 +267,9 @@ return {
       render = "virtual",
       enable_tailwind = true,
     },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
   },
 }

@@ -18,7 +18,6 @@
   date = iso
 [core]
   editor = vim
-  excludesfile = ~/.gitignore
 [merge]
   tool = nvimdiff
   guitool = code
@@ -27,8 +26,6 @@
 [mergetool "nvimdiff"]
   cmd = "nvim -c \"DiffviewOpen\""
   trustExitCode = false
-[mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool]
   prompt = false
 [credential]

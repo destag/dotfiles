@@ -7,6 +7,13 @@ vim.api.nvim_create_user_command("RunWorkflow", function(opts)
     return
   end
 
+  local branch = vim.fn.system("git branch --show-current")
+  branch = branch:gsub("\n", "")
+  if branch ~= "main" then
+    vim.notify("You must be on the main branch to run workflows", vim.log.levels.ERROR)
+    return
+  end
+
   local file_path = vim.fn.expand("%:p:.")
   local dir_path = vim.fn.fnamemodify(file_path, ":h")
 

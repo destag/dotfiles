@@ -14,6 +14,7 @@ return {
     "markdown",
     "markdown_inline",
     "just",
+    "groovy",
   },
   highlight = {
     enable = true,

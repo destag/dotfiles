@@ -21,6 +21,7 @@ PATH="$DOTFILES_PATH/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$SCRIPTS_PATH/bin:$PATH"
+PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -47,7 +48,6 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::ubuntu
-zinit snippet OMZP::asdf
 zinit snippet OMZP::aws
 zinit snippet OMZP::docker
 zinit snippet OMZP::kubectl
@@ -97,6 +97,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:*:ssh:*:*' known-hosts-files ~/.ssh/known_hosts
+zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza --icons=always --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color $realpath'

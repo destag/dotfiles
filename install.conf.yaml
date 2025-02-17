@@ -125,23 +125,17 @@
       description: generate ssh key
 
     - command: |
-        if [ -d $HOME/.asdf ]; then
-          exit 0
-        fi
-
-        git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.15.0
-
-        $HOME/.asdf/bin/asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
-        $HOME/.asdf/bin/asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
-        $HOME/.asdf/bin/asdf plugin-add python https://github.com/asdf-community/asdf-python.git || true
-        $HOME/.asdf/bin/asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git || true
-        $HOME/.asdf/bin/asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
-        $HOME/.asdf/bin/asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git || true
-        $HOME/.asdf/bin/asdf plugin-add zig https://github.com/asdf-community/asdf-zig.git || true
-        ASDF_PYAPP_INCLUDE_DEPS=1 $HOME/.asdf/bin/asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
+        asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
+        asdf plugin add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
+        asdf plugin add python https://github.com/asdf-community/asdf-python.git || true
+        asdf plugin add golang https://github.com/asdf-community/asdf-golang.git || true
+        asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
+        asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git || true
+        asdf plugin add zig https://github.com/asdf-community/asdf-zig.git || true
+        ASDF_PYAPP_INCLUDE_DEPS=1 asdf plug n add ansible https://github.com/amrox/asdf-pyapp.git || true
       stderr: true
       quiet: true
-      description: install asdf
+      description: install asdf plugins
 
     - command: |
         if [ ! -d $HOME/.tmux/plugins/tpm ]; then

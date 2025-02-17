@@ -67,16 +67,6 @@ return {
     config = require("plugins.configs.lint"),
   },
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      { "<leader>rr", function() require("refactoring").select_refactor() end, desc = "Select refactoring" },
-    },
-  },
-  {
     "synic/refactorex.nvim",
     ft = "elixir",
     opts = {

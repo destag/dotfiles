@@ -28,7 +28,9 @@ local options = {
   },
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
-    cmdline = {},
+  },
+  cmdline = {
+    enabled = false,
   },
 }
 return options

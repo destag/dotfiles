@@ -20,6 +20,12 @@ return {
       label = {
         uppercase = false,
       },
+      modes = {
+        char = {
+          jump_labels = true,
+          keys = { "f", "F", "t", "T", [";"] = "L", [","] = "H" },
+        },
+      },
     },
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -47,6 +53,7 @@ return {
       {
         "gC",
         function() require("treesitter-context").go_to_context(vim.v.count1) end,
+        mode = { "n", "v" },
         desc = "Previous context",
       },
     },

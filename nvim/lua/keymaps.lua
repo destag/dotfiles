@@ -8,6 +8,9 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 
 vim.keymap.set("n", "<leader>hg", function() require("neogit").open({ kind = "floating" }) end, { desc = "Neogit" })
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+
 -- Close floathing windows with escape
 vim.keymap.set("n", "<esc>", function()
   local found_float = false
@@ -23,3 +26,8 @@ vim.keymap.set("n", "<esc>", function()
 
   vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
 end, { desc = "Toggle Diagnostics" })
+
+vim.keymap.set("n", "<leader>ur", function()
+  ---@diagnostic disable-next-line: undefined-field
+  vim.opt.relativenumber = not vim.opt.relativenumber:get()
+end, { desc = "Toggle relative line numbers" })

@@ -37,6 +37,15 @@ local servers = {
   terraformls = {},
   elixirls = {
     cmd = { "elixir-ls" },
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      elixirLS = {
+        dialyzerEnabled = false,
+        enableTestLenses = false,
+      },
+    },
   },
   -- nextls = {
   --   cmd = { "nextls", "--stdio" },
@@ -59,6 +68,7 @@ local servers = {
   tailwindcss = {
     filetypes = { "html" },
   },
+  regols = {},
 }
 
 for lsp, opts in pairs(servers) do

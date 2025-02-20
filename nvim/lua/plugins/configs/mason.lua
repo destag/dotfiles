@@ -38,5 +38,7 @@ return {
     "phpstan",
     -- html
     "tailwindcss-language-server",
+    -- other
+    "regols",
   },
 }

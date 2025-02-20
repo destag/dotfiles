@@ -15,6 +15,7 @@ return {
     "markdown_inline",
     "just",
     "groovy",
+    "rego",
   },
   highlight = {
     enable = true,

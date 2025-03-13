@@ -41,7 +41,7 @@ return {
       keymaps = {
         normal = "ys",
         delete = "ds",
-        visual = "S",
+        visual = "gs",
         visual_line = "gS",
         change = "cs",
         change_line = "cS",

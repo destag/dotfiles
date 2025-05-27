@@ -1,9 +1,9 @@
 vim.bo.commentstring = "# %s"
 
 vim.api.nvim_create_user_command("RunWorkflow", function(opts)
-  local valid_commands = { apply = true, plan = true, output = true }
+  local valid_commands = { apply = true, plan = true, output = true, destroy = true }
   if not valid_commands[opts.args] then
-    vim.notify("Invalid command. Allowed values are: apply, plan, output", vim.log.levels.ERROR)
+    vim.notify("Invalid command. Allowed values are: apply, plan, output, destroy", vim.log.levels.ERROR)
     return
   end
 
@@ -30,5 +30,5 @@ vim.api.nvim_create_user_command("RunWorkflow", function(opts)
 end, {
   nargs = 1,
   desc = "Run a GitHub workflow with the current buffer path",
-  complete = function() return { "plan", "apply", "output" } end,
+  complete = function() return { "plan", "apply", "output", "destroy" } end,
 })

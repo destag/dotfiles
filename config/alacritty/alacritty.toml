@@ -14,7 +14,8 @@ size = 11
 hide_when_typing = true
 
 [window]
-dynamic_title = true
+dynamic_padding = true
+decorations = "None"
 
 [window.padding]
 x = 5

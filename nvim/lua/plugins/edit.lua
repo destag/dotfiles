@@ -88,4 +88,21 @@ return {
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
+  {
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup({
+        -- options, see Configuration section below
+        -- there are no required options atm
+        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+      })
+    end,
+  },
+  {
+    "rmagatti/alternate-toggler",
+    event = { "BufReadPost" }, -- lazy load after reading a buffer
+    keys = {
+      { "<leader>ua", function() require("alternate-toggler").toggleAlternate() end, desc = "Toggle Alternate" },
+    },
+  },
 }

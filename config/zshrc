@@ -9,6 +9,7 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export ERL_AFLAGS="-kernel shell_history enabled"
 export GOPATH="$HOME/.go"
 export AWS_SSO_SESSION_NAME="syncron-sso"
+export DFT_DISPLAY="inline"
 
 export ZSH_CACHE_DIR="$HOME/.cache/zinit"
 

@@ -20,19 +20,6 @@ return {
         hl_group = "lualine_c_normal",
       })
 
-      local clients_lsp = function()
-        local bufnr = vim.api.nvim_get_current_buf()
-
-        local clients = vim.lsp.buf_get_clients(bufnr)
-        if next(clients) == nil then return "" end
-
-        local c = {}
-        for _, client in pairs(clients) do
-          table.insert(c, client.name)
-        end
-        return "\u{f085} " .. table.concat(c, ":")
-      end
-
       local neocodeium_status = function()
         local status, _ = require("neocodeium").get_status()
         if status == 0 then
@@ -81,7 +68,7 @@ return {
               neocodeium_status,
               color = neocodeium_color,
             },
-            clients_lsp,
+            "lsp_status",
             { "encoding", cond = function() return (vim.bo.fenc or vim.go.enc) ~= "utf-8" end },
             { "fileformat", cond = function() return vim.bo.fileformat ~= "unix" end },
             "filetype",
@@ -113,6 +100,7 @@ return {
         { "<leader>r", group = "Refactor" },
         { "<leader>h", group = "Git" },
         { "<leader>s", group = "Search" },
+        { "<leader>u", group = "Toggle" },
       })
     end,
   },
@@ -199,7 +187,7 @@ return {
           map("n", "<leader>hp", gitsigns.preview_hunk_inline, { desc = "Preview Hunk" })
           map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end, { desc = "Blame Line" })
           map("n", "<leader>hB", function() gitsigns.blame() end, { desc = "Blame Buffer" })
-          map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
+          map("n", "<leader>ub", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
           map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff hunk" })
           map("n", "<leader>hD", function() gitsigns.diffthis("~") end, { desc = "Diff buffer" })
           map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })

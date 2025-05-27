@@ -11,6 +11,8 @@ vim.keymap.set("n", "<leader>hg", function() require("neogit").open({ kind = "fl
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
+vim.keymap.set("n", "<leader>uf", "<cmd>ToggleFormat<cr>", { desc = "Toggle Formatting" })
+
 -- Close floathing windows with escape
 vim.keymap.set("n", "<esc>", function()
   local found_float = false

@@ -1,10 +1,18 @@
--- By default, NULL displays as an empty space. Is it actually an empty
--- string, or is it null? This makes that distinction visible.
-\pset null '[NULL]'
--- Use table format (with headers across the top) by default, but switch to
--- expanded table format when there's a lot of data, which makes it much
--- easier to read.
-\x auto
+\set QUIET 1
+
+-- Prompt (current database)
+\set PROMPT1 ' %[%033[34m%]%/%[%033[0m%]=# '
+
+-- Prompt (non-current database)
+\set PROMPT2 ' %[%033[34m%]%/%[%033[0m%]-# '
+
+-- Table style
+-- border with outer lines
+\pset border 2
+-- unicode borders
+\pset linestyle unicode
+\pset null '∅'
+
 -- Verbose error reports.
 \set VERBOSITY verbose
 -- Use a separate history file per-database.
@@ -15,5 +23,9 @@
 -- Autocomplete keywords (like SELECT) in upper-case, even if you started
 -- typing them in lower case.
 \set COMP_KEYWORD_CASE upper
+-- Change application name for debugging
+set application_name to psql;
 -- Show how long each query takes to execute
-\timing
+\timing on
+
+\unset QUIET

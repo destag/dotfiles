@@ -5,17 +5,20 @@
 [includeIf "gitdir:~/Projects/work/"]
   path = ~/.gitconfig.work
 [alias]
-  tree = log --date=human --date-order --graph --all --pretty=format:'%C(auto)%h -%C(auto)%d %C(blue)(%cr)%Creset - %C(dim white)%an%n''          %C(auto)%s'
-  d = difftool
   sync = "!f() { git fetch --tags && git pull && git push; };f"
   undo = reset HEAD~1 --mixed
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
 [pull]
   ff = only
 [rebase]
   autoStash = true
 [log]
-  decorate = short
+  abbrevCommit = true
   date = iso
+  graphColors = blue,yellow,cyan,magenta,green,red
 [core]
   editor = vim
 [merge]
@@ -37,6 +40,11 @@
   required = true
 [init]
   defaultBranch = main
+[color "decorate"]
+  HEAD = red
+  branch = green
+  tag = yellow
+  remoteBranch = blue
 [credential "https://github.com"]
   helper =
   helper = !/usr/bin/gh auth git-credential

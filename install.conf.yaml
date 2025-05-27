@@ -94,6 +94,7 @@
     ~/.rsync_skip: config/rsync_skip
     ~/.tool-versions: config/tool-versions
     ~/.asdfrc: config/asdfrc
+    ~/.curlrc: config/curlrc
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.config/alacritty: config/alacritty

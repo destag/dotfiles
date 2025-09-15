@@ -32,3 +32,19 @@ end, {
   desc = "Run a GitHub workflow with the current buffer path",
   complete = function() return { "plan", "apply", "output", "destroy" } end,
 })
+
+vim.api.nvim_create_user_command("UpdateTrigger", function()
+  local buf = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local timestamp = os.date("%Y-%m-%d %H:%M:%S%z"):gsub("([+-]%d%d)(%d%d)", "%1:%2")
+  local trigger_line = "# trigger " .. timestamp
+
+  if #lines > 0 and lines[#lines]:match("^# trigger") then
+    lines[#lines] = trigger_line
+  else
+    table.insert(lines, trigger_line)
+  end
+
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+end, {})

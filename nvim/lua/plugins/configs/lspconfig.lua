@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local navic = require("nvim-navic")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -9,6 +10,10 @@ if cmp_nvim_lsp then
   capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 elseif blink_cmp then
   capabilities = blink_cmp.get_lsp_capabilities(capabilities)
+end
+
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
 end
 
 local servers = {
@@ -73,6 +78,7 @@ local servers = {
 
 for lsp, opts in pairs(servers) do
   opts.capabilities = capabilities
+  opts.on_attach = on_attach
   lspconfig[lsp].setup(opts)
 end
 

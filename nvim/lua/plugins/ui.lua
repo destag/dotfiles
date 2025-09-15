@@ -10,16 +10,6 @@ return {
     },
     event = "VeryLazy",
     opts = function()
-      local trouble = require("trouble")
-      local symbols = trouble.statusline({
-        mode = "symbols",
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = "{kind_icon}{symbol.name}",
-        hl_group = "lualine_c_normal",
-      })
-
       local neocodeium_status = function()
         local status, _ = require("neocodeium").get_status()
         if status == 0 then
@@ -48,20 +38,17 @@ return {
           icons_enabled = true,
           theme = "auto",
           component_separators = "|",
-          section_separators = { left = "", right = "" },
+          section_separators = { left = " ", right = " " },
           disabled_filetypes = { statusline = { "snacks_dashboard" } },
         },
         sections = {
+          lualine_b = { { "branch", icon = "󰘬" }, "diff", "diagnostics" },
           lualine_c = {
             {
               function() return "󰛢 " .. require("grapple").name_or_index() end,
               cond = function() return package.loaded["grapple"] and require("grapple").exists() end,
             },
             { "pretty_path", icon_show = false },
-            {
-              symbols and symbols.get,
-              cond = function() return symbols.has() and false end,
-            },
           },
           lualine_x = {
             {
@@ -72,6 +59,14 @@ return {
             { "encoding", cond = function() return (vim.bo.fenc or vim.go.enc) ~= "utf-8" end },
             { "fileformat", cond = function() return vim.bo.fileformat ~= "unix" end },
             "filetype",
+          },
+        },
+        winbar = {
+          lualine_c = {
+            {
+              "navic",
+              color_correction = "dynamic",
+            },
           },
         },
       }

@@ -6,12 +6,11 @@ vim.keymap.set("n", ";", ":", { desc = "CMD enter command mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 
-vim.keymap.set("n", "<leader>hg", function() require("neogit").open({ kind = "floating" }) end, { desc = "Neogit" })
-
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
 vim.keymap.set("n", "<leader>uf", "<cmd>ToggleFormat<cr>", { desc = "Toggle Formatting" })
+vim.keymap.set("n", "<leader>um", "<cmd>NeoCodeium toggle<cr>", { desc = "Toggle Formatting" })
 
 -- Close floathing windows with escape
 vim.keymap.set("n", "<esc>", function()

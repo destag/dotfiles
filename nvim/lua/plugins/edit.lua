@@ -36,27 +36,15 @@ return {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPost",
-    opts = {
-      throttle = true,
-      max_lines = 5,
-      patterns = {
-        default = {
-          "class",
-          "function",
-          "method",
-        },
-      },
-    },
-    keys = {
-      {
-        "gC",
-        function() require("treesitter-context").go_to_context(vim.v.count1) end,
-        mode = { "n", "v" },
-        desc = "Previous context",
-      },
-    },
+    "SmiteshP/nvim-navic",
+    lazy = true,
+    opts = function()
+      return {
+        highlight = true,
+        depth_limit = 5,
+        lazy_update_context = true,
+      }
+    end,
   },
   {
     "cbochs/grapple.nvim",
@@ -103,6 +91,23 @@ return {
     event = { "BufReadPost" }, -- lazy load after reading a buffer
     keys = {
       { "<leader>ua", function() require("alternate-toggler").toggleAlternate() end, desc = "Toggle Alternate" },
+    },
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      { "kevinhwang91/promise-async" },
+    },
+    keys = {
+      { "zc", mode = "n", desc = "Fold current line" },
+      { "zo", mode = "n", desc = "Unfold current line" },
+      { "za", mode = "n", desc = "Toggle fold current line" },
+      { "zA", mode = "n", desc = "Toggle fold all lines" },
+      { "zr", mode = "n", desc = "Unfold all lines" },
+      { "zR", mode = "n", desc = "Fold all lines" },
+    },
+    opts = {
+      provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
     },
   },
 }

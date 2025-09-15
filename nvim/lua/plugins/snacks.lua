@@ -84,7 +84,6 @@ return {
     { "gd", function() require("snacks").picker.lsp_definitions() end, desc = "Go to Definition" },
     { "gr", function() require("snacks").picker.lsp_references() end, nowait = true, desc = "Find References" },
     -- git
-    { "<leader>gg", function() require("snacks").lazygit() end, desc = "LazyGit" },
     { "<leader>gf", function() require("snacks").picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gl", function() require("snacks").picker.git_log() end, desc = "Git Log" },
     { "<leader>gL", function() require("snacks").picker.git_log_line() end, desc = "Git Log Line" },

@@ -14,7 +14,7 @@ return {
     config = function()
       require("neotest").setup({
         adapters = {
-          require("neotest-golang"),
+          require("neotest-golang")({ env = { NO_COLOR = 1 } }),
           require("neotest-elixir"),
           require("neotest-python"),
         },

@@ -1,16 +1,8 @@
-local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 
+local blink_cmp = require("blink.cmp")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp") and require("cmp_nvim_lsp")
-local blink_cmp = not cmp_nvim_lsp and pcall(require, "blink.cmp") and require("blink.cmp")
-
-if cmp_nvim_lsp then
-  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-elseif blink_cmp then
-  capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-end
+capabilities = blink_cmp.get_lsp_capabilities(capabilities)
 
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
@@ -52,22 +44,11 @@ local servers = {
       },
     },
   },
-  -- nextls = {
-  --   cmd = { "nextls", "--stdio" },
-  --   init_options = {
-  --     extensions = {
-  --       credo = { enable = true },
-  --     },
-  --     experimental = {
-  --       completions = { enable = true },
-  --     },
-  --   },
-  -- },
   bashls = {},
   templ = {},
   ansiblels = {
     filetypes = { "yaml.ansible" },
-    root_dir = lspconfig.util.root_pattern("roles", "playbooks", "ansible.cfg"),
+    root_markers = { "roles", "playbooks", "ansible.cfg" },
   },
   phpactor = {},
   tailwindcss = {
@@ -79,7 +60,8 @@ local servers = {
 for lsp, opts in pairs(servers) do
   opts.capabilities = capabilities
   opts.on_attach = on_attach
-  lspconfig[lsp].setup(opts)
+  vim.lsp.config(lsp, opts)
+  vim.lsp.enable(lsp)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {

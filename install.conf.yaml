@@ -132,7 +132,7 @@
         asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
         asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git || true
         asdf plugin add zig https://github.com/asdf-community/asdf-zig.git || true
-        ASDF_PYAPP_INCLUDE_DEPS=1 asdf plug n add ansible https://github.com/amrox/asdf-pyapp.git || true
+        ASDF_PYAPP_INCLUDE_DEPS=1 asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
       stderr: true
       quiet: true
       description: install asdf plugins
@@ -163,19 +163,6 @@
       stderr: true
       quiet: true
       description: add nerd fonts firacode
-
-    - command: |
-        export GOPATH="$HOME/.go"
-        go install github.com/a-h/templ/cmd/templ@latest
-        go install github.com/xo/usql@latest
-        go install github.com/mikefarah/yq/v4@latest
-        go install github.com/air-verse/air@latest
-        go install github.com/rakyll/hey@latest
-        go install github.com/maaslalani/slides@latest
-        go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-      stderr: true
-      quiet: true
-      description: install go binaries
 
     - command: |
         if ! command -v oh-my-posh; then

@@ -2,7 +2,7 @@ nodejs 24.1.0
 elixir 1.18.1-otp-27
 erlang 27.2.2
 python 3.13.1
-terraform 1.8.4
-golang 1.24.0
+terraform 1.8.5
+golang 1.25.0
 ansible 9.6.1
 zig 0.13.0

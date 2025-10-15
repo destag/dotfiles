@@ -25,6 +25,9 @@ return {
       view_options = {
         show_hidden = true,
       },
+      float = {
+        border = "rounded",
+      },
       keymaps = {
         ["<Esc>"] = { callback = "actions.close", mode = "n" },
       },

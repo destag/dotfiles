@@ -28,6 +28,9 @@ return {
       float = {
         border = "rounded",
       },
+      confirmation = {
+        border = "rounded",
+      },
       keymaps = {
         ["<Esc>"] = { callback = "actions.close", mode = "n" },
       },

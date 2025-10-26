@@ -94,7 +94,7 @@
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.config/alacritty: config/alacritty
-    ~/.config/nvim: nvim
+    ~/.config/nvim: config/nvim
     ~/.config/ohmyposh: config/ohmyposh
     ~/.config/ulauncher: config/ulauncher
     ~/.config/jnv: config/jnv

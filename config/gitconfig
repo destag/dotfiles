@@ -1,53 +1,92 @@
 [user]
   useConfigOnly = true
+
 [includeIf "gitdir:~/Projects/**/"]
   path = ~/.gitconfig.personal
+
 [includeIf "gitdir:~/Projects/work/"]
   path = ~/.gitconfig.work
+
 [alias]
-  sync = "!f() { git fetch --tags && git pull && git push; };f"
   undo = reset HEAD~1 --mixed
+
 [status]
   branch = true
   showStash = true
   showUntrackedFiles = all
+
 [pull]
   ff = only
+
 [rebase]
   autoStash = true
+
 [log]
   abbrevCommit = true
   date = iso
   graphColors = blue,yellow,cyan,magenta,green,red
+
 [core]
   editor = vim
+  pager = diff-so-fancy | less --tabs=4 -RF
+
 [merge]
   tool = nvimdiff
   guitool = code
+
 [mergetool]
   keepBackup = false
+
 [mergetool "nvimdiff"]
   cmd = "nvim -c \"DiffviewOpen\""
   trustExitCode = false
+
 [difftool]
   prompt = false
+
 [credential]
   helper = store
+
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
 [init]
   defaultBranch = main
+
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFXS --pattern '^(commit|added:|deleted:|modified:)'
+
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  context = white
+  whitespace = red reverse
+  old = red
+  commit = yellow bold
+  new = green
+
+[color "diff-highlight"]
+  oldNormal = brightred
+  oldHighlight = brightred ul
+  newNormal = brightgreen
+  newHighlight = brightgreen ul
+
 [color "decorate"]
   HEAD = red
   branch = green
   tag = yellow
   remoteBranch = blue
+
 [credential "https://github.com"]
   helper =
   helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
   helper =
   helper = !/usr/bin/gh auth git-credential
+
+[diff-so-fancy]
+  markEmptyLines = false

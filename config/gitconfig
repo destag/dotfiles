@@ -28,7 +28,7 @@
 
 [core]
   editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RF
+  pager = diff-so-fancy | less --tabs=4 -RFXS
 
 [merge]
   tool = nvimdiff
@@ -55,9 +55,6 @@
 
 [init]
   defaultBranch = main
-
-[pager]
-  diff = diff-so-fancy | less --tabs=4 -RFXS --pattern '^(commit|added:|deleted:|modified:)'
 
 [color "diff"]
   meta = yellow

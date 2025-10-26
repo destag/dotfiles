@@ -33,7 +33,6 @@
         - mysql-client
         - sqlite3
         - fzf
-        - fonts-firacode
         - fonts-jetbrains-mono
         - tldr
         - ncdu
@@ -59,24 +58,22 @@
         - libgraph-easy-perl
         - pipx
         - flameshot
+        - hyperfine
 
 - flatpak:
     - org.telegram.desktop
     - org.signal.Signal
+    - com.slack.Slack
     - com.spotify.Client
     - com.github.IsmaelMartinez.teams_for_linux
     - us.zoom.Zoom
     - md.obsidian.Obsidian
-    - io.beekeeperstudio.Studio
     - app.zen_browser.zen
     - org.videolan.VLC
     - com.todoist.Todoist
     - com.discordapp.Discord
-    - com.usebruno.Bruno
     - org.remmina.Remmina
-    - io.bassi.Amberol
     - org.gnome.World.PikaBackup
-    - dev.zed.Zed
 
 - create:
     - ~/Projects
@@ -100,6 +97,8 @@
     ~/.config/nvim: nvim
     ~/.config/ohmyposh: config/ohmyposh
     ~/.config/ulauncher: config/ulauncher
+    ~/.config/jnv: config/jnv
+    ~/.config/glow: config/glow
     ~/.config/gh/config.yml: config/gh/config.yml
     ~/.pystartup: config/pystartup
     ~/.psqlrc: config/psqlrc
@@ -118,7 +117,7 @@
 - shell:
     - command: |
         if [ ! -f $HOME/.ssh/id_ed25519 ]; then
-          ssh-keygen -o -a 100 -t ed25519 -N '' -f $HOME/.ssh/id_ed25519
+          ssh-keygen -o -a 100 -t ed25519 -f $HOME/.ssh/id_ed25519
         fi
       stderr: true
       quiet: true
@@ -132,7 +131,6 @@
         asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
         asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git || true
         asdf plugin add zig https://github.com/asdf-community/asdf-zig.git || true
-        ASDF_PYAPP_INCLUDE_DEPS=1 asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git || true
       stderr: true
       quiet: true
       description: install asdf plugins
@@ -154,15 +152,6 @@
       stderr: true
       quiet: true
       description: change default shell
-
-    - command: |
-        if [ ! -d $HOME/.local/share/fonts ]; then
-          mkdir -p ~/.local/share/fonts
-          cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
-        fi
-      stderr: true
-      quiet: true
-      description: add nerd fonts firacode
 
     - command: |
         if ! command -v oh-my-posh; then

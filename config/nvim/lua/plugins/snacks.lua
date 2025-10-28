@@ -89,6 +89,7 @@ return {
     { "<leader>gL", function() require("snacks").picker.git_log_line() end, desc = "Git Log Line" },
     { "<leader>gs", function() require("snacks").picker.git_status() end, desc = "Git Status" },
     { "<leader>gb", function() require("snacks").picker.git_branches() end, desc = "Git Branches" },
+    { "<leader>gd", function() require("snacks").picker.git_diff() end, desc = "Git Diff (Hunks)" },
     {
       "<leader>gy",
       function()
@@ -138,7 +139,7 @@ return {
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = true, previewers = { git = { builtin = true } } },
     scope = { enabled = true },
     explorer = { replace_netrw = true },
     zen = { win = { backdrop = { transparent = false } } },

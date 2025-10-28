@@ -185,7 +185,7 @@ return {
           map("n", "<leader>ub", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
           map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff hunk" })
           map("n", "<leader>hD", function() gitsigns.diffthis("~") end, { desc = "Diff buffer" })
-          map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
+          map("n", "<leader>ud", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
 
           -- Text object
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")

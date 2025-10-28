@@ -35,3 +35,34 @@ vim.api.nvim_create_autocmd("LspProgress", {
     })
   end,
 })
+
+local config = require("plugins.configs.treesitter")
+
+local function highlight_enabled(lang)
+  local lang_config = config[lang] or { highlight = true }
+  return lang_config.highlight
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(event)
+    local ts = require("nvim-treesitter")
+
+    local ft = vim.bo[event.buf].ft
+    local lang = vim.treesitter.language.get_lang(ft)
+
+    if vim.list_contains(ts.get_installed({ type = "parser" }), lang) then
+      if highlight_enabled(ft) then vim.treesitter.start(event.buf, lang) end
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    else
+      if not vim.list_contains(ts.get_available(), lang) then return end
+
+      ts.install({ lang }):await(function(err)
+        if err then
+          vim.notify("Treesitter install error for lang: " .. lang .. " err: " .. err)
+          return
+        end
+      end)
+    end
+  end,
+})

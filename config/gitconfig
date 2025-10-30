@@ -28,7 +28,7 @@
 
 [core]
   editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RFXS
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [merge]
   tool = nvimdiff
@@ -61,9 +61,9 @@
   frag = magenta bold
   context = white
   whitespace = red reverse
-  old = red
+  old = brightred
   commit = yellow bold
-  new = green
+  new = brightgreen
 
 [color "diff-highlight"]
   oldNormal = brightred

@@ -48,7 +48,6 @@ zinit light MichaelAquilina/zsh-you-should-use
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::ubuntu
 zinit snippet OMZP::aws
 zinit snippet OMZP::docker
 zinit snippet OMZP::kubectl
@@ -74,6 +73,12 @@ bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey "\et" tldr-command-line
 WORDCHARS='~!#$%^&*(){}[]<>?.+;-_\|=@`'
+
+# Line editor
+unsetopt flow_control  # disable ^S / ^Q
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^S' edit-command-line
 
 # History
 HISTSIZE=5000

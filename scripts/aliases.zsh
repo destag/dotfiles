@@ -27,6 +27,7 @@ alias dotinstall="~/.dotfiles/install"
 alias fd='fdfind'
 alias xc='xclip -selection clipboard'
 alias xp='xsel -ob'
+alias .xp='. <(xp)'
 alias notes='cd $HOME/obsidian && nvim'
 alias now='date +"%T"'
 alias today='date +"%d-%m-%Y"'

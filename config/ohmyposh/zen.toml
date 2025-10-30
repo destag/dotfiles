@@ -47,7 +47,7 @@ final_space = true
       tag_icon = ' '
 
   [[blocks.segments]]
-    template = '  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}'
+    template = '  {{.Profile}}{{if .Region}}:{{.Region}}{{end}}'
     foreground = 'p:orange'
     background = 'transparent'
     type = 'aws'

@@ -89,14 +89,13 @@
     ~/.gitignore: config/gitignore
     ~/.zshrc: config/zshrc
     ~/.rsync_skip: config/rsync_skip
-    ~/.tool-versions: config/tool-versions
     ~/.asdfrc: config/asdfrc
     ~/.tmux.conf: config/tmux.conf
     ~/.terraformrc: config/terraformrc
     ~/.config/alacritty: config/alacritty
+    ~/.config/mise: config/mise
     ~/.config/nvim: config/nvim
     ~/.config/ohmyposh: config/ohmyposh
-    ~/.config/ulauncher: config/ulauncher
     ~/.config/jnv: config/jnv
     ~/.config/glow: config/glow
     ~/.config/gh/config.yml: config/gh/config.yml
@@ -122,18 +121,6 @@
       stderr: true
       quiet: true
       description: generate ssh key
-
-    - command: |
-        asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
-        asdf plugin add terraform https://github.com/asdf-community/asdf-hashicorp.git || true
-        asdf plugin add python https://github.com/asdf-community/asdf-python.git || true
-        asdf plugin add golang https://github.com/asdf-community/asdf-golang.git || true
-        asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git || true
-        asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git || true
-        asdf plugin add zig https://github.com/asdf-community/asdf-zig.git || true
-      stderr: true
-      quiet: true
-      description: install asdf plugins
 
     - command: |
         if [ ! -d $HOME/.tmux/plugins/tpm ]; then

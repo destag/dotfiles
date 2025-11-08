@@ -4,12 +4,10 @@ export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
 
 export PIP_REQUIRE_VIRTUALENV=true
-export POETRY_VIRTUALENVS_IN_PROJECT=true
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export ERL_AFLAGS="-kernel shell_history enabled"
 export GOPATH="$HOME/.go"
+export GOBIN="$GOPATH/bin"
 export AWS_SSO_SESSION_NAME="syncron-sso"
-export DFT_DISPLAY="inline"
 
 export ZSH_CACHE_DIR="$HOME/.cache/zinit"
 
@@ -18,11 +16,9 @@ SCRIPTS_PATH="$HOME/Projects/personal/scripts"
 
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/.krew/bin:$PATH"
-PATH="$DOTFILES_PATH/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
+# PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$SCRIPTS_PATH/bin:$PATH"
-PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -34,7 +30,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Load completions
-fpath=(~/.zsh/completions ~/.cache/zinit/completions $fpath)
+fpath=($ZSH_CACHE_DIR/completions $fpath)
 
 autoload -Uz compinit && compinit
 
@@ -49,14 +45,11 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::aws
-zinit snippet OMZP::docker
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::helm
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::direnv
 zinit snippet OMZP::python
-zinit snippet OMZP::poetry
 zinit snippet OMZP::tldr
 zinit snippet OMZP::terraform
 zinit ice as"completion"
@@ -97,19 +90,19 @@ source $DOTFILES_PATH/scripts/funcs.zsh
 source $DOTFILES_PATH/scripts/aliases.zsh
 
 # Completion styling
-eval "$(dircolors)"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:*:ssh:*:*' known-hosts-files ~/.ssh/known_hosts
 zstyle ':completion:*:*:make:*' tag-order 'targets'
-zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza --icons=always --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza --icons=auto --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'eza --icons=auto --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
+eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"

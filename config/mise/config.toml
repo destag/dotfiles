@@ -1,3 +1,6 @@
+[settings]
+idiomatic_version_file_enable_tools = ['python', 'terraform']
+
 [tools]
 elixir = '1.18.1-otp-27'
 erlang = '27.2.2'
@@ -6,3 +9,4 @@ nodejs = '24.1.0'
 python = '3.14.0'
 terraform = '1.8.5'
 zig = '0.13.0'
+usage = "latest"

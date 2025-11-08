@@ -1,7 +1,7 @@
 .mypy_cache/
 .pytest_cache/
 .vscode/
-.direnv/
+.mise.toml
 *.orig
 _notes.md
 _tmp/

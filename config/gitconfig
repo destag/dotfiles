@@ -61,15 +61,15 @@
   frag = magenta bold
   context = white
   whitespace = red reverse
-  old = brightred
+  old = red
   commit = yellow bold
-  new = brightgreen
+  new = green
 
 [color "diff-highlight"]
-  oldNormal = brightred
-  oldHighlight = brightred ul
-  newNormal = brightgreen
-  newHighlight = brightgreen ul
+  oldNormal = red
+  oldHighlight = red ul
+  newNormal = green
+  newHighlight = green ul
 
 [color "decorate"]
   HEAD = red

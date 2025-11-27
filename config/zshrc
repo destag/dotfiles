@@ -86,7 +86,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-source $DOTFILES_PATH/scripts/funcs.zsh
 source $DOTFILES_PATH/scripts/aliases.zsh
 
 # Completion styling
@@ -105,5 +104,4 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 eval "$(mise activate zsh)"
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
-eval "$(thefuck --alias)"
 eval "$(zoxide init --cmd cd zsh)"

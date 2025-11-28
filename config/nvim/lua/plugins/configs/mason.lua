@@ -21,6 +21,7 @@ return {
     "tflint",
     -- elixir
     "elixir-ls",
+    "expert",
     "nextls",
     "lexical",
     -- bash

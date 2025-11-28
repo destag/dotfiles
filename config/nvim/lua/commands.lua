@@ -8,3 +8,11 @@ vim.api.nvim_create_user_command("CopyRelPath", function()
   vim.fn.setreg("+", relative_path)
   print("Copied to clipboard: " .. relative_path)
 end, { desc = "Copy the relative path of the current file to the clipboard", nargs = 0 })
+
+vim.api.nvim_create_user_command(
+  "Gcommit",
+  function(opts) vim.cmd("!" .. 'git commit -m "' .. opts.args .. '"') end,
+  { nargs = 1 }
+)
+
+vim.api.nvim_create_user_command("Gpush", function() vim.cmd("!git push") end, { nargs = 0 })

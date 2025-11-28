@@ -32,6 +32,10 @@ return {
         border = "rounded",
       },
       keymaps = {
+        ["<C-h>"] = false,
+        ["<C-l>"] = false,
+        ["<C-k>"] = false,
+        ["<C-j>"] = false,
         ["<Esc>"] = { callback = "actions.close", mode = "n" },
       },
     },
@@ -82,7 +86,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "folke/trouble.nvim",
     },
     cmd = "GhReviewComments",
   },

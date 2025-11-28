@@ -32,15 +32,27 @@ local servers = {
     },
   },
   terraformls = {},
-  elixirls = {
-    cmd = { "elixir-ls" },
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      elixirLS = {
-        dialyzerEnabled = false,
-        enableTestLenses = false,
+  -- elixirls = {
+  --   cmd = { "elixir-ls" },
+  --   flags = {
+  --     debounce_text_changes = 150,
+  --   },
+  --   settings = {
+  --     elixirLS = {
+  --       dialyzerEnabled = false,
+  --       enableTestLenses = false,
+  --     },
+  --   },
+  -- },
+  -- expert = {},
+  nextls = {
+    cmd = { "nextls", "--stdio" },
+    init_options = {
+      extensions = {
+        credo = { enable = true },
+      },
+      experimental = {
+        completions = { enable = true },
       },
     },
   },

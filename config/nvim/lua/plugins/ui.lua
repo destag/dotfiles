@@ -10,29 +10,6 @@ return {
     },
     event = "VeryLazy",
     opts = function()
-      local neocodeium_status = function()
-        local status, _ = require("neocodeium").get_status()
-        if status == 0 then
-          return "󰘦 "
-        else
-          return ""
-        end
-      end
-
-      local neocodeium_color = function()
-        local _, server_status = require("neocodeium").get_status()
-
-        local hl_name = "Normal"
-        if server_status == 1 then
-          hl_name = "WarningMsg"
-        elseif server_status == 2 then
-          hl_name = "ErrorMsg"
-        end
-
-        local hl = vim.api.nvim_get_hl(0, { name = hl_name })
-        return hl and hl.fg and { fg = string.format("#%06x", hl.fg) } or {}
-      end
-
       local opts = {
         options = {
           icons_enabled = true,
@@ -51,10 +28,6 @@ return {
             { "pretty_path", icon_show = false },
           },
           lualine_x = {
-            {
-              neocodeium_status,
-              color = neocodeium_color,
-            },
             "lsp_status",
             { "encoding", cond = function() return (vim.bo.fenc or vim.go.enc) ~= "utf-8" end },
             { "fileformat", cond = function() return vim.bo.fileformat ~= "unix" end },

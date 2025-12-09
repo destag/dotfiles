@@ -41,5 +41,6 @@ return {
     "tailwindcss-language-server",
     -- other
     "regols",
+    "tree-sitter-cli",
   },
 }

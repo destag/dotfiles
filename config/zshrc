@@ -88,6 +88,9 @@ setopt hist_find_no_dups
 
 source $DOTFILES_PATH/scripts/aliases.zsh
 
+export LS_COLORS="di=01;34:ln=01;35:so=01;32:pi=01;33:ex=31:bd=34;46\
+:cd=34;43:su=30;41:sg=30;46:ow=30;42:tw=30;43"
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -95,10 +98,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':completion:*:*:ssh:*:*' known-hosts-files ~/.ssh/known_hosts
 zstyle ':completion:*:*:make:*' tag-order 'targets'
-zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza --icons=auto --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons=auto --color=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons=auto --color=always $realpath'
-zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'eza --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color=always $realpath'
+zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 eval "$(mise activate zsh)"

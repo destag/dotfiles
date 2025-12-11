@@ -150,7 +150,7 @@ return {
     words = { enabled = true },
     picker = { enabled = true, previewers = { git = { builtin = true } } },
     scope = { enabled = true },
-    explorer = { replace_netrw = true },
+    explorer = { replace_netrw = false },
     zen = { win = { backdrop = { transparent = false } } },
   },
 }

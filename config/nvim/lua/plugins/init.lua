@@ -21,7 +21,7 @@ return {
   {
     "stevearc/oil.nvim",
     opts = {
-      default_file_explorer = false,
+      default_file_explorer = true,
       view_options = {
         show_hidden = true,
       },
@@ -40,7 +40,7 @@ return {
       },
     },
     keys = {
-      { "-", function() require("oil").open_float() end, desc = "Open parent directory" },
+      { "-", function() require("oil").open() end, desc = "Open parent directory" },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },

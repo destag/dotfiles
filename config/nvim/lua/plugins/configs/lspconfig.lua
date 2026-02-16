@@ -1,12 +1,6 @@
-local navic = require("nvim-navic")
-
 local blink_cmp = require("blink.cmp")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
-end
 
 local servers = {
   lua_ls = {
@@ -32,46 +26,40 @@ local servers = {
     },
   },
   terraformls = {},
-  -- elixirls = {
-  --   cmd = { "elixir-ls" },
-  --   flags = {
-  --     debounce_text_changes = 150,
-  --   },
-  --   settings = {
-  --     elixirLS = {
-  --       dialyzerEnabled = false,
-  --       enableTestLenses = false,
-  --     },
-  --   },
-  -- },
-  -- expert = {},
-  nextls = {
-    cmd = { "nextls", "--stdio" },
-    init_options = {
-      extensions = {
-        credo = { enable = true },
-      },
-      experimental = {
-        completions = { enable = true },
+  elixirls = {
+    cmd = { "elixir-ls" },
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      elixirLS = {
+        dialyzerEnabled = false,
+        enableTestLenses = false,
       },
     },
   },
+  -- expert = {},
+  -- nextls = {
+  --   cmd = { "nextls", "--stdio" },
+  --   init_options = {
+  --     extensions = {
+  --       credo = { enable = true },
+  --     },
+  --     experimental = {
+  --       completions = { enable = true },
+  --     },
+  --   },
+  -- },
   bashls = {},
   templ = {},
-  ansiblels = {
-    filetypes = { "yaml.ansible" },
-    root_markers = { "roles", "playbooks", "ansible.cfg" },
-  },
-  phpactor = {},
   tailwindcss = {
     filetypes = { "html" },
   },
-  regols = {},
+  rust_analyzer = {},
 }
 
 for lsp, opts in pairs(servers) do
   opts.capabilities = capabilities
-  opts.on_attach = on_attach
   vim.lsp.config(lsp, opts)
   vim.lsp.enable(lsp)
 end

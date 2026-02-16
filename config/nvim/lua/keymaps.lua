@@ -10,14 +10,24 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
 vim.keymap.set("n", "<leader>uf", "<cmd>ToggleFormat<cr>", { desc = "Toggle Formatting" })
-vim.keymap.set("n", "<leader>um", "<cmd>NeoCodeium toggle<cr>", { desc = "Toggle Formatting" })
+
+vim.keymap.set("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "New note" })
+vim.keymap.set("n", "<leader>ng", "<cmd>Obsidian search<cr>", { desc = "Grep" })
+vim.keymap.set("n", "<leader>ns", "<cmd>Obsidian quick_switch<cr>", { desc = "Quick Switch" })
+vim.keymap.set("n", "<leader>nt", "<cmd>Obsidian tags<cr>", { desc = "Tags" })
+vim.keymap.set("n", "<leader>nd", "<cmd>Obsidian dailies<cr>", { desc = "Daily notes" })
+
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<cr>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<cr>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<cr>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<cr>')
 
 -- Close floathing windows with escape
 vim.keymap.set("n", "<esc>", function()
   local found_float = false
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win)
-    if config.relative ~= "" and config.zindex ~= 20 then
+    if config.relative ~= "" and not vim.tbl_contains({ 20, 33 }, config.zindex) then
       vim.api.nvim_win_close(win, true)
       found_float = true
     end

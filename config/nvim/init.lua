@@ -24,10 +24,12 @@ require("autocmds")
 require("utils")
 
 vim.diagnostic.config({
+  update_in_insert = false,
+  virtual_text = true,
   float = {
-    border = "rounded",
     source = true,
   },
+  jump = { float = true },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = " ",

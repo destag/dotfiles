@@ -1,21 +1,430 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-set -e
+# vim: set shiftwidth=4 tabstop=4
+# ruff: noqa: E402
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+import platform
+import stat
+import sys
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MIN_REQ = (3, 11, 0)
 
-cd "${BASEDIR}"
-git submodule sync --quiet --recursive
-git submodule update --init --quiet --recursive
+if sys.version_info < MIN_REQ:
+    print(f"Error: requires Python {MIN_REQ[0]}.{MIN_REQ[1]}.{MIN_REQ[2]} or newer")
+    sys.exit(1)
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
-  --base-directory "${BASEDIR}" \
-  --config-file "${CONFIG}" \
-  --plugin-dir dotbot-sudo \
-  --plugin-dir dotbot-apt \
-  --plugin-dir dotbot-flatpak \
-  "${@}"
+if platform.system() != "Linux":
+    print("Error: only Linux is supported")
+    sys.exit(1)
+
+if platform.machine() != "x86_64":
+    print("Error: only x86_64 is supported")
+    sys.exit(1)
+
+
+import os
+import sys
+import tomllib
+import urllib.request
+from argparse import ArgumentParser, Namespace
+from dataclasses import dataclass
+from enum import Enum, auto
+from functools import wraps
+from pathlib import Path
+from subprocess import DEVNULL, CalledProcessError, run
+from typing import Any, Sequence
+
+HOST_ROOT = Path.home()
+REPO_ROOT = Path(__file__).parent
+BIN_ROOT = HOST_ROOT / ".local/bin"
+CONFIG_ROOT = REPO_ROOT / "config"
+CONFIG_FILE = REPO_ROOT / "conf.toml"
+OS = "linux"
+ARCH = "amd64"
+USER = os.getlogin()
+
+YELLOW = "\033[33m"
+GREEN = "\033[32m"
+RED = "\033[31m"
+NC = "\033[0m"
+WIDTH = 32
+
+
+class Action(Enum):
+    ALL = "all"
+    APT = "apt"
+    DIRS = "dirs"
+    BINS = "bins"
+    LINKS = "links"
+    FLATPAK = "flatpak"
+    CLONE = "clone"
+
+    def __str__(self):
+        return self.value
+
+    def __eq__(self, other):
+        if isinstance(other, Action):
+            return self is Action.ALL or other is Action.ALL or self is other
+        return False
+
+
+class Result(Enum):
+    CHANGED = auto()
+    NO_CHANGE = auto()
+    ERROR = auto()
+
+
+def message(start_message: str):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            print(f"{start_message}...".ljust(WIDTH), end="", flush=True)
+
+            result = func(*args, **kwargs)
+
+            if result == Result.CHANGED:
+                print(f"{YELLOW}[ DONE ]{NC}")
+            elif result == Result.NO_CHANGE:
+                print(f"{GREEN}[  OK  ]{NC}")
+            elif result == Result.ERROR:
+                print(f"{RED}[ FAIL ]{NC}")
+
+            return result
+
+        return wrapper
+
+    return decorator
+
+
+class APT:
+    def __init__(self, config):
+        config = config.get("apt", {})
+        self.packages: list[str] = config.get("packages")
+        self.repositories: list[dict[str, str]] = config.get("repository")
+
+    @message("Setup APT sources")
+    def setup_sources(self) -> Result:
+        success = True
+        for repo in self.repositories:
+            name = repo["name"]
+            if name.startswith("ppa:"):
+                success = add_ppa_repository(name) and success
+                continue
+
+            key_url = repo["key_url"]
+            url = repo["url"]
+            suites = repo.get("suites", "any")
+            components = repo.get("components", "main")
+            arch = repo.get("arch")
+            key = download_pgp_key(key_url, name)
+            result = create_apt_source(
+                name, url, suites=suites, components=components, arch=arch, key=key
+            )
+            success = result and success
+
+        if not success:
+            return Result.ERROR
+        return Result.NO_CHANGE
+
+    @message("Installing APT packages")
+    def install(self) -> Result:
+        check = ["dpkg", "-s"] + self.packages
+        update = ["sudo", "apt", "update"]
+        install = ["sudo", "apt", "install", "-y"] + self.packages
+
+        import time
+
+        time.sleep(5)
+
+        all_installed = run_cmd(check, suppress=True)
+        if all_installed:
+            return Result.NO_CHANGE
+
+        success = run_cmd(update) and run_cmd(install)
+        if success:
+            return Result.CHANGED
+
+        return Result.ERROR
+
+
+class Flatpak:
+    def __init__(self, config):
+        config = config.get("flatpak", [])
+        self.packages: list[str] = config
+
+    @message("Installing Flatpak packages")
+    def install(self) -> Result:
+        success = True
+        changed = False
+        for app in self.packages:
+            check = ["flatpak", "info", app]
+            installed = run_cmd(check, suppress=True)
+
+            if not installed:
+                install = ["flatpak", "install", "--noninteractive", app]
+                success = run_cmd(install) and success
+                changed = True
+
+        if not success:
+            return Result.ERROR
+        if not changed:
+            return Result.NO_CHANGE
+        return Result.CHANGED
+
+
+class Directories:
+    def __init__(self, config):
+        config = config.get("dirs", [])
+        self.dirs = config
+
+    @message("Creating directories")
+    def create(self) -> Result:
+        changed = False
+        for dir in self.dirs:
+            dir_path = HOST_ROOT / dir
+            try:
+                dir_path.mkdir(parents=True)
+                changed = True
+            except FileExistsError:
+                pass
+
+        if not changed:
+            return Result.NO_CHANGE
+        return Result.CHANGED
+
+
+class Links:
+    def __init__(self, config):
+        config = config.get("links", {})
+        self.links = config
+
+    @message("Adding symlinks")
+    def create(self) -> Result:
+        changed = False
+        for link, target in self.links.items():
+            link_path = HOST_ROOT / link
+            target_path = CONFIG_ROOT / target
+
+            try:
+                link_path.symlink_to(target_path)
+                changed = True
+            except FileExistsError:
+                pass
+
+        if not changed:
+            return Result.NO_CHANGE
+        return Result.CHANGED
+
+
+class Binaries:
+    def __init__(self, config) -> None:
+        config = config.get("bins", {})
+        self.bins = config
+
+    @message("Downloading binaries")
+    def download(self) -> Result:
+        success = True
+        changed = False
+        for name, url in self.bins.items():
+            path: Path = BIN_ROOT / name
+
+            if path.exists():
+                continue
+
+            try:
+                response = urllib.request.urlopen(url)
+                data = response.read()
+                path.write_bytes(data)
+                path.chmod(
+                    stat.S_IRWXU
+                    | stat.S_IRGRP
+                    | stat.S_IXGRP
+                    | stat.S_IROTH
+                    | stat.S_IXOTH
+                )
+                changed = True
+            except Exception:
+                success = False
+
+        if not changed:
+            return Result.NO_CHANGE
+        if success:
+            return Result.CHANGED
+        return Result.ERROR
+
+
+class Repos:
+    def __init__(self, config) -> None:
+        config = config.get("repos", {})
+        self.repos = config
+
+    @message("Cloning repositories")
+    def clone(self) -> Result:
+        success = True
+        changed = False
+        for path, repo in self.repos.items():
+            path: Path = HOST_ROOT / path
+
+            if path.exists():
+                continue
+
+            try:
+                cmd = ["git", "clone", repo, path]
+                success = run_cmd(cmd) and success
+                changed = True
+            except Exception:
+                success = False
+
+        if not changed:
+            return Result.NO_CHANGE
+        if success:
+            return Result.CHANGED
+        return Result.ERROR
+
+
+@dataclass
+class Config:
+    apt: APT
+    flatpak: Flatpak
+    dirs: Directories
+    links: Links
+    bins: Binaries
+    repos: Repos
+
+
+def load_config() -> Config:
+    with open(CONFIG_FILE, "rb") as f:
+        toml = tomllib.load(f)
+
+    apt = APT(toml)
+    flatpak = Flatpak(toml)
+    dirs = Directories(toml)
+    links = Links(toml)
+    bins = Binaries(toml)
+    repos = Repos(toml)
+
+    return Config(
+        apt=apt,
+        flatpak=flatpak,
+        dirs=dirs,
+        links=links,
+        bins=bins,
+        repos=repos,
+    )
+
+
+def add_ppa_repository(repository: str) -> bool:
+    install = ["sudo", "add-apt-repository", "-y", repository]
+    return run_cmd(install)
+
+
+def download_pgp_key(url, out):
+    path = f"/etc/apt/keyrings/{out}"
+
+    req = urllib.request.Request(url, headers={"User-Agent": "curl/7.68.0"})
+    response = urllib.request.urlopen(req)
+    data = response.read()
+
+    try:
+        key = data.decode("utf-8").encode()
+        path += ".asc"
+    except UnicodeDecodeError:
+        key = data
+        path += ".gpg"
+
+    run_cmd(["sudo", "tee", path], input=key)
+    return path
+
+
+def create_apt_source(name, uri, key, suites, components, arch=None):
+    content = f"""\
+Types: deb
+URIs: {uri}
+Suites: {suites}
+Signed-By: {key}
+"""
+
+    if components:
+        content += f"Components: {components}\n"
+    if arch:
+        content += f"Architectures: {arch}\n"
+
+    run_cmd(
+        ["sudo", "tee", f"/etc/apt/sources.list.d/{name}.sources"],
+        input=content.encode(),
+    )
+
+
+def run_cmd(
+    command: Sequence[Any], verbose: bool = False, input=None, suppress: bool = False
+) -> bool:
+    stdout = DEVNULL if not verbose else sys.stdout
+    stderr = DEVNULL if not verbose else sys.stderr
+
+    try:
+        run(command, stdout=stdout, stderr=stderr, input=input, check=True)
+        return True
+    except CalledProcessError as e:
+        if not suppress:
+            print(f"Command exited with error: {e}")
+        return False
+
+
+def validate_base_paths():
+    paths = [
+        HOST_ROOT,
+        BIN_ROOT,
+        REPO_ROOT,
+        CONFIG_ROOT,
+        CONFIG_FILE,
+    ]
+
+    success = True
+    for path in paths:
+        if not path.exists():
+            print(f"Path {str(path)} doesn't exists")
+            success = False
+
+    return success
+
+
+def parse_args() -> Namespace:
+    parser = ArgumentParser()
+    parser.add_argument(
+        "action",
+        nargs="?",
+        type=Action,
+        choices=list(Action),
+        default=Action.ALL,
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+
+    if not validate_base_paths():
+        print("Check missing files/directories")
+        sys.exit(1)
+
+    config = load_config()
+
+    if args.action == Action.APT:
+        config.apt.setup_sources()
+        config.apt.install()
+    if args.action == Action.FLATPAK:
+        config.flatpak.install()
+    if args.action == Action.DIRS:
+        config.dirs.create()
+    if args.action == Action.LINKS:
+        config.links.create()
+    if args.action == Action.BINS:
+        config.bins.download()
+    if args.action == Action.CLONE:
+        config.repos.clone()
+
+    print("\nDotfiles Setup Complete!")
+
+
+if __name__ == "__main__":
+    main()

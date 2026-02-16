@@ -34,14 +34,6 @@ return {
             "filetype",
           },
         },
-        winbar = {
-          lualine_c = {
-            {
-              "navic",
-              color_correction = "dynamic",
-            },
-          },
-        },
       }
 
       return opts
@@ -51,7 +43,16 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
+      delay = 0,
       preset = "helix",
+      spec = {
+        { "<leader>f", group = "Find" },
+        { "<leader>r", group = "Refactor" },
+        { "<leader>h", group = "Git" },
+        { "<leader>s", group = "Search" },
+        { "<leader>u", group = "Toggle" },
+        { "<leader>p", group = "Parrot" },
+      },
     },
     keys = {
       {
@@ -60,17 +61,6 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.add({
-        { "<leader>f", group = "Find" },
-        { "<leader>r", group = "Refactor" },
-        { "<leader>h", group = "Git" },
-        { "<leader>s", group = "Search" },
-        { "<leader>u", group = "Toggle" },
-      })
-    end,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -215,14 +205,6 @@ return {
   {
     "HiPhish/rainbow-delimiters.nvim",
     event = "VeryLazy",
-  },
-  {
-    "brenoprata10/nvim-highlight-colors",
-    ft = { "html", "css" },
-    opts = {
-      render = "virtual",
-      enable_tailwind = true,
-    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",

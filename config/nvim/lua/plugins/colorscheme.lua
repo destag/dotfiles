@@ -5,7 +5,14 @@ return {
     priority = 1000,
     opts = {
       style = "night",
-      on_highlights = function(hl, c) hl["FlashLabel"] = { fg = c.magenta2, bold = true } end,
+      on_highlights = function(hl, c)
+        hl["FlashLabel"] = { fg = c.magenta2, bold = true }
+        hl["@property.toml"] = { fg = c.blue }
+        hl["@property.yaml"] = { fg = c.blue }
+        hl["@property.json"] = { fg = c.blue }
+        hl["NeogitDiffAddHighlight"] = { link = "NeogitDiffAdd" }
+        hl["NeogitDiffDeleteHighlight"] = { link = "NeogitDiffDelete" }
+      end,
     },
     config = function(_, opts)
       require("tokyonight").setup(opts)

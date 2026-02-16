@@ -29,22 +29,23 @@ return {
     },
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter({
+            actions = {
+              ["."] = "next",
+              [","] = "prev",
+            },
+          })
+        end,
+        desc = "Flash Treesitter",
+      },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-  },
-  {
-    "SmiteshP/nvim-navic",
-    lazy = true,
-    opts = function()
-      return {
-        highlight = true,
-        depth_limit = 5,
-        lazy_update_context = true,
-      }
-    end,
   },
   {
     "cbochs/grapple.nvim",
@@ -78,20 +79,6 @@ return {
   },
   {
     "MagicDuck/grug-far.nvim",
-    config = function()
-      require("grug-far").setup({
-        -- options, see Configuration section below
-        -- there are no required options atm
-        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
-      })
-    end,
-  },
-  {
-    "rmagatti/alternate-toggler",
-    event = { "BufReadPost" }, -- lazy load after reading a buffer
-    keys = {
-      { "<leader>ua", function() require("alternate-toggler").toggleAlternate() end, desc = "Toggle Alternate" },
-    },
   },
   {
     "kevinhwang91/nvim-ufo",

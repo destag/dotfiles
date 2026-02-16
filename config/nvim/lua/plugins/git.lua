@@ -1,12 +1,21 @@
 return {
   {
     "sindrets/diffview.nvim",
-    enabled = true,
     opts = {
-      enhanced_diff_hl = false,
       view = {
         merge_tool = { layout = "diff3_mixed" },
       },
+    },
+  },
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+    },
+    cmd = "Neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
     },
   },
 }

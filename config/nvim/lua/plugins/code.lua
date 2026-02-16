@@ -61,6 +61,7 @@ return {
         { "ab", mode = mode, function() select.select_textobject("@block.outer") end, desc = "Select Block" },
         { "ib", mode = mode, function() select.select_textobject("@block.inner") end, desc = "Select Inner Block" },
         { "ia", mode = mode, function() select.select_textobject("@parameter.inner") end, desc = "Select Inner Parameter" },
+        { "aa", mode = mode, function() select.select_textobject("@parameter.outer") end, desc = "Select Outer Parameter" },
         { "<leader>a", mode = mode, function() swap.swap_next("@parameter.inner") end, desc = "Swap Next" },
         { "<leader>A", mode = mode, function() swap.swap_previous("@parameter.outer") end, desc = "Swap Next" },
       }
@@ -96,13 +97,5 @@ return {
   {
     "mfussenegger/nvim-lint",
     config = require("plugins.configs.lint"),
-  },
-  {
-    "synic/refactorex.nvim",
-    ft = "elixir",
-    opts = {
-      auto_update = true,
-      pin_version = nil,
-    },
   },
 }

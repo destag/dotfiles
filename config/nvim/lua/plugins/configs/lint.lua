@@ -9,11 +9,10 @@ return function()
 
   lint.linters_by_ft = {
     elixir = { "credo" },
-    python = { "ruff", "mypy" },
+    python = { "ruff" },
     terraform = { "tflint" },
     sql = { "sqlfluff" },
     sh = { "shellcheck" },
-    php = { "phpstan" },
   }
 
   vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "InsertLeave" }, {

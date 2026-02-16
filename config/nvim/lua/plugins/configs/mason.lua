@@ -13,7 +13,6 @@ return {
     -- python
     "black",
     "isort",
-    "mypy",
     "ruff",
     "basedpyright",
     -- terraform
@@ -30,15 +29,8 @@ return {
     "bash-language-server",
     -- sql
     "sqlfluff",
-    -- ansible
-    "ansible-language-server",
-    -- javascript
-    "prettier",
-    -- php
-    "phpactor",
-    "phpstan",
-    -- html
-    "tailwindcss-language-server",
+    -- rust
+    "rust-analyzer",
     -- other
     "regols",
     "tree-sitter-cli",

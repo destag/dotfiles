@@ -1,0 +1,167 @@
+dirs = [
+  "Projects/freelance",
+  "Projects/personal",
+  "Projects/work",
+  "Projects/other",
+  ".local/bin",
+  ".go",
+]
+
+flatpak = [
+  "org.telegram.desktop",
+  "org.signal.Signal",
+  "com.slack.Slack",
+  "com.spotify.Client",
+  "com.github.IsmaelMartinez.teams_for_linux",
+  "us.zoom.Zoom",
+  "md.obsidian.Obsidian",
+  "app.zen_browser.zen",
+  "org.videolan.VLC",
+  "com.discordapp.Discord",
+  "org.remmina.Remmina",
+  "org.gnome.World.PikaBackup",
+  "com.usebruno.Bruno",
+]
+
+[apt]
+  packages = [
+    "aerc",
+    "age",
+    "alacritty",
+    "autoconf",
+    "automake",
+    "bat",
+    "btop",
+    "ca-certificates",
+    "calibre",
+    "cargo",
+    "coreutils",
+    "curl",
+    "diff-so-fancy",
+    "dirmngr",
+    "docker-buildx",
+    "docker-compose-v2",
+    "docker.io",
+    "fd-find",
+    "fonts-jetbrains-mono",
+    "fzf",
+    "gawk",
+    "gdu",
+    "gh",
+    "git",
+    "git-crypt",
+    "git-lfs",
+    "golang-go",
+    "gpg",
+    "hey",
+    "htop",
+    "hyperfine",
+    "inotify-tools",
+    "jq",
+    "kubectl",
+    "kubectx",
+    "mise",
+    "mysql-client",
+    "neofetch",
+    "neovim",
+    "numbat",
+    "pass",
+    "pass-extension-otp",
+    "pipx",
+    "postgresql-client",
+    "ripgrep",
+    "rust-src",
+    "rustc",
+    "rustfmt",
+    "sqlite3",
+    "tldr",
+    "tmux",
+    "wget",
+    "wl-clipboard",
+    "yq",
+    "zoxide",
+    "zsh",
+  ]
+
+  [[apt.repository]]
+    name = "ppa:apandada1/numbat"
+
+  [[apt.repository]]
+    name = "ppa:aslatter/ppa" # alacritty
+
+  [[apt.repository]]
+    name = "ppa:aos1/diff-so-fancy"
+
+  [[apt.repository]]
+    name = "ppa:ansible/ansible"
+
+  [[apt.repository]]
+    name = "ppa:neovim-ppa/unstable"
+
+  [[apt.repository]]
+    name = "ppa:longsleep/golang-backports"
+
+  [[apt.repository]]
+    name = "helm-stable-debian"
+    url = "https://packages.buildkite.com/helm-linux/helm-debian/any/"
+    key_url = "https://packages.buildkite.com/helm-linux/helm-debian/gpgkey"
+
+  [[apt.repository]]
+    name = "mise"
+    url = "https://mise.jdx.dev/deb"
+    key_url = "https://mise.jdx.dev/gpg-key.pub"
+    suites = "stable"
+    arch = "amd64"
+
+  [[apt.repository]]
+    name = "github-cli"
+    url = "https://cli.github.com/packages"
+    key_url = "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
+    suites = "stable"
+    arch = "amd64"
+
+  [[apt.repository]]
+    name = "charm"
+    url = "https://repo.charm.sh/apt/"
+    key_url = "https://repo.charm.sh/apt/gpg.key"
+    suites = "*"
+    components = "*"
+
+  [[apt.repository]]
+    name = "kubernetes"
+    url = "https://pkgs.k8s.io/core:/stable:/v1.35/deb/"
+    key_url = "https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key"
+    suites = "/"
+    components = ""
+
+  [[apt.repository]]
+    name = "openvpn"
+    url = "https://packages.openvpn.net/openvpn3/debian"
+    key_url = "https://packages.openvpn.net/packages-repo.gpg"
+    suites = "noble"
+    arch = "amd64"
+
+[links]
+  ".gitconfig" = "gitconfig"
+  ".gitignore" = "gitignore"
+  ".zshrc" = "zshrc"
+  ".rsync_skip" = "rsync_skip"
+  ".tmux.conf" = "tmux.conf"
+  ".terraformrc" = "terraformrc"
+  ".config/alacritty" = "alacritty"
+  ".config/cosmic" = "cosmic"
+  ".config/mise" = "mise"
+  ".config/nvim" = "nvim"
+  ".config/ohmyposh" = "ohmyposh"
+  ".config/jnv" = "jnv"
+  ".config/glow" = "glow"
+  ".config/gh/config.yml" = "gh/config.yml"
+  ".pystartup" = "pystartup"
+  ".psqlrc" = "psqlrc"
+  ".sqliterc" = "sqliterc"
+
+[bins]
+  "oh-my-posh" = "https://cdn.ohmyposh.dev/releases/latest/posh-linux-amd64"
+
+[repos]
+ ".tmux/plugins/tpm" = "https://github.com/tmux-plugins/tpm"

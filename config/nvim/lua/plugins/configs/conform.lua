@@ -5,7 +5,7 @@ return {
     python = { "isort", "black" },
     css = { "prettier" },
     scss = { "prettier" },
-    html = { "prettier" },
+    html = { "djlint" },
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },
     hcl = { "terragrunt_hclfmt" },

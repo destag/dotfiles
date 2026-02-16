@@ -1,10 +1,10 @@
 \set QUIET 1
 
 -- Prompt (current database)
-\set PROMPT1 ' %[%033[34m%]%/%[%033[0m%]=# '
+\set PROMPT1 '%[%033[34m%]%/%[%033[0m%]=# '
 
 -- Prompt (non-current database)
-\set PROMPT2 ' %[%033[34m%]%/%[%033[0m%]-# '
+\set PROMPT2 '%[%033[34m%]%/%[%033[0m%]-# '
 
 -- Table style
 -- border with outer lines
@@ -12,6 +12,8 @@
 -- unicode borders
 \pset linestyle unicode
 \pset null '∅'
+
+\setenv LESS -S
 
 -- Verbose error reports.
 \set VERBOSITY verbose

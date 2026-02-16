@@ -7,7 +7,6 @@ end, { desc = "Insert checkov skip line with register content" })
 
 vim.keymap.set("n", "gx", function()
   local line = vim.api.nvim_get_current_line()
-  local base = "https://registry.terraform.io/providers/hashicorp/%s/latest/docs/%s/%s"
   local block
 
   local provider, type_name = line:match('data%s+"([^_]+)_(.-)"%s+"')
@@ -18,6 +17,7 @@ vim.keymap.set("n", "gx", function()
     if provider and type_name then block = "resource" end
   end
 
+  local base = "https://registry.terraform.io/providers/hashicorp/%s/latest/docs/%s/%s"
   local url = string.format(base, provider, block, type_name)
 
   if block then

@@ -81,20 +81,36 @@ return {
     "MagicDuck/grug-far.nvim",
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      { "kevinhwang91/promise-async" },
-    },
+    "chrisgrieser/nvim-origami",
+    event = "VeryLazy",
+    init = function()
+      vim.opt.foldlevel = 99 -- disable vim's auto-fold
+      vim.opt.foldlevelstart = 99
+    end,
     keys = {
-      { "zc", mode = "n", desc = "Fold current line" },
-      { "zo", mode = "n", desc = "Unfold current line" },
-      { "za", mode = "n", desc = "Toggle fold current line" },
-      { "zA", mode = "n", desc = "Toggle fold all lines" },
-      { "zr", mode = "n", desc = "Unfold all lines" },
-      { "zR", mode = "n", desc = "Fold all lines" },
+      { "h", function() require("origami").h() end, mode = { "n", "x" }, desc = "Origami h" },
+      { "H", function() require("origami").caret() end, mode = { "n", "x" }, desc = "Origami H" },
+      { "l", function() require("origami").l() end, mode = { "n", "x" }, desc = "Origami l" },
+      { "L", function() require("origami").dollar() end, mode = { "n", "x" }, desc = "Origami L" },
     },
     opts = {
-      provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
+      foldKeymaps = {
+        setup = false, -- setting on my own since I remap `H` and `L`
+        scrollLeftOnCaret = true, -- `^` should scroll left (basically mapped to `0^`)
+      },
+      foldtext = {
+        padding = 2,
+        lineCount = { template = "󰘖 %d" },
+      },
+    },
+  },
+  {
+    "chrisgrieser/nvim-spider",
+    keys = {
+      { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+      { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+      { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+      { "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
     },
   },
 }

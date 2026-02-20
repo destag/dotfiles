@@ -1,0 +1,5 @@
+defaults:
+  theme: terminal-dark
+
+options:
+  end_slide_shorthand: true

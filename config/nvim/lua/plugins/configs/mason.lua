@@ -11,10 +11,8 @@ return {
     "lua-language-server",
     "stylua",
     -- python
-    "black",
-    "isort",
+    "ty",
     "ruff",
-    "basedpyright",
     -- terraform
     "terraform-ls",
     "tflint",
@@ -26,13 +24,12 @@ return {
     -- bash
     "shfmt",
     "shellcheck",
-    "bash-language-server",
     -- sql
     "sqlfluff",
     -- rust
     "rust-analyzer",
     -- other
-    "regols",
     "tree-sitter-cli",
+    "ast-grep",
   },
 }

@@ -40,33 +40,9 @@ vim.diagnostic.config({
   },
 })
 
--- add binaries installed by mason.nvim to path
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
-require("lazy").setup("plugins")
-
-if firstload then
-  vim.schedule(function()
-    vim.cmd("MasonInstallAll")
-
-    local packages = {}
-    for k, v in pairs(vim.g.mason_binaries_list) do
-      packages[k] = v
-    end
-
-    local installed = {}
-
-    require("mason-registry"):on("package:install:success", function(pkg)
-      table.insert(installed, pkg.name)
-
-      if #installed == #packages then
-        vim.schedule(function()
-          vim.api.nvim_buf_delete(0, { force = true })
-          vim.api.nvim_buf_delete(0, { force = true })
-          vim.cmd("echo '' | redraw")
-        end)
-      end
-    end)
-  end)
-end
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  rocks = { enabled = false },
+})

@@ -8,17 +8,11 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    opts = {},
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function() return require("plugins.configs.mason") end,
-    config = function(_, opts)
-      require("mason").setup(opts)
-
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed then vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " ")) end
-      end, {})
-
-      vim.g.mason_binaries_list = opts.ensure_installed
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -44,8 +38,6 @@ return {
         { "[F", mode = mode, function() move.goto_previous_end("@function.outer") end, desc = "Previous Function End" },
         { "]c", mode = mode, function() move.goto_next_start("@class.outer") end, desc = "Next Class Start" },
         { "]C", mode = mode, function() move.goto_next_end("@class.outer") end, desc = "Next Class End" },
-        { "]b", mode = mode, function() move.goto_next_start("@block.outer") end, desc = "Next Block Start" },
-        { "]B", mode = mode, function() move.goto_next_end("@block.outer") end, desc = "Next Block End" },
         { "[c", mode = mode, function() move.goto_previous_start("@class.outer") end, desc = "Previous Class Start" },
         { "[C", mode = mode, function() move.goto_previous_end("@class.outer") end, desc = "Previous Class End" },
         { "]a", mode = mode, function() move.goto_next_start("@parameter.inner") end, desc = "Next Parameter Start" },
@@ -58,14 +50,18 @@ return {
         { "if", mode = mode, function() select.select_textobject("@function.inner") end, desc = "Select Inner Function" },
         { "ac", mode = mode, function() select.select_textobject("@class.outer") end, desc = "Select Class" },
         { "ic", mode = mode, function() select.select_textobject("@class.inner") end, desc = "Select Inner Class" },
-        { "ab", mode = mode, function() select.select_textobject("@block.outer") end, desc = "Select Block" },
-        { "ib", mode = mode, function() select.select_textobject("@block.inner") end, desc = "Select Inner Block" },
         { "ia", mode = mode, function() select.select_textobject("@parameter.inner") end, desc = "Select Inner Parameter" },
         { "aa", mode = mode, function() select.select_textobject("@parameter.outer") end, desc = "Select Outer Parameter" },
         { "<leader>a", mode = mode, function() swap.swap_next("@parameter.inner") end, desc = "Swap Next" },
         { "<leader>A", mode = mode, function() swap.swap_previous("@parameter.outer") end, desc = "Swap Next" },
       }
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      max_lines = 1,
+    },
   },
   {
     "windwp/nvim-autopairs",

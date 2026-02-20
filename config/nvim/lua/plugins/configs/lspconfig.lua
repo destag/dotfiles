@@ -16,15 +16,7 @@ local servers = {
   gopls = {
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
   },
-  basedpyright = {
-    settings = {
-      basedpyright = {
-        analysis = {
-          typeCheckingMode = "standard",
-        },
-      },
-    },
-  },
+  ty = {},
   terraformls = {},
   elixirls = {
     cmd = { "elixir-ls" },
@@ -52,9 +44,6 @@ local servers = {
   -- },
   bashls = {},
   templ = {},
-  tailwindcss = {
-    filetypes = { "html" },
-  },
   rust_analyzer = {},
 }
 

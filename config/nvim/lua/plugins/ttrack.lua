@@ -76,8 +76,21 @@ local function stop_task()
   end)
 end
 
+local function checkout_branch()
+  vim.notify("Checkout branch", vim.log.levels.INFO)
+
+  vim.system({ "ttrack", "checkout" }, { text = true }, function(res)
+    if res.code ~= 0 then
+      vim.notify("Failed to check branch:\n" .. res.stderr, vim.log.levels.ERROR)
+    else
+      vim.notify("Checkout:\n" .. res.stdout, vim.log.levels.INFO)
+    end
+  end)
+end
+
 vim.api.nvim_create_user_command("TTrack", function() pick_task() end, {})
 vim.api.nvim_create_user_command("TTrackCheck", function() check_task() end, {})
 vim.api.nvim_create_user_command("TTrackStop", function() stop_task() end, {})
+vim.api.nvim_create_user_command("TTrackBranch", function() checkout_branch() end, {})
 
 return {}

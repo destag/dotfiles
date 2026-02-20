@@ -2,7 +2,7 @@ return {
   formatters_by_ft = {
     lua = { "stylua" },
     go = { "gofumpt", "goimports-reviser", "golines" },
-    python = { "isort", "black" },
+    python = { "ruff_organize_imports", "ruff_format" },
     css = { "prettier" },
     scss = { "prettier" },
     html = { "djlint" },

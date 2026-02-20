@@ -155,6 +155,7 @@ flatpak = [
   ".config/ohmyposh" = "ohmyposh"
   ".config/jnv" = "jnv"
   ".config/glow" = "glow"
+  ".config/presenterm" = "presenterm"
   ".config/gh/config.yml" = "gh/config.yml"
   ".pystartup" = "pystartup"
   ".psqlrc" = "psqlrc"

@@ -9,23 +9,18 @@ return {
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },
     hcl = { "terragrunt_hclfmt" },
-    sql = { "sqlfluff" },
+    sql = { "sqruff" },
   },
   formatters = {
     shfmt = {
       prepend_args = { "-i", "2", "-sr", "-s", "-ci" },
     },
-    sqlfluff = {
-      command = "sqlfluff",
+    sqruff = {
       args = {
         "fix",
-        "--dialect",
-        "postgres",
-        "--disable-progress-bar",
-        "--quiet",
-        "-",
+        "--dialect=postgres",
+        "$FILENAME",
       },
-      require_cwd = false,
     },
   },
   format_on_save = function()

@@ -1,17 +1,18 @@
 return function()
   local lint = require("lint")
 
-  lint.linters.sqlfluff.args = {
+  lint.linters.sqruff.args = {
     "lint",
     "--format=json",
     "--dialect=postgres",
+    "-",
   }
 
   lint.linters_by_ft = {
     elixir = { "credo" },
     python = { "ruff" },
     terraform = { "tflint" },
-    sql = { "sqlfluff" },
+    sql = { "sqruff" },
     sh = { "shellcheck" },
   }
 

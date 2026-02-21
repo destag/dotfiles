@@ -11,12 +11,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
 vim.keymap.set("n", "<leader>uf", "<cmd>ToggleFormat<cr>", { desc = "Toggle Formatting" })
 
-vim.keymap.set("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "New note" })
-vim.keymap.set("n", "<leader>ng", "<cmd>Obsidian search<cr>", { desc = "Grep" })
-vim.keymap.set("n", "<leader>ns", "<cmd>Obsidian quick_switch<cr>", { desc = "Quick Switch" })
-vim.keymap.set("n", "<leader>nt", "<cmd>Obsidian tags<cr>", { desc = "Tags" })
-vim.keymap.set("n", "<leader>nd", "<cmd>Obsidian dailies<cr>", { desc = "Daily notes" })
-
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<cr>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<cr>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<cr>')

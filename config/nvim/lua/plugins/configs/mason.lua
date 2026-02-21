@@ -25,7 +25,7 @@ return {
     "shfmt",
     "shellcheck",
     -- sql
-    "sqlfluff",
+    "sqruff",
     -- rust
     "rust-analyzer",
     -- other

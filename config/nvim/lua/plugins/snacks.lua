@@ -117,9 +117,6 @@ return {
     -- notifications
     { "<leader>N", function() require("snacks").notifier.show_history() end, desc = "Notification History" },
     { "<leader>un", function() require("snacks").notifier.hide() end, desc = "Dismiss All Notifications" },
-    -- scratch
-    { "<leader>z", function() require("snacks").scratch({ ft = "markdown" }) end, desc = "Toggle Scratch Buffer" },
-    { "<leader>Z", function() require("snacks").scratch.select() end, desc = "Select Scratch Buffer" },
     -- terminal
     { "<c-t>", function() require("snacks").terminal.toggle() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
   },

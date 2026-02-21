@@ -52,6 +52,7 @@ return {
         { "<leader>s", group = "Search" },
         { "<leader>u", group = "Toggle" },
         { "<leader>p", group = "Parrot" },
+        { "<leader>n", group = "Notes" },
       },
     },
     keys = {

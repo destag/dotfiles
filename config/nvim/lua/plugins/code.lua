@@ -59,6 +59,14 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    keys = {
+      {
+        "gC",
+        mode = "n",
+        function() require("treesitter-context").go_to_context(vim.v.count1) end,
+        desc = "Go to Context",
+      },
+    },
     opts = {
       max_lines = 1,
     },

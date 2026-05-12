@@ -47,18 +47,8 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     event = "VeryLazy",
-    opts = {
-      keymaps = {
-        normal = "ys",
-        delete = "ds",
-        visual = "gs",
-        visual_line = "gS",
-        change = "cs",
-        change_line = "cS",
-      },
-    },
   },
   {
     "chentoast/marks.nvim",

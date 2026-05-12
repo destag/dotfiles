@@ -10,13 +10,16 @@ local servers = {
           globals = { "vim" },
           disable = { "different-requires" },
         },
+        workspace = {
+          library = { os.getenv("HOME") .. "/.local/share/LuaAddons" },
+        },
       },
     },
   },
   gopls = {
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
   },
-  ty = {},
+  pyrefly = {},
   terraformls = {},
   elixirls = {
     cmd = { "elixir-ls" },

@@ -3,13 +3,13 @@ return {
     lua = { "stylua" },
     go = { "gofumpt", "goimports-reviser", "golines" },
     python = { "ruff_organize_imports", "ruff_format" },
-    css = { "prettier" },
-    scss = { "prettier" },
+    css = { "biome" },
     html = { "djlint" },
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },
     hcl = { "terragrunt_hclfmt" },
     sql = { "sqruff" },
+    json = { "biome" },
   },
   formatters = {
     shfmt = {
@@ -25,6 +25,6 @@ return {
   },
   format_on_save = function()
     if not vim.g.autoformat then return end
-    return { timeout_ms = 10000, lsp_fallback = true }
+    return { timeout_ms = 1000, lsp_fallback = true }
   end,
 }

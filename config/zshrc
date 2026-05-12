@@ -30,10 +30,12 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Load completions
-fpath=($ZSH_CACHE_DIR/completions $fpath)
+# fpath=($ZSH_CACHE_DIR/completions $fpath)
+
+autoload -Uz compinit
+compinit -C
 
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
  blockf \
     zsh-users/zsh-completions \
@@ -52,7 +54,6 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::helm
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::python
 zinit snippet OMZP::tldr
 zinit snippet OMZP::terraform
 zinit ice as"completion"
@@ -126,6 +127,7 @@ alias ports='sudo lsof -i4 -P -n | grep LISTEN'
 alias ap='ansible-playbook'
 alias k='kubectl'
 alias tt='ttrack'
+alias py='python3'
 
 export LS_COLORS="di=01;34:ln=01;35:so=01;32:pi=01;33:ex=31:bd=34;46\
 :cd=34;43:su=30;41:sg=30;46:ow=30;42:tw=30;43"
@@ -138,7 +140,6 @@ zstyle ':completion:*' menu no
 zstyle ':completion:*:*:ssh:*:*' known-hosts-files ~/.ssh/known_hosts
 zstyle ':completion:*:*:make:*' tag-order 'targets'
 zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls --color=always --width=$FZF_PREVIEW_COLUMNS $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:complete:batcat:*' fzf-preview 'ls --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'

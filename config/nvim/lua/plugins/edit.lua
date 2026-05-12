@@ -31,7 +31,7 @@ return {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       {
         "S",
-        mode = { "n", "x", "o" },
+        mode = { "n", "o" },
         function()
           require("flash").treesitter({
             actions = {
@@ -67,15 +67,13 @@ return {
   {
     "Wansmer/treesj",
     cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     keys = {
       { "<leader>j", "<cmd>TSJToggle<cr>", desc = "Toggle Split/Join" },
     },
-    config = function()
-      require("treesj").setup({
-        use_default_keymaps = false,
-      })
-    end,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {
+      use_default_keymaps = false,
+    },
   },
   {
     "MagicDuck/grug-far.nvim",
@@ -87,30 +85,10 @@ return {
       vim.opt.foldlevel = 99 -- disable vim's auto-fold
       vim.opt.foldlevelstart = 99
     end,
-    keys = {
-      { "h", function() require("origami").h() end, mode = { "n", "x" }, desc = "Origami h" },
-      { "H", function() require("origami").caret() end, mode = { "n", "x" }, desc = "Origami H" },
-      { "l", function() require("origami").l() end, mode = { "n", "x" }, desc = "Origami l" },
-      { "L", function() require("origami").dollar() end, mode = { "n", "x" }, desc = "Origami L" },
-    },
     opts = {
-      foldKeymaps = {
-        setup = false, -- setting on my own since I remap `H` and `L`
-        scrollLeftOnCaret = true, -- `^` should scroll left (basically mapped to `0^`)
-      },
       foldtext = {
-        padding = 2,
         lineCount = { template = "󰘖 %d" },
       },
-    },
-  },
-  {
-    "chrisgrieser/nvim-spider",
-    keys = {
-      { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
-      { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
-      { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
-      { "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
     },
   },
 }

@@ -14,7 +14,7 @@ vim.keymap.set("n", "gx", function()
     block = "data-sources"
   else
     provider, type_name = line:match('resource%s+"([^_]+)_(.-)"%s+"')
-    if provider and type_name then block = "resource" end
+    if provider and type_name then block = "resources" end
   end
 
   local base = "https://registry.terraform.io/providers/hashicorp/%s/latest/docs/%s/%s"

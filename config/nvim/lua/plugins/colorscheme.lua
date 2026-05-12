@@ -7,6 +7,7 @@ return {
       style = "night",
       on_highlights = function(hl, c)
         hl["FlashLabel"] = { fg = c.magenta2, bold = true }
+        hl["Folded"] = { bg = nil }
         hl["@string.documentation"] = { link = "Comment" }
         hl["@lsp.mod.documentation"] = { link = "Comment" }
         hl["@property.toml"] = { fg = c.blue }

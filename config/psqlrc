@@ -1,7 +1,7 @@
 \set QUIET 1
 
 -- Prompt (current database)
-\set PROMPT1 '%[%033[34m%]%/%[%033[0m%]=# '
+\set PROMPT1 '%[%033[34m%]%n@%/%[%033[0m%]=# '
 
 -- Prompt (non-current database)
 \set PROMPT2 '%[%033[34m%]%/%[%033[0m%]-# '

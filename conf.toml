@@ -43,7 +43,6 @@ flatpak = [
     "docker-compose-v2",
     "docker.io",
     "fd-find",
-    "fonts-jetbrains-mono",
     "fzf",
     "gawk",
     "gdu",
@@ -76,6 +75,7 @@ flatpak = [
     "sqlite3",
     "tldr",
     "tmux",
+    "ttf-jetbrains-mono-nerd",
     "wget",
     "wl-clipboard",
     "yq",
@@ -94,9 +94,6 @@ flatpak = [
 
   [[apt.repository]]
     name = "ppa:ansible/ansible"
-
-  [[apt.repository]]
-    name = "ppa:neovim-ppa/unstable"
 
   [[apt.repository]]
     name = "ppa:longsleep/golang-backports"
@@ -129,8 +126,8 @@ flatpak = [
 
   [[apt.repository]]
     name = "kubernetes"
-    url = "https://pkgs.k8s.io/core:/stable:/v1.35/deb/"
-    key_url = "https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key"
+    url = "https://pkgs.k8s.io/core:/stable:/v1.36/deb/"
+    key_url = "https://pkgs.k8s.io/core:/stable:/v1.36/deb/Release.key"
     suites = "/"
     components = ""
 
@@ -139,6 +136,14 @@ flatpak = [
     url = "https://packages.openvpn.net/openvpn3/debian"
     key_url = "https://packages.openvpn.net/packages-repo.gpg"
     suites = "noble"
+    arch = "amd64"
+
+  [[apt.repository]]
+    name = "ppr"
+    url = "https://ppr.pacstall.dev/pacstall/"
+    key_url = "https://ppr.pacstall.dev/ppr-public-key.asc"
+    components = "main ubuntu-latest"
+    suites = "pacstall"
     arch = "amd64"
 
 [links]
@@ -153,7 +158,6 @@ flatpak = [
   ".config/mise" = "mise"
   ".config/nvim" = "nvim"
   ".config/ohmyposh" = "ohmyposh"
-  ".config/jnv" = "jnv"
   ".config/glow" = "glow"
   ".config/presenterm" = "presenterm"
   ".config/gh/config.yml" = "gh/config.yml"

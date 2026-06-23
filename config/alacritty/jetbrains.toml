@@ -1,11 +1,11 @@
 [font.normal]
-family = "JetBrains Mono NerdFont"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "JetBrains Mono NerdFont"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "JetBrains Mono NerdFont"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"

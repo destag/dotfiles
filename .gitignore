@@ -2,3 +2,7 @@
 
 aws/
 venv/
+
+config/cosmic/**
+!config/cosmic/com.system76.*/
+!config/cosmic/com.system76.*/**

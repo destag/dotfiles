@@ -24,3 +24,43 @@ y = 5
 [terminal.shell]
 program = "tmux"
 args = ["new", "-A", "-s", "dsg"]
+
+[hints]
+alphabet = "hutenosadigpc.r,l'"
+
+[[hints.enabled]]
+regex = """(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+    [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"""
+hyperlinks = true
+command = "xdg-open"
+post_processing = true
+mouse = { enabled = true }
+binding = { key = "U", mods = "Control|Shift" }
+
+[[hints.enabled]]
+regex = "[a-f0-9]{40}|[a-f0-9]{7,8}"
+action = "Copy"
+binding = { key = "H", mods = "Control|Shift" }
+
+[[hints.enabled]]
+regex = """(/?[^/ \"']*[a-zA-Z0-9][^/ \"':]*/([^/ \"']+/?)*)\
+    |(/[^/ \"']*[a-zA-Z0-9][^/ \"']*)"""
+action = "Copy"
+binding = { key = "P", mods = "Control|Shift" }
+
+[[hints.enabled]]
+regex = "(i-[a-z0-9]+|sg-[a-z0-9]+|vpc-[a-z0-9]+|subnet-[a-z0-9]+)"
+action = "Copy"
+binding = { key = "A", mods = "Control|Shift" }
+
+[[hints.enabled]]
+regex = "[A-Z][A-Z0-9]+-[0-9]+"
+action = "Copy"
+binding = { key = "J", mods = "Control|Shift" }
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Shift",      chars = "\u001B\r" },
+  { key = "Escape", mods = "Control",    action = "ToggleViMode"   },
+  { key = "I",      mode = "Vi|~Search", action = "ToggleViMode"   },
+]

@@ -82,6 +82,13 @@ final_space = true
     [blocks.segments.properties]
       cache_duration = 'none'
 
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground = 'yellow'
+    background = 'transparent'
+    template = '{{ if .Env.TOOLBOX_PATH }} {{ end }}'
+
 [[blocks]]
   type = 'prompt'
   alignment = 'left'

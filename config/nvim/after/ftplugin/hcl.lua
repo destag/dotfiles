@@ -33,11 +33,25 @@ end, {
   complete = function() return { "plan", "apply", "output", "destroy" } end,
 })
 
-vim.api.nvim_create_user_command("UpdateTrigger", function()
+vim.api.nvim_create_user_command("UpdateTrigger", function(opts)
+  local mode = opts.args ~= "" and opts.args or "short"
+  if mode ~= "short" and mode ~= "long" then
+    vim.notify("UpdateTrigger: argument must be 'short' or 'long'", vim.log.levels.ERROR)
+    return
+  end
+
   local buf = vim.api.nvim_get_current_buf()
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-  ---@diagnostic disable-next-line: param-type-mismatch
-  local timestamp = os.date("%Y-%m-%d %H:%M:%S%z"):gsub("([+-]%d%d)(%d%d)", "%1:%2")
+
+  local timestamp
+  if mode == "long" then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    timestamp = os.date("%Y-%m-%d %H:%M:%S%z"):gsub("([+-]%d%d)(%d%d)", "%1:%2")
+  else
+    ---@diagnostic disable-next-line: param-type-mismatch
+    timestamp = os.date("%Y-%m-%d")
+  end
+
   local trigger_line = "# trigger " .. timestamp
 
   if #lines > 0 and lines[#lines]:match("^# trigger") then
@@ -47,4 +61,7 @@ vim.api.nvim_create_user_command("UpdateTrigger", function()
   end
 
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-end, {})
+end, {
+  nargs = "?",
+  complete = function() return { "short", "long" } end,
+})

@@ -1,10 +1,14 @@
 Some(([
     "com.system76.CosmicAppletWorkspaces",
+    "io.github.cosmic_utils.sysinfo-applet",
 ], [
     "dev.DBrox.CosmicPrivacyIndicator",
     "io.github.cosmic_utils.weather-applet",
     "com.system76.CosmicAppletStatusArea",
-    "com.system76.CosmicAppletTiling",
+    "com.laeborg.CosmicAppletTimewarrior",
+    "com.laeborg.CosmicAppletGithubStatus",
+    "dev.destag.CosmicAppletVPN",
+    "io.github.k33wee.clippy-land",
     "com.system76.CosmicAppletAudio",
     "com.system76.CosmicAppletBluetooth",
     "com.system76.CosmicAppletNetwork",

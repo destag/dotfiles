@@ -10,6 +10,7 @@ return {
         hl["Folded"] = { bg = nil }
         hl["@string.documentation"] = { link = "Comment" }
         hl["@lsp.mod.documentation"] = { link = "Comment" }
+        hl["@lsp.type.type.terraform"] = { link = "@keyword" }
         hl["@property.toml"] = { fg = c.blue }
         hl["@property.yaml"] = { fg = c.blue }
         hl["@property.json"] = { fg = c.blue }

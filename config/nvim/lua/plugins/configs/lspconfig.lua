@@ -19,7 +19,8 @@ local servers = {
   gopls = {
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
   },
-  pyrefly = {},
+  -- pyrefly = {},
+  ty = {},
   terraformls = {},
   elixirls = {
     cmd = { "elixir-ls" },

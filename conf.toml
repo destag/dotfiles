@@ -73,7 +73,7 @@ flatpak = [
     "rustc",
     "rustfmt",
     "sqlite3",
-    "tldr",
+    "tealdeer",
     "tmux",
     "ttf-jetbrains-mono-nerd",
     "wget",
@@ -160,6 +160,7 @@ flatpak = [
   ".config/ohmyposh" = "ohmyposh"
   ".config/glow" = "glow"
   ".config/presenterm" = "presenterm"
+  ".config/tealdeer" = "tealdeer"
   ".config/gh/config.yml" = "gh/config.yml"
   ".pystartup" = "pystartup"
   ".psqlrc" = "psqlrc"

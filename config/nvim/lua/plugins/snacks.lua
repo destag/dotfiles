@@ -91,6 +91,11 @@ return {
     { "<leader>gb", function() require("snacks").picker.git_branches() end, desc = "Git Branches" },
     { "<leader>gd", function() require("snacks").picker.git_diff() end, desc = "Git Diff (Hunks)" },
     {
+      "<leader>gD",
+      function() require("snacks").picker.git_diff({ staged = false }) end,
+      desc = "Git Diff (Unstaged Hunks)",
+    },
+    {
       "<leader>gy",
       function()
         require("snacks").gitbrowse.open({

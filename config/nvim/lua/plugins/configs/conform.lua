@@ -10,6 +10,7 @@ return {
     hcl = { "terragrunt_hclfmt" },
     sql = { "sqruff" },
     json = { "biome" },
+    jsonc = { "biome" },
   },
   formatters = {
     shfmt = {

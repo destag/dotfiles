@@ -65,3 +65,11 @@ end, {
   nargs = "?",
   complete = function() return { "short", "long" } end,
 })
+
+vim.api.nvim_create_user_command("CopyStatePath", function()
+  local state_path = vim.fn.expand("%:p:.")
+  state_path = state_path:gsub("^src/terragrunt/prod/", "")
+  state_path = state_path:gsub("%.hcl$", ".tfstate")
+  vim.fn.setreg("+", state_path)
+  print("Copied to clipboard: " .. state_path)
+end, { desc = "Copy Terraform state path for prod terragrunt file", nargs = 0 })

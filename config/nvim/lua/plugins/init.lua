@@ -1,6 +1,5 @@
 return {
   { "folke/lazy.nvim", version = "*" },
-  "nvim-lua/plenary.nvim",
   {
     "christoomey/vim-tmux-navigator",
     cmd = {
@@ -76,8 +75,17 @@ return {
     "dlvhdr/gh-addressed.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
     },
     cmd = "GhReviewComments",
+  },
+  {
+    "gh-tui-tools/gh-review.nvim",
+  },
+  {
+    "adrianmross/review-mode.nvim",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+    },
+    opts = {},
   },
 }

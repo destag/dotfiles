@@ -49,6 +49,8 @@ require("lazy").setup({
 
 vim.cmd("packadd nvim.undotree")
 vim.keymap.set("n", "<leader>U", require("undotree").open)
+vim.cmd("packadd nvim.difftool")
+require("vim._core.ui2").enable()
 
 -- incremental selection treesitter/lsp
 vim.keymap.set({ "n", "x", "o" }, "<A-o>", function()

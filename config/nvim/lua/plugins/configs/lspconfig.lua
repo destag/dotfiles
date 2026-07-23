@@ -67,5 +67,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts("Code action"))
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts("Rename"))
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts("Show hover"))
+
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    client.server_capabilities.codeLensProvider = nil
   end,
 })

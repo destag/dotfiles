@@ -168,6 +168,7 @@ flatpak = [
   ".config/glow" = "glow"
   ".config/presenterm" = "presenterm"
   ".config/tealdeer" = "tealdeer"
+  ".config/fastfetch" = "fastfetch"
   ".config/gh/config.yml" = "gh/config.yml"
   ".pystartup" = "pystartup"
   ".psqlrc" = "psqlrc"

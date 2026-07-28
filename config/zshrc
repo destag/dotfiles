@@ -43,7 +43,6 @@ zinit wait lucid for \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light MichaelAquilina/zsh-you-should-use
 zinit light reegnz/jq-zsh-plugin
 
 # Add in snippets
@@ -53,12 +52,8 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
-zinit snippet OMZP::helm
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::tldr
-zinit snippet OMZP::terraform
-zinit ice as"completion"
-zinit snippet OMZP::terraform/_terraform
 
 # Keybindings
 bindkey -e
@@ -77,9 +72,9 @@ zle -N edit-command-line
 bindkey '^S' edit-command-line
 
 # History
-HISTSIZE=10000
+HISTSIZE=5000
+SAVEHIST=50000
 HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -109,14 +104,14 @@ alias gu='git pull'
 alias gs='git status --short'
 alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
 alias gll='gl -5'
-alias _='sudo'
+alias _='sudo '
 alias :q='exit'
 alias q='exit'
 alias reload='source $HOME/.zshrc'
 alias ssh='TERM=xterm-color ssh'
-alias rm!='rm -rfv'
+alias rm!='rm -rfvi'
 alias cdtmp='cd `mktemp -d`'
-alias cat='batcat -pp'
+alias cat='batcat'
 alias dco='docker compose'
 alias updateall='sudo apt update && sudo apt full-upgrade -V && flatpak update'
 alias fd='fdfind'
@@ -127,15 +122,34 @@ alias notes='cd $HOME/obsidian && nvim'
 alias now='date +"%T"'
 alias today='date +%F'
 alias ports='sudo lsof -i4 -P -n | grep LISTEN'
+alias tf='terraform'
 alias ap='ansible-playbook'
 alias k='kubectl'
 alias tt='ttrack'
 alias py='python3'
+alias www="python -m http.server 8080"
 
-export LS_COLORS="ow=36:di=34:fi=32:ex=31:ln=35:"
+export LS_COLORS="ow=36:di=34:ex=31:ln=35:"
+
+function mkvenv() {
+    name="${1:-.venv}"
+    python3 -m venv "$name" && source "$name/bin/activate"
+}
+
+function chpwd() {
+    [[ -n "$TMUX" ]] || return
+
+    local repo name current
+    repo=$(git rev-parse --show-toplevel 2>/dev/null) || return
+
+    name=${repo:t}
+    current=$(tmux display-message -p '#W')
+
+    [[ "$name" == "$current" ]] || tmux rename-window "$name"
+}
 
 # Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|=*'
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no

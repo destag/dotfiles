@@ -1,5 +1,5 @@
 Some(([
-    "com.system76.CosmicAppletWorkspaces",
+    "io.github.crocodile.cosmic-ext-applet-workspace-icons",
     "io.github.cosmic_utils.sysinfo-applet",
 ], [
     "dev.DBrox.CosmicPrivacyIndicator",
@@ -9,9 +9,11 @@ Some(([
     "com.laeborg.CosmicAppletGithubStatus",
     "dev.destag.CosmicAppletVPN",
     "io.github.k33wee.clippy-land",
+    "io.github.nalladev.CosmicExtAppletEyedropper",
     "com.system76.CosmicAppletAudio",
     "com.system76.CosmicAppletBluetooth",
     "com.system76.CosmicAppletNetwork",
+    "com.system76.CosmicAppletTiling",
     "com.system76.CosmicAppletBattery",
     "com.system76.CosmicAppletNotifications",
     "com.system76.CosmicAppletPower",

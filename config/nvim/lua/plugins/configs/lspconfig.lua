@@ -2,6 +2,25 @@ local blink_cmp = require("blink.cmp")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = blink_cmp.get_lsp_capabilities(capabilities)
 
+local function tinygo_env(root)
+  if not root then return {} end
+
+  local path = root .. "/.tinygo"
+  if vim.fn.filereadable(path) ~= 1 then return {} end
+
+  local target = vim.fn.readfile(path)[1]
+  if not target then return {} end
+
+  local output = vim.fn.system({ "tinygo", "info", "-json", target })
+  if vim.v.shell_error ~= 0 then error("Failed to get TinyGo environment: " .. output) end
+
+  local info = vim.json.decode(output)
+  return {
+    GOROOT = info.goroot,
+    GOFLAGS = "-tags=" .. table.concat(info.build_tags, ","),
+  }
+end
+
 local servers = {
   lua_ls = {
     settings = {
@@ -18,35 +37,19 @@ local servers = {
   },
   gopls = {
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    cmd = function(dispatchers, config)
+      local root = config.root_dir
+      return vim.lsp.rpc.start({ "gopls" }, dispatchers, {
+        cwd = root,
+        env = tinygo_env(root),
+      })
+    end,
   },
-  -- pyrefly = {},
+  biome = {},
   ty = {},
   terraformls = {},
-  elixirls = {
-    cmd = { "elixir-ls" },
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      elixirLS = {
-        dialyzerEnabled = false,
-        enableTestLenses = false,
-      },
-    },
-  },
-  -- expert = {},
-  -- nextls = {
-  --   cmd = { "nextls", "--stdio" },
-  --   init_options = {
-  --     extensions = {
-  --       credo = { enable = true },
-  --     },
-  --     experimental = {
-  --       completions = { enable = true },
-  --     },
-  --   },
-  -- },
-  bashls = {},
+  expert = {},
+  shuck = {},
   templ = {},
   rust_analyzer = {},
 }
